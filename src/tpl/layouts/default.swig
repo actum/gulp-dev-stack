@@ -2,14 +2,17 @@
 <html lang="cs">
 <head>
     <meta charset="utf-8">
-    <title>Document</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
     <div class="main">
-        <h1>gulp</h1>
+        <h1>{{ title }}</h1>
+
+        {% block content %}{% endblock %}
     </div>
-    <script src="js/app-compiled.js"></script>
+
+    <script src="js/app.js"></script>
     <script>
         var config = {};
         app.start(config);

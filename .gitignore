@@ -3,5 +3,10 @@
 npm-debug.log
 
 # app
-/www/css/*.css
-/www/js/*.js
+/src/css
+/src/js
+/src/gfx/svgo
+/src/*.html
+
+# dist
+/dist
