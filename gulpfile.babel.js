@@ -42,6 +42,14 @@ const eslintDevRules = {
     'space-in-parens': 0,
     'no-unused-vars': 0
 };
+const eslintEcmaFeatures = {
+    'jsx': true,
+    'modules': true,
+    'arrowFunctions': true,
+    'spread': true,
+    'templateStrings': true,
+    'blockBindings': true
+};
 const bsPort = 5500;
 
 // todo clean:dist
@@ -63,14 +71,19 @@ gulp.task('less', () => {
         .pipe(reloadStream());
 });
 
-const lint = (globs, dev = false) => {
+// try yargs (--dev or default prod)
+const lint = (globs, dev = false, babel = false) => {
+    const config = {
+        rules: dev ? eslintDevRules : {},
+        ecmaFeatures: babel ? eslintEcmaFeatures : {}
+    };
     return gulp.src(globs)
-        .pipe(eslint({ rules: dev ? eslintDevRules : {} }))
+        .pipe(eslint())
         .pipe(eslint.format())
         .pipe(eslint.failOnError());
 };
 gulp.task('lint:app', () => lint(appFiles, true));
-gulp.task('lint:gulpfile', () => lint(gulpfile, true));
+gulp.task('lint:gulpfile', () => lint(gulpfile, true, true));
 gulp.task('lint', ['lint:gulpfile', 'lint:app']);
 gulp.task('lint:dist', () => lint([appFiles, gulpfile]));
 
@@ -93,6 +106,7 @@ const bundleify = (filename, dev = false) => {
         .on('log', gutil.log);
     return rebundle();
 };
+// copy non-minified version even to dist (debug)
 gulp.task('js', () => bundleify('app.js', true));
 gulp.task('js:dist', () => bundleify('app.js'));
 // todo uglify dist
@@ -160,5 +174,7 @@ gulp.task('serve', ['prepare'], () => {
 });
 
 // todo dist build
+
+// todo deploy (prototype)
 
 gulp.task('default', ['serve']);
