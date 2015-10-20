@@ -80,10 +80,9 @@ gulp.task('less', () => {
         .pipe(gulpif(isDev, reloadStream()));
 });
 
-// try yargs (--dev or default prod)
-const lint = (globs, dev = false, babel = false) => {
+const lint = (globs, babel = false) => {
     const config = {
-        rules: dev ? eslintDevRules : {},
+        rules: isDev ? eslintDevRules : {},
         ecmaFeatures: babel ? eslintEcmaFeatures : {}
     };
     return gulp.src(globs)
@@ -96,19 +95,19 @@ gulp.task('lint:gulpfile', () => lint(gulpfile, true, true));
 gulp.task('lint', ['lint:gulpfile', 'lint:app']);
 gulp.task('lint:dist', () => lint([appFiles, gulpfile]));
 
-const bundleify = (filename, dev = false) => {
+const bundleify = (filename) => {
     const opts = {
         entries: `${appPath}/${filename}`,
-        debug: dev,
+        debug: isDev,
         // transform: [babelify]
     };
-    const bundler = dev ? watchify(browserify(Object.assign({}, watchify.args, opts))) : browserify(opts);
+    const bundler = isDev ? watchify(browserify(Object.assign({}, watchify.args, opts))) : browserify(opts);
     const rebundle = () => {
         return bundler.bundle()
             .on('error', gutil.log)
             .pipe(source(filename))
             .pipe(gulp.dest(jsPath))
-            .pipe(dev ? reloadStream() : gutil.noop());
+            .pipe(isDev ? reloadStream() : gutil.noop());
     };
     bundler
         .on('update', rebundle)
