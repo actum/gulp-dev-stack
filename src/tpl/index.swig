@@ -3,5 +3,9 @@
 {% set title = "Gulpie" %}
 
 {% block content %}
-    Pages: {{ _pages }}
+    <ul>
+        {% for path in _pages %}
+        <li><a href="{{path}}.html">{{path}}</a></li>
+        {% endfor %}
+    </ul>
 {% endblock %}

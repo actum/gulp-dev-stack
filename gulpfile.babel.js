@@ -15,7 +15,7 @@ import watchify from 'watchify';
 import babelify from 'babelify';
 import source from 'vinyl-source-stream';
 import gutil from 'gulp-util';
-import glob from 'glob'; // when gulpicon supports streams, remove this
+import glob from 'glob';
 import gulpicon from 'gulpicon/tasks/gulpicon';
 import svgmin from 'gulp-svgmin';
 import del from 'del';
@@ -125,18 +125,16 @@ gulp.task('swig', () => {
         defaults: { cache: false },
         data: {
             '_pages': (() => {
-                let paths = [];
-                glob.sync(`${tplPath}/*.swig`).forEach((pathname) => {
-                    paths.push(pathname.replace(/\.[^\.]+$/, '').substring(pathname.lastIndexOf('/') + 1, pathname.length - 1));
+                return glob.sync(`${tplPath}/*.swig`).map((pathname) => {
+                    return pathname.replace(/\.[^\.]+$/, '').substring(pathname.lastIndexOf('/') + 1, pathname.length - 1);
                 });
-                return paths;
             })()
         }
     };
     return gulp.src(`${tplPath}/*.swig`)
         .pipe(swig(opts))
         .on('error', gutil.log)
-        .pipe(gulp.dest(srcPath))
+        .pipe(gulp.dest(isDev ? srcPath : distPath))
         .pipe(reloadStream());
 });
 
@@ -191,3 +189,4 @@ gulp.task('serve', ['prepare'], () => {
 // aliases
 gulp.task('default', ['serve']);
 gulp.task('css', ['less']);
+gulp.task('tpl', ['swig']);
