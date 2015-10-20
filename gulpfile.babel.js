@@ -1,4 +1,6 @@
 import gulp from 'gulp';
+import {argv} from 'yargs';
+import gulpif from 'gulp-if';
 import browserSync from 'browser-sync';
 import sourcemaps from 'gulp-sourcemaps';
 import swig from 'gulp-swig';
@@ -6,6 +8,7 @@ import less from 'gulp-less';
 import lessPluginGlob from 'less-plugin-glob';
 import postcss from 'gulp-postcss';
 import autoprefixer from 'autoprefixer';
+import cssnano from 'cssnano';
 import runSequence from 'run-sequence';
 import browserify from 'browserify';
 import watchify from 'watchify';
@@ -21,6 +24,7 @@ import prettify from 'gulp-prettify';
 import {copy as copyToClipboard} from 'copy-paste';
 
 // const projectName = require('./package.json').name;
+let isDev = argv.dev || false;
 
 // todo dist paths
 const srcPath = './src';
@@ -33,6 +37,7 @@ const jsPath = `${srcPath}/js`;
 const tplPath = `${srcPath}/tpl`;
 const gfxPath = `${srcPath}/gfx`;
 const distPath = './dist';
+const distCssPath = `${distPath}/css`;
 const gulpfile = './gulpfile.babel.js';
 
 const browserlist = ['last 1 version'];
@@ -56,6 +61,12 @@ const bsPort = 5500;
 
 // todo less:dist (csso)
 gulp.task('less', () => {
+    let postcssPlugins = [
+        autoprefixer({browsers: browserlist})
+    ];
+    if (!isDev) {
+        postcssPlugins.push(cssnano());
+    }
     return gulp.src(`${lessPath}/main.less`)
         .pipe(sourcemaps.init())
         .pipe(less({
@@ -63,12 +74,10 @@ gulp.task('less', () => {
             plugins: [lessPluginGlob]
         }))
         .on('error', gutil.log)
-        .pipe(postcss([
-            autoprefixer({browsers: browserlist})
-        ]))
-        .pipe(sourcemaps.write(cssPath))
-        .pipe(gulp.dest(cssPath))
-        .pipe(reloadStream());
+        .pipe(postcss(postcssPlugins))
+        .pipe(gulpif(isDev, sourcemaps.write()))
+        .pipe(gulp.dest(isDev ? cssPath : distCssPath))
+        .pipe(gulpif(isDev, reloadStream()));
 });
 
 // try yargs (--dev or default prod)
@@ -161,6 +170,8 @@ gulp.task('prettify', () => {
 gulp.task('prepare', () => runSequence('icons', 'lint', 'js', ['less', 'swig']));
 
 gulp.task('serve', ['prepare'], () => {
+    isDev = true;
+
     browserSync({
         port: bsPort,
         server: srcPath,
@@ -177,4 +188,6 @@ gulp.task('serve', ['prepare'], () => {
 
 // todo deploy (prototype)
 
+// aliases
 gulp.task('default', ['serve']);
+gulp.task('css', ['less']);
