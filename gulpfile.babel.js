@@ -1,6 +1,7 @@
 import gulp from 'gulp';
 import {argv} from 'yargs';
 import gulpif from 'gulp-if';
+import rename from 'gulp-rename';
 import browserSync from 'browser-sync';
 import sourcemaps from 'gulp-sourcemaps';
 import swig from 'gulp-swig';
@@ -97,6 +98,7 @@ gulp.task('less', () => {
         .on('error', gutil.log)
         .pipe(postcss(postcssPlugins))
         .pipe(gulpif(isDev, sourcemaps.write()))
+        .pipe(rename('style.css'))
         .pipe(gulp.dest(isDev ? cssPath : distCssPath))
         .pipe(gulpif(isDev, reloadStream()));
 });
