@@ -15,6 +15,8 @@ import browserify from 'browserify';
 import watchify from 'watchify';
 import babelify from 'babelify';
 import source from 'vinyl-source-stream';
+import buffer from 'vinyl-buffer';
+import uglify from 'gulp-uglify';
 import gutil from 'gulp-util';
 import glob from 'glob';
 import gulpicon from 'gulpicon/tasks/gulpicon';
@@ -39,6 +41,7 @@ const tplPath = `${srcPath}/tpl`;
 const gfxPath = `${srcPath}/gfx`;
 const distPath = './dist';
 const distCssPath = `${distPath}/css`;
+const distJsPath = `${distPath}/js`;
 const gulpfile = './gulpfile.babel.js';
 
 const browserlist = ['last 1 version'];
@@ -81,7 +84,6 @@ const bsPort = 5500;
 
 // todo clean:dist
 
-// todo less:dist (csso)
 gulp.task('less', () => {
     let postcssPlugins = [
         autoprefixer({browsers: browserlist})
@@ -100,10 +102,10 @@ gulp.task('less', () => {
         .pipe(gulpif(isDev, sourcemaps.write()))
         .pipe(rename('style.css'))
         .pipe(gulp.dest(isDev ? cssPath : distCssPath))
+        .pipe(gulpif(isDev, reloadStream()))
         .pipe(gulpif(!isDev, postcss(postcssAfterPlugins)))
         .pipe(gulpif(!isDev, rename('style.min.css')))
-        .pipe(gulpif(!isDev, gulp.dest(distCssPath)))
-        .pipe(gulpif(isDev, reloadStream()));
+        .pipe(gulpif(!isDev, gulp.dest(distCssPath)));
 });
 
 const lint = (globs) => {
@@ -131,8 +133,14 @@ const bundleify = (filename) => {
         return bundler.bundle()
             .on('error', gutil.log)
             .pipe(source(filename))
-            .pipe(gulp.dest(jsPath))
-            .pipe(isDev ? reloadStream() : gutil.noop());
+            .pipe(buffer())
+            .pipe(rename('app-compiled.js'))
+            .pipe(gulp.dest(isDev ? jsPath : distJsPath))
+            .pipe(gulpif(isDev, reloadStream()))
+            .pipe(gulpif(!isDev, uglify()))
+            .on('error', gutil.log)
+            .pipe(gulpif(!isDev, rename('app-compiled.min.js')))
+            .pipe(gulpif(!isDev, gulp.dest(distJsPath)));
     };
     bundler
         .on('update', rebundle)
@@ -141,7 +149,6 @@ const bundleify = (filename) => {
 };
 // copy non-minified version even to dist (debug)
 gulp.task('js', () => bundleify('app.js'));
-gulp.task('js:dist', () => bundleify('app.js'));
 // todo uglify dist
 
 gulp.task('swig', () => {

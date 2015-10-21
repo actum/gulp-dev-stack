@@ -16,7 +16,11 @@
         {% block content %}{% endblock %}
     </div>
 
-    <script src="js/app.js"></script>
+    {% if _dev %}
+        <script src="js/app-compiled.js"></script>
+    {% else %}
+        <script src="js/app-compiled.min.js"></script>
+    {% endif %}
     <script>
         var config = {};
         app.start(config);
