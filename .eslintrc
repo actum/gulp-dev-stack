@@ -9,6 +9,7 @@
         "modules": true,
         "arrowFunctions": true,
         "spread": true,
+        "restParams": true,
         "templateStrings": true,
         "blockBindings": true
     },

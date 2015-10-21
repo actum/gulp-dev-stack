@@ -46,35 +46,6 @@ const gulpfile = './gulpfile.babel.js';
 
 const browserlist = ['last 1 version'];
 const reloadStream = () => browserSync.reload({ stream: true });
-let eslintConfig = {
-    parser: 'babel-eslint',
-    env: {
-        'browser': true,
-        'node': true,
-        'jquery': true,
-        'es6': true
-    },
-    ecmaFeatures: {
-        'jsx': true,
-        'modules': true,
-        'arrowFunctions': true,
-        'spread': true,
-        'restParams': true,
-        'templateStrings': true,
-        'blockBindings': true
-    },
-    rules: {
-        'semi': 2,
-        'quotes': [2, 'single'],
-        'strict': [2, 'never'],
-        'space-after-keywords': [2, 'always'],
-        'one-var': [2, 'never'],
-        'no-empty': 2,
-        'space-in-parens': [2, 'never'],
-        'no-multiple-empty-lines': [2, {max: 1}],
-        'linebreak-style': [2, 'unix']
-    }
-}
 const eslintDevRules = {
     'no-empty': 0,
     'space-in-parens': 0,
@@ -109,18 +80,14 @@ gulp.task('less', () => {
 });
 
 const lint = (globs) => {
-    if (isDev) {
-        Object.assign(eslintConfig, eslintDevRules);
-    }
     return gulp.src(globs)
-        .pipe(eslint(eslintConfig))
+        .pipe(eslint(isDev ? eslintDevRules : {}))
         .pipe(eslint.format())
         .pipe(eslint.failOnError());
 };
-//gulp.task('lint:app', () => lint(appFiles));
-//gulp.task('lint:gulpfile', () => lint(gulpfile));
-//gulp.task('lint', ['lint:gulpfile', 'lint:app']);
-//gulp.task('lint:dist', () => lint([appFiles, gulpfile]));
+gulp.task('lint:app', () => lint(appFiles));
+gulp.task('lint:gulpfile', () => lint(gulpfile));
+gulp.task('lint', ['lint:gulpfile', 'lint:app']);
 
 const bundleify = (filename) => {
     const opts = {
