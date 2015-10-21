@@ -138,7 +138,6 @@ const bundleify = (filename) => {
             .pipe(gulp.dest(isDev ? jsPath : distJsPath))
             .pipe(gulpif(isDev, reloadStream()))
             .pipe(gulpif(!isDev, uglify()))
-            .on('error', gutil.log)
             .pipe(gulpif(!isDev, rename('app-compiled.min.js')))
             .pipe(gulpif(!isDev, gulp.dest(distJsPath)));
     };
@@ -147,9 +146,7 @@ const bundleify = (filename) => {
         .on('log', gutil.log);
     return rebundle();
 };
-// copy non-minified version even to dist (debug)
 gulp.task('js', () => bundleify('app.js'));
-// todo uglify dist
 
 gulp.task('swig', () => {
     let opts = {
