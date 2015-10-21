@@ -86,9 +86,9 @@ gulp.task('less', () => {
     let postcssPlugins = [
         autoprefixer({browsers: browserlist})
     ];
-    if (!isDev) {
-        postcssPlugins.push(cssnano());
-    }
+    let postcssAfterPlugins = [
+        cssnano()
+    ];
     return gulp.src(`${lessPath}/main.less`)
         .pipe(sourcemaps.init())
         .pipe(less({
@@ -100,6 +100,9 @@ gulp.task('less', () => {
         .pipe(gulpif(isDev, sourcemaps.write()))
         .pipe(rename('style.css'))
         .pipe(gulp.dest(isDev ? cssPath : distCssPath))
+        .pipe(gulpif(!isDev, postcss(postcssAfterPlugins)))
+        .pipe(gulpif(!isDev, rename('style.min.css')))
+        .pipe(gulpif(!isDev, gulp.dest(distCssPath)))
         .pipe(gulpif(isDev, reloadStream()));
 });
 
@@ -190,18 +193,18 @@ gulp.task('prettify', () => {
 gulp.task('prepare', () => runSequence('icons', /*'lint', */'js', ['less', 'swig']));
 
 gulp.task('serve', ['prepare'], () => {
-    isDev = true;
-
     browserSync({
         port: bsPort,
-        server: srcPath,
+        server: isDev ? srcPath : distPath,
         open: false
     }, () => copyToClipboard(`localhost:${bsPort}`, () => gutil.log(gutil.colors.green('Local server address has been copied to your clipboard'))));
 
-    gulp.watch(`${lessPath}/**/*.less`, ['less']);
-    gulp.watch(`${srcPath}/**/*.swig`, ['swig']);
-    //gulp.watch(appFiles, ['lint:app']);
-    //gulp.watch(gulpfile, ['lint:gulpfile']);
+    if (isDev) {
+        gulp.watch(`${lessPath}/**/*.less`, ['less']);
+        gulp.watch(`${srcPath}/**/*.swig`, ['swig']);
+        //gulp.watch(appFiles, ['lint:app']);
+        //gulp.watch(gulpfile, ['lint:gulpfile']);
+    }
 });
 
 // todo dist build
