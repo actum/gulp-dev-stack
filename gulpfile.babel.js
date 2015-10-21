@@ -42,18 +42,39 @@ const gulpfile = './gulpfile.babel.js';
 
 const browserlist = ['last 1 version'];
 const reloadStream = () => browserSync.reload({ stream: true });
+let eslintConfig = {
+    parser: 'babel-eslint',
+    env: {
+        'browser': true,
+        'node': true,
+        'jquery': true,
+        'es6': true
+    },
+    ecmaFeatures: {
+        'jsx': true,
+        'modules': true,
+        'arrowFunctions': true,
+        'spread': true,
+        'restParams': true,
+        'templateStrings': true,
+        'blockBindings': true
+    },
+    rules: {
+        'semi': 2,
+        'quotes': [2, 'single'],
+        'strict': [2, 'never'],
+        'space-after-keywords': [2, 'always'],
+        'one-var': [2, 'never'],
+        'no-empty': 2,
+        'space-in-parens': [2, 'never'],
+        'no-multiple-empty-lines': [2, {max: 1}],
+        'linebreak-style': [2, 'unix']
+    }
+}
 const eslintDevRules = {
     'no-empty': 0,
     'space-in-parens': 0,
     'no-unused-vars': 0
-};
-const eslintEcmaFeatures = {
-    'jsx': true,
-    'modules': true,
-    'arrowFunctions': true,
-    'spread': true,
-    'templateStrings': true,
-    'blockBindings': true
 };
 const bsPort = 5500;
 
@@ -80,26 +101,25 @@ gulp.task('less', () => {
         .pipe(gulpif(isDev, reloadStream()));
 });
 
-const lint = (globs, babel = false) => {
-    const config = {
-        rules: isDev ? eslintDevRules : {},
-        ecmaFeatures: babel ? eslintEcmaFeatures : {}
-    };
+const lint = (globs) => {
+    if (isDev) {
+        Object.assign(eslintConfig, eslintDevRules);
+    }
     return gulp.src(globs)
-        .pipe(eslint())
+        .pipe(eslint(eslintConfig))
         .pipe(eslint.format())
         .pipe(eslint.failOnError());
 };
-gulp.task('lint:app', () => lint(appFiles, true));
-gulp.task('lint:gulpfile', () => lint(gulpfile, true, true));
-gulp.task('lint', ['lint:gulpfile', 'lint:app']);
-gulp.task('lint:dist', () => lint([appFiles, gulpfile]));
+//gulp.task('lint:app', () => lint(appFiles));
+//gulp.task('lint:gulpfile', () => lint(gulpfile));
+//gulp.task('lint', ['lint:gulpfile', 'lint:app']);
+//gulp.task('lint:dist', () => lint([appFiles, gulpfile]));
 
 const bundleify = (filename) => {
     const opts = {
         entries: `${appPath}/${filename}`,
         debug: isDev,
-        // transform: [babelify]
+        transform: [babelify]
     };
     const bundler = isDev ? watchify(browserify(Object.assign({}, watchify.args, opts))) : browserify(opts);
     const rebundle = () => {
@@ -115,7 +135,7 @@ const bundleify = (filename) => {
     return rebundle();
 };
 // copy non-minified version even to dist (debug)
-gulp.task('js', () => bundleify('app.js', true));
+gulp.task('js', () => bundleify('app.js'));
 gulp.task('js:dist', () => bundleify('app.js'));
 // todo uglify dist
 
@@ -164,7 +184,7 @@ gulp.task('prettify', () => {
         .pipe(gulp.dest(srcPath));
 });
 
-gulp.task('prepare', () => runSequence('icons', 'lint', 'js', ['less', 'swig']));
+gulp.task('prepare', () => runSequence('icons', /*'lint', */'js', ['less', 'swig']));
 
 gulp.task('serve', ['prepare'], () => {
     isDev = true;
@@ -177,8 +197,8 @@ gulp.task('serve', ['prepare'], () => {
 
     gulp.watch(`${lessPath}/**/*.less`, ['less']);
     gulp.watch(`${srcPath}/**/*.swig`, ['swig']);
-    gulp.watch(appFiles, ['lint:app']);
-    gulp.watch(gulpfile, ['lint:gulpfile']);
+    //gulp.watch(appFiles, ['lint:app']);
+    //gulp.watch(gulpfile, ['lint:gulpfile']);
 });
 
 // todo dist build
