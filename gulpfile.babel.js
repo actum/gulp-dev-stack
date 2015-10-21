@@ -142,9 +142,10 @@ gulp.task('js:dist', () => bundleify('app.js'));
 // todo uglify dist
 
 gulp.task('swig', () => {
-    const opts = {
+    let opts = {
         defaults: { cache: false },
         data: {
+            '_dev': isDev,
             '_pages': (() => {
                 return glob.sync(`${tplPath}/*.swig`).map((pathname) => {
                     return pathname.replace(/\.[^\.]+$/, '').substring(pathname.lastIndexOf('/') + 1, pathname.length - 1);
