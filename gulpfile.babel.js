@@ -214,9 +214,10 @@ gulp.task('serve', ['prepare'], () => {
     }
 });
 
-// todo dist build
-
 // todo deploy (prototype)
+
+// tasks
+gulp.task('build', ['less', 'js', 'icons', 'swig']);
 
 // aliases
 gulp.task('default', ['serve']);
