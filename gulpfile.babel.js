@@ -69,8 +69,6 @@ gulp.task('less', () => {
         gulpif(!isDev, rename('style.min.css')),
         gulpif(!isDev, gulp.dest(distCssPath))
     ]);
-    combined.on('error', gutil.log);
-    
     return combined;
 });
 
