@@ -25,10 +25,8 @@ import eslint from 'gulp-eslint';
 import prettify from 'gulp-prettify';
 import {copy as copyToClipboard} from 'copy-paste';
 
-// const projectName = require('./package.json').name;
 const isDev = argv.dev || false;
 
-// todo dist paths
 const srcPath = './src';
 const bowerPath = `${srcPath}/bower`;
 const lessPath = `${srcPath}/less`;
@@ -48,7 +46,8 @@ const reloadStream = () => browserSync.reload({ stream: true });
 const eslintDevRules = {
     'no-empty': 0,
     'space-in-parens': 0,
-    'no-unused-vars': 0
+    'no-unused-vars': 0,
+    'no-multiple-empty-lines': 0
 };
 const bsPort = 5500;
 
@@ -84,7 +83,9 @@ gulp.task('less', () => {
 
 const lint = (globs) => {
     return gulp.src(globs)
-        .pipe(eslint(isDev ? eslintDevRules : {}))
+        .pipe(eslint({
+            rules: isDev ? eslintDevRules : {}
+        }))
         .pipe(eslint.format())
         .pipe(eslint.failOnError());
 };
@@ -116,7 +117,7 @@ const bundleify = (filename) => {
         .on('log', gutil.log);
     return rebundle();
 };
-gulp.task('js', () => bundleify('app.js'));
+gulp.task('js', ['lint'], () => bundleify('app.js'));
 
 gulp.task('swig', () => {
     let opts = {
@@ -137,14 +138,18 @@ gulp.task('swig', () => {
         .pipe(reloadStream());
 });
 
-// todo use in dist task
 gulp.task('prettify', () => {
     return gulp.src(`${srcPath}/*.html`)
         .pipe(prettify())
         .pipe(gulp.dest(srcPath));
 });
 
-gulp.task('prepare', () => runSequence(['less', 'lint', 'swig'], 'js'));
+// lets use 'prepare' task for both dev and prod so we can use production build sequence for both build task and prod serve task
+// before this change, we've been using dev 'prepare' in prod serve task…
+const devSequence = [['less', 'js', 'swig']];
+const buildSequence = [['less', 'js', 'swig'], 'prettify'];
+const prepareSequence = isDev ? devSequence : buildSequence;
+gulp.task('prepare', () => runSequence(...prepareSequence));
 
 gulp.task('serve', ['prepare'], () => {
     browserSync({
@@ -163,10 +168,8 @@ gulp.task('serve', ['prepare'], () => {
 
 // todo deploy (prototype)
 
-// tasks
-gulp.task('build', ['less', 'js', 'swig']);
-
 // aliases
 gulp.task('default', ['serve']);
+gulp.task('build', ['prepare']);
 gulp.task('css', ['less']);
 gulp.task('tpl', ['swig']);
