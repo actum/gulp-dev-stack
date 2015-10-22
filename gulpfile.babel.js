@@ -86,7 +86,7 @@ const lint = (globs) => {
     return gulp.src(globs)
         .pipe(eslint(config))
         .pipe(eslint.format())
-        .pipe(eslint.failOnError());
+        .pipe(gulpif(!isDev, eslint.failOnError()));
 };
 gulp.task('lint:app', () => lint(appFiles));
 gulp.task('lint:gulpfile', () => lint(gulpfile));
