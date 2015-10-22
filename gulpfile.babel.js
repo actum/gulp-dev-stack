@@ -20,8 +20,6 @@ import buffer from 'vinyl-buffer';
 import uglify from 'gulp-uglify';
 import gutil from 'gulp-util';
 import glob from 'glob';
-import gulpicon from 'gulpicon/tasks/gulpicon';
-import svgmin from 'gulp-svgmin';
 import del from 'del';
 import eslint from 'gulp-eslint';
 import prettify from 'gulp-prettify';
@@ -139,26 +137,6 @@ gulp.task('swig', () => {
         .pipe(reloadStream());
 });
 
-// gulp.task('icons:clean', () => del([`${gfxPath}/svgo/*.svg`]));
-// // todo move this into icons task when gulpicon supports streaming
-// gulp.task('icons:minify', ['icons:clean'], () => {
-//     return gulp.src(`${gfxPath}/svg/*.svg`)
-//         .pipe(svgmin())
-//         .pipe(gulp.dest(`${gfxPath}/svgo`));
-// });
-// // todo add reload when gulpicon supports streaming
-// gulp.task('icons:build', ['icons:minify'], () => {
-//     const opts = {
-//         dest: `${gfxPath}/ico`,
-//         enhanceSVG: true,
-//         colors: {
-//             orange: '#ed3d25'
-//         }
-//     };
-//     return gulpicon(glob.sync(`${gfxPath}/svgo/*.svg`), opts);
-// });
-// gulp.task('icons', () => runSequence('icons:clean', 'icons:minify', 'icons:build'));
-
 // todo use in dist task
 gulp.task('prettify', () => {
     return gulp.src(`${srcPath}/*.html`)
@@ -166,7 +144,7 @@ gulp.task('prettify', () => {
         .pipe(gulp.dest(srcPath));
 });
 
-gulp.task('prepare', () => runSequence(['less', 'lint', /*'icons',*/ 'swig'], 'js'));
+gulp.task('prepare', () => runSequence(['less', 'lint', 'swig'], 'js'));
 
 gulp.task('serve', ['prepare'], () => {
     browserSync({
@@ -186,7 +164,7 @@ gulp.task('serve', ['prepare'], () => {
 // todo deploy (prototype)
 
 // tasks
-gulp.task('build', ['less', 'js', /*'icons',*/ 'swig']);
+gulp.task('build', ['less', 'js', 'swig']);
 
 // aliases
 gulp.task('default', ['serve']);
