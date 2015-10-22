@@ -41,21 +41,14 @@ const distCssPath = `${distPath}/css`;
 const distJsPath = `${distPath}/js`;
 const gulpfile = './gulpfile.babel.js';
 
-const browserlist = ['last 1 version'];
 const reloadStream = () => browserSync.reload({ stream: true });
-const eslintDevRules = {
-    'no-empty': 0,
-    'space-in-parens': 0,
-    'no-unused-vars': 0,
-    'no-multiple-empty-lines': 0
-};
 const bsPort = 5500;
 
 // todo clean:dist
 
 gulp.task('less', () => {
     let postcssPlugins = [
-        autoprefixer({browsers: browserlist})
+        autoprefixer({browsers: ['last 1 version']})
     ];
     let postcssAfterPlugins = [
         cssnano()
@@ -82,10 +75,16 @@ gulp.task('less', () => {
 });
 
 const lint = (globs) => {
+    const config = isDev ? {
+        'rules': {
+            'no-empty': 0,
+            'space-in-parens': 0,
+            'no-unused-vars': 0,
+            'no-multiple-empty-lines': 0
+        }
+    } : {};
     return gulp.src(globs)
-        .pipe(eslint({
-            rules: isDev ? eslintDevRules : {}
-        }))
+        .pipe(eslint(config))
         .pipe(eslint.format())
         .pipe(eslint.failOnError());
 };
