@@ -29,6 +29,7 @@
     "less-plugin-glob": "^1.1.0",
     "lodash.assign": "^3.2.0",
     "run-sequence": "^1.1.4",
+    "stream-combiner2": "^1.1.1",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.4.0",

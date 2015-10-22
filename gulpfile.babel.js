@@ -5,6 +5,7 @@ import rename from 'gulp-rename';
 import browserSync from 'browser-sync';
 import sourcemaps from 'gulp-sourcemaps';
 import swig from 'gulp-swig';
+import combiner from 'stream-combiner2';
 import less from 'gulp-less';
 import lessPluginGlob from 'less-plugin-glob';
 import postcss from 'gulp-postcss';
@@ -62,21 +63,25 @@ gulp.task('less', () => {
     let postcssAfterPlugins = [
         cssnano()
     ];
-    return gulp.src(`${lessPath}/main.less`)
-        .pipe(sourcemaps.init())
-        .pipe(less({
+    let combined = combiner.obj([
+        gulp.src(`${lessPath}/main.less`),
+        sourcemaps.init(),
+        less({
             paths: [lessPath, bowerPath],
             plugins: [lessPluginGlob]
-        }))
-        .on('error', gutil.log)
-        .pipe(postcss(postcssPlugins))
-        .pipe(gulpif(isDev, sourcemaps.write()))
-        .pipe(rename('style.css'))
-        .pipe(gulp.dest(isDev ? cssPath : distCssPath))
-        .pipe(gulpif(isDev, reloadStream()))
-        .pipe(gulpif(!isDev, postcss(postcssAfterPlugins)))
-        .pipe(gulpif(!isDev, rename('style.min.css')))
-        .pipe(gulpif(!isDev, gulp.dest(distCssPath)));
+        }),
+        postcss(postcssPlugins),
+        gulpif(isDev, sourcemaps.write()),
+        rename('style.css'),
+        gulp.dest(isDev ? cssPath : distCssPath),
+        gulpif(isDev, reloadStream()),
+        gulpif(!isDev, postcss(postcssAfterPlugins)),
+        gulpif(!isDev, rename('style.min.css')),
+        gulpif(!isDev, gulp.dest(distCssPath))
+    ]);
+    combined.on('error', gutil.log);
+    
+    return combined;
 });
 
 const lint = (globs) => {
@@ -161,7 +166,7 @@ gulp.task('prettify', () => {
         .pipe(gulp.dest(srcPath));
 });
 
-gulp.task('prepare', () => runSequence('icons', /*'lint', */'js', ['less', 'swig']));
+gulp.task('prepare', () => runSequence(['less', 'lint', 'icons', 'swig'], 'js'));
 
 gulp.task('serve', ['prepare'], () => {
     browserSync({
@@ -173,8 +178,8 @@ gulp.task('serve', ['prepare'], () => {
     if (isDev) {
         gulp.watch(`${lessPath}/**/*.less`, ['less']);
         gulp.watch(`${srcPath}/**/*.swig`, ['swig']);
-        //gulp.watch(appFiles, ['lint:app']);
-        //gulp.watch(gulpfile, ['lint:gulpfile']);
+        gulp.watch(appFiles, ['lint:app']);
+        gulp.watch(gulpfile, ['lint:gulpfile']);
     }
 });
 
