@@ -44,7 +44,7 @@ const gulpfile = './gulpfile.babel.js';
 const reloadStream = () => browserSync.reload({ stream: true });
 const bsPort = 5500;
 
-// todo clean:dist
+gulp.task('clean', () => del(distPath));
 
 gulp.task('less', () => {
     let postcssPlugins = [
@@ -144,7 +144,7 @@ gulp.task('prettify', () => {
 // lets use 'prepare' task for both dev and prod so we can use production build sequence for both build task and prod serve task
 // before this change, we've been using dev 'prepare' in prod serve task…
 const devSequence = [['less', 'js', 'swig']];
-const buildSequence = [['less', 'js', 'swig'], 'prettify'];
+const buildSequence = ['clean', ['less', 'js', 'swig'], 'prettify'];
 const prepareSequence = isDev ? devSequence : buildSequence;
 gulp.task('prepare', () => runSequence(...prepareSequence));
 
