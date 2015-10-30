@@ -99,7 +99,7 @@ const bundleify = (filename) => {
     const bundler = isDev ? watchify(browserify(Object.assign({}, watchify.args, opts))) : browserify(opts);
     const rebundle = () => {
         return bundler.bundle()
-            .on('error', gutil.log)
+            .on('error', e => gutil.log(gutil.colors.red(e.name) + e.message.substr(e.message.indexOf(': ') + 1)))
             .pipe(source(filename))
             .pipe(buffer())
             .pipe(rename('app-compiled.js'))
