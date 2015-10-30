@@ -158,11 +158,14 @@ gulp.task('serve', ['prepare'], () => {
         open: false
     }, () => copyToClipboard(`localhost:${bsPort}`, () => gutil.log(gutil.colors.green('Local server address has been copied to your clipboard'))));
 
+    const sanitize = pathname => pathname.replace(/^\.\//, '');
+    const watch = (pathname, tasks) => gulp.watch(sanitize(pathname), tasks);
+
     if (isDev) {
-        gulp.watch(`${lessPath}/**/*.less`, ['less']);
-        gulp.watch(`${srcPath}/**/*.swig`, ['swig']);
-        gulp.watch(appFiles, ['lint:app']);
-        gulp.watch(gulpfile, ['lint:gulpfile']);
+        watch(`${lessPath}/**/*.less`, ['less']);
+        watch(`${srcPath}/**/*.swig`, ['swig']);
+        watch(appFiles, ['lint:app']);
+        watch(gulpfile, ['lint:gulpfile']);
     }
 });
 
