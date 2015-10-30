@@ -24,8 +24,7 @@ import del from 'del';
 import eslint from 'gulp-eslint';
 import prettify from 'gulp-prettify';
 import {copy as copyToClipboard} from 'copy-paste';
-
-const isDev = argv.dev || false;
+import plumber from 'gulp-plumber';
 
 const srcPath = './src';
 const bowerPath = `${srcPath}/bower`;
@@ -41,8 +40,11 @@ const distCssPath = `${distPath}/css`;
 const distJsPath = `${distPath}/js`;
 const gulpfile = './gulpfile.babel.js';
 
+const isDev = argv.dev || false;
 const reloadStream = () => browserSync.reload({ stream: true });
 const bsPort = 5500;
+
+// todo abstract gulp.src piping fix
 
 gulp.task('clean', () => del(distPath));
 
@@ -129,8 +131,10 @@ gulp.task('swig', () => {
         }
     };
     return gulp.src(`${tplPath}/*.swig`)
+        .pipe(plumber({
+            errorHandler: e => gutil.log(gutil.colors.red(`${e.name} in ${e.plugin}: ${e.message}`))
+        }))
         .pipe(swig(opts))
-        .on('error', gutil.log)
         .pipe(gulp.dest(isDev ? srcPath : distPath))
         .pipe(reloadStream());
 });
