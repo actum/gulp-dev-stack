@@ -44,8 +44,6 @@ const isDev = argv.dev || false;
 const reloadStream = () => browserSync.reload({ stream: true });
 const bsPort = 5500;
 
-// todo abstract gulp.src piping fix
-
 gulp.task('clean', () => del(distPath));
 
 gulp.task('less', () => {
@@ -131,6 +129,7 @@ gulp.task('swig', () => {
         }
     };
     return gulp.src(`${tplPath}/*.swig`)
+        // Temporary fix for gulp's error handling within streams, see https://github.com/actum/gulp-dev-stack/issues/7#issuecomment-152490084
         .pipe(plumber({
             errorHandler: e => gutil.log(gutil.colors.red(`${e.name} in ${e.plugin}: ${e.message}`))
         }))
