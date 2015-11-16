@@ -26,13 +26,14 @@ import prettify from 'gulp-prettify';
 import {copy as copyToClipboard} from 'copy-paste';
 import plumber from 'gulp-plumber';
 
-import paths from './gulp/paths';
+import config from './gulp/config';
 
+const { gulpfile, src, dist } = config.paths;
 const isDev = argv.dev || false;
 const reloadStream = () => browserSync.reload({ stream: true });
 const bsPort = 5500;
 
-gulp.task('clean', () => del(paths.dist.base));
+gulp.task('clean', () => del(dist.base));
 
 gulp.task('less', () => {
     let postcssPlugins = [
@@ -42,20 +43,20 @@ gulp.task('less', () => {
         cssnano()
     ];
     let combined = combiner.obj([
-        gulp.src(`${paths.src.less}/main.less`),
+        gulp.src(`${src.less}/main.less`),
         sourcemaps.init(),
         less({
-            paths: [paths.src.less, paths.src.bower],
+            paths: [src.less, src.bower],
             plugins: [lessPluginGlob]
         }),
         postcss(postcssPlugins),
         gulpif(isDev, sourcemaps.write()),
         rename('style.css'),
-        gulp.dest(isDev ? paths.src.css : paths.dist.css),
+        gulp.dest(isDev ? src.css : dist.css),
         gulpif(isDev, reloadStream()),
         gulpif(!isDev, postcss(postcssAfterPlugins)),
         gulpif(!isDev, rename('style.min.css')),
-        gulpif(!isDev, gulp.dest(paths.dist.css))
+        gulpif(!isDev, gulp.dest(dist.css))
     ]);
     return combined;
 });
@@ -74,13 +75,13 @@ const lint = (globs) => {
         .pipe(eslint.format())
         .pipe(gulpif(!isDev, eslint.failOnError()));
 };
-gulp.task('lint:app', () => lint(paths.src.appFiles));
-gulp.task('lint:gulpfile', () => lint(paths.gulpfile));
+gulp.task('lint:app', () => lint(src.appFiles));
+gulp.task('lint:gulpfile', () => lint(gulpfile));
 gulp.task('lint', ['lint:gulpfile', 'lint:app']);
 
 const bundleify = (filename) => {
     const opts = {
-        entries: `${paths.src.app}/${filename}`,
+        entries: `${src.app}/${filename}`,
         debug: isDev,
         transform: [babelify]
     };
@@ -91,11 +92,11 @@ const bundleify = (filename) => {
             .pipe(source(filename))
             .pipe(buffer())
             .pipe(rename('app-compiled.js'))
-            .pipe(gulp.dest(isDev ? paths.src.js : paths.dist.js))
+            .pipe(gulp.dest(isDev ? src.js : dist.js))
             .pipe(gulpif(isDev, reloadStream()))
             .pipe(gulpif(!isDev, uglify()))
             .pipe(gulpif(!isDev, rename('app-compiled.min.js')))
-            .pipe(gulpif(!isDev, gulp.dest(paths.dist.js)));
+            .pipe(gulpif(!isDev, gulp.dest(dist.js)));
     };
     bundler
         .on('update', rebundle)
@@ -110,26 +111,26 @@ gulp.task('swig', () => {
         data: {
             '_dev': isDev,
             '_pages': (() => {
-                return glob.sync(`${paths.src.tpl}/*.swig`).map((pathname) => {
+                return glob.sync(`${src.tpl}/*.swig`).map((pathname) => {
                     return pathname.replace(/\.[^\.]+$/, '').substring(pathname.lastIndexOf('/') + 1, pathname.length - 1);
                 });
             })()
         }
     };
-    return gulp.src(`${paths.src.tpl}/*.swig`)
+    return gulp.src(`${src.tpl}/*.swig`)
         // Temporary fix for gulp's error handling within streams, see https://github.com/actum/gulp-dev-stack/issues/7#issuecomment-152490084
         .pipe(plumber({
             errorHandler: e => gutil.log(gutil.colors.red(`${e.name} in ${e.plugin}: ${e.message}`))
         }))
         .pipe(swig(opts))
-        .pipe(gulp.dest(isDev ? paths.src.base : paths.dist.base))
+        .pipe(gulp.dest(isDev ? src.base : dist.base))
         .pipe(reloadStream());
 });
 
 gulp.task('prettify', () => {
-    return gulp.src(`${paths.src.base}/*.html`)
+    return gulp.src(`${src.base}/*.html`)
         .pipe(prettify())
-        .pipe(gulp.dest(paths.src.base));
+        .pipe(gulp.dest(src.base));
 });
 
 // lets use 'prepare' task for both dev and prod so we can use production build sequence for both build task and prod serve task
@@ -142,7 +143,7 @@ gulp.task('prepare', () => runSequence(...prepareSequence));
 gulp.task('serve', ['prepare'], () => {
     browserSync({
         port: bsPort,
-        server: isDev ? paths.src.base : paths.dist.base,
+        server: isDev ? src.base : dist.base,
         open: false
     }, () => copyToClipboard(`localhost:${bsPort}`, () => gutil.log(gutil.colors.green('Local server address has been copied to your clipboard'))));
 
@@ -150,10 +151,10 @@ gulp.task('serve', ['prepare'], () => {
     const watch = (pathname, tasks) => gulp.watch(sanitize(pathname), tasks);
 
     if (isDev) {
-        watch(`${paths.src.less}/**/*.less`, ['less']);
-        watch(`${paths.src.tpl}/**/*.swig`, ['swig']);
-        watch(paths.src.appFiles, ['lint:app']);
-        watch(paths.gulpfile, ['lint:gulpfile']);
+        watch(`${src.less}/**/*.less`, ['less']);
+        watch(`${src.tpl}/**/*.swig`, ['swig']);
+        watch(src.appFiles, ['lint:app']);
+        watch(gulpfile, ['lint:gulpfile']);
     }
 });
 
