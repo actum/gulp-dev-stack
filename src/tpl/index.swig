@@ -8,4 +8,5 @@
         <li><a href="{{ path }}.html">{{ path }}</a></li>
         {% endfor %}
     </ul>
+    {% include './partials/p.swig' %}
 {% endblock %}

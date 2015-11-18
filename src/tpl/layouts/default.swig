@@ -11,8 +11,7 @@
 </head>
 <body>
     <div class="main">
-        <h1>{{ title }}</h1>
-
+        {% include '../partials/header.swig' %}
         {% block content %}{% endblock %}
     </div>
 
