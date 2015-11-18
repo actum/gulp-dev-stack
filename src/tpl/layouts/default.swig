@@ -17,9 +17,9 @@
     </div>
 
     {% if _dev %}
-        <script src="js/app-compiled.js"></script>
+        <script src="js/app.js"></script>
     {% else %}
-        <script src="js/app-compiled.min.js"></script>
+        <script src="js/app.min.js"></script>
     {% endif %}
     <script>
         var config = {};

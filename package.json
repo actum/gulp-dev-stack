@@ -26,6 +26,7 @@
     "gulp-uglify": "^1.4.2",
     "gulp-util": "^3.0.6",
     "less-plugin-glob": "^1.1.0",
+    "require-dir": "^0.3.0",
     "run-sequence": "^1.1.4",
     "stream-combiner2": "^1.1.1",
     "vinyl-buffer": "^1.0.0",
