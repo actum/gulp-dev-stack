@@ -8,6 +8,7 @@ import watchify from 'watchify';
 import babelify from 'babelify';
 import source from 'vinyl-source-stream';
 import buffer from 'vinyl-buffer';
+import sourcemaps from 'gulp-sourcemaps';
 import uglify from 'gulp-uglify';
 import gutil from 'gulp-util';
 import browserSync from 'browser-sync';
@@ -31,6 +32,8 @@ const bundle = () => {
             .on('error', e => gutil.log(gutil.colors.red(e.name) + e.message.substr(e.message.indexOf(': ') + 1)))
             .pipe(source(names.js.src))
             .pipe(buffer())
+            .pipe(gulpif(isDev, sourcemaps.init({ loadMaps: true })))
+            .pipe(gulpif(isDev, sourcemaps.write('./')))
             .pipe(gulp.dest(isDev ? src.app.dest : dist.js))
             .pipe(gulpif(isDev, browserSync.reload({ stream: true })))
             .pipe(gulpif(!isDev, uglify()))
