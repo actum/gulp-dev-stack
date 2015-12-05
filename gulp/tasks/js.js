@@ -6,6 +6,8 @@ import rename from 'gulp-rename';
 import browserify from 'browserify';
 import watchify from 'watchify';
 import babelify from 'babelify';
+import uglifyify from 'uglifyify';
+import envify from 'envify';
 import source from 'vinyl-source-stream';
 import buffer from 'vinyl-buffer';
 import sourcemaps from 'gulp-sourcemaps';
@@ -21,10 +23,11 @@ const isDev = argv.dev || false;
 // todo isDev ? sourcemaps
 
 const bundle = () => {
+    const transforms = [envify, babelify];
     const opts = {
         entries: src.app.entry,
         debug: isDev,
-        transform: [babelify]
+        transform: isDev ? transforms : [...transforms, uglifyify]
     };
     const bundler = isDev ? watchify(browserify(Object.assign({}, watchify.args, opts))) : browserify(opts);
     const rebundle = () => {
