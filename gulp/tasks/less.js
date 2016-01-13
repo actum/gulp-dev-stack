@@ -5,12 +5,12 @@ import rename from 'gulp-rename';
 import sourcemaps from 'gulp-sourcemaps';
 import combiner from 'stream-combiner2';
 import less from 'gulp-less';
-import lessPluginGlob from 'less-plugin-glob';
 import postcss from 'gulp-postcss';
 import autoprefixer from 'autoprefixer';
 import cssnano from 'cssnano';
-import config from '../config';
+import cssGlobbing from 'gulp-css-globbing';
 import browserSync from 'browser-sync';
+import config from '../config';
 
 const { src, dist } = config.paths;
 const names = config.names;
@@ -23,12 +23,15 @@ gulp.task('less', () => {
     let postcssAfterPlugins = [
         cssnano()
     ];
+    // Is there any reason for using stream-combiner?
+    // I tested the same pipeline without it and it works fine.
+    // But maybe I'm missing something…
     let combined = combiner.obj([
         gulp.src(src.less.entry),
+        cssGlobbing({ extensions: ['.css', '.less'] }),
         sourcemaps.init(),
         less({
-            paths: [src.less, src.bower],
-            plugins: [lessPluginGlob]
+            paths: [src.less.base, src.bower]
         }),
         postcss(postcssPlugins),
         gulpif(isDev, sourcemaps.write()),
