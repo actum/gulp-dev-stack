@@ -11,7 +11,7 @@ Front-end gulp dev stack.
     - [Babel](http://babeljs.io)
     - [Uglify](https://github.com/terinjokes/gulp-uglify)
 - **HTML:**
-    - [SWIG](https://github.com/colynb/gulp-swig) for static templating
+    - [Nunjucks](https://github.com/sindresorhus/gulp-nunjucks) for static templating
     - [Prettify](https://github.com/jonschlinkert/gulp-prettify)
 - **Development mode:**
     - File Watching and Live Reloading with [BrowserSync](http://www.browsersync.io/)

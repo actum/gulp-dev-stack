@@ -18,8 +18,8 @@ export default {
             },
             tpl: {
                 base: './src/tpl',
-                entry: './src/tpl/*.swig',
-                all: './src/tpl/**/*.swig'
+                entry: './src/tpl/*.nunj',
+                all: './src/tpl/**/*.nunj'
             },
             gfx: './src/gfx',
             html: './src/*.html'

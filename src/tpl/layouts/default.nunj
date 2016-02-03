@@ -11,7 +11,7 @@
 </head>
 <body>
     <div class="main">
-        {% include '../partials/header.swig' %}
+        {% include '../partials/header.nunj' %}
         {% block content %}{% endblock %}
     </div>
 
