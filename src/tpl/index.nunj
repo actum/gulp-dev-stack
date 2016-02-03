@@ -8,5 +8,4 @@
         <li><a href="{{ path }}.html">{{ path }}</a></li>
         {% endfor %}
     </ul>
-    {% include './partials/p.nunj' %}
 {% endblock %}

@@ -12,14 +12,16 @@ const { src, dist } = config.paths;
 const { entry } = src.tpl;
 const isDev = argv.dev || false;
 
+function getPagesList() {
+    return glob.sync(entry)
+        .map(pathname => pathname.replace(/\.[^\.]+$/, '').substring(pathname.lastIndexOf('/') + 1, pathname.length - 1))
+        .filter(name => 'index' !== name);
+}
+
 gulp.task('tpl', () => {
     const data = {
         '_dev': isDev,
-        '_pages': (() => {
-            return glob.sync(entry).map((pathname) => {
-                return pathname.replace(/\.[^\.]+$/, '').substring(pathname.lastIndexOf('/') + 1, pathname.length - 1);
-            });
-        })()
+        '_pages': getPagesList()
     };
 
     return gulp.src(entry)
