@@ -4,7 +4,6 @@ let app = {};
 
 app.start = function() {
     app.myModule = app.init(MyModule, document.querySelector('.main'));
-    console.log('yay');
 };
 
 app.init = function(Klass, container, ...args) {
