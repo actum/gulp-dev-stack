@@ -2,6 +2,38 @@
   "name": "gulp-dev-stack",
   "version": "1.0.0",
   "description": "Gulp dev-stack",
+  "babel": {
+    "presets": ["react", "es2015"]
+  },
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "node": true,
+      "jquery": true
+    },
+    "ecmaFeatures": {
+      "jsx": true,
+      "modules": true,
+      "arrowFunctions": true,
+      "spread": true,
+      "restParams": true,
+      "templateStrings": true,
+      "blockBindings": true
+    },
+    "rules": {
+      "semi": 2,
+      "quotes": [2, "single"],
+      "strict": [2, "never"],
+      "space-after-keywords": [2, "always"],
+      "one-var": [2, "never"],
+      "no-empty": 2,
+      "space-in-parens": [2, "never"],
+      "space-before-function-paren": [2, "never"],
+      "no-spaced-func": 2,
+      "no-multiple-empty-lines": [2, { "max": 1 }],
+      "linebreak-style": [2, "unix"]
+    }
+  },
   "devDependencies": {
     "autoprefixer": "^6.0.3",
     "babel-core": "^6.5.1",
