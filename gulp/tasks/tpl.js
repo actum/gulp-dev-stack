@@ -32,5 +32,5 @@ gulp.task('tpl', () => {
         .pipe(nunjucks.compile(data))
         .pipe(rename(path => path.extname = '.html'))
         .pipe(gulp.dest(isDev ? src.base : dist.base))
-        .pipe(browserSync.reload({ stream: true }));
+        .pipe(browserSync.stream({ once: true }));
 });

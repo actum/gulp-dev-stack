@@ -37,7 +37,7 @@ gulp.task('less', () => {
         gulpif(isDev, sourcemaps.write()),
         rename(names.css.src),
         gulp.dest(isDev ? src.less.dest : dist.css),
-        gulpif(isDev, browserSync.reload({ stream: true })),
+        gulpif(isDev, browserSync.stream()),
         gulpif(!isDev, postcss(postcssAfterPlugins)),
         gulpif(!isDev, rename(names.css.min)),
         gulpif(!isDev, gulp.dest(dist.css))

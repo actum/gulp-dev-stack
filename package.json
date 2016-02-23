@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "Gulp dev-stack",
   "babel": {
-    "presets": ["react", "es2015"]
+    "presets": [
+      "react",
+      "es2015"
+    ]
   },
   "eslintConfig": {
     "env": {
@@ -21,16 +24,39 @@
     },
     "rules": {
       "semi": 2,
-      "quotes": [2, "single"],
-      "strict": [2, "never"],
+      "quotes": [
+        2,
+        "single"
+      ],
+      "strict": [
+        2,
+        "never"
+      ],
       "keyword-spacing": 2,
-      "one-var": [2, "never"],
+      "one-var": [
+        2,
+        "never"
+      ],
       "no-empty": 2,
-      "space-in-parens": [2, "never"],
-      "space-before-function-paren": [2, "never"],
+      "space-in-parens": [
+        2,
+        "never"
+      ],
+      "space-before-function-paren": [
+        2,
+        "never"
+      ],
       "no-spaced-func": 2,
-      "no-multiple-empty-lines": [2, { "max": 1 }],
-      "linebreak-style": [2, "unix"]
+      "no-multiple-empty-lines": [
+        2,
+        {
+          "max": 1
+        }
+      ],
+      "linebreak-style": [
+        2,
+        "unix"
+      ]
     }
   },
   "devDependencies": {
@@ -39,7 +65,7 @@
     "babel-preset-es2015": "^6.5.0",
     "babel-preset-react": "^6.5.0",
     "babelify": "^7.2.0",
-    "browser-sync": "^2.9.10",
+    "browser-sync": "^2.11.1",
     "browserify": "^11.2.0",
     "copy-paste": "^1.1.3",
     "cssnano": "^3.3.1",
