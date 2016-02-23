@@ -7,24 +7,23 @@
   },
   "eslintConfig": {
     "env": {
+      "es6": true,
       "browser": true,
       "node": true,
       "jquery": true
     },
-    "ecmaFeatures": {
-      "jsx": true,
-      "modules": true,
-      "arrowFunctions": true,
-      "spread": true,
-      "restParams": true,
-      "templateStrings": true,
-      "blockBindings": true
+    "parserOptions": {
+      "ecmaVersion": 6,
+      "ecmaFeatures": {
+        "jsx": true
+      },
+      "sourceType": "module"
     },
     "rules": {
       "semi": 2,
       "quotes": [2, "single"],
       "strict": [2, "never"],
-      "space-after-keywords": [2, "always"],
+      "keyword-spacing": 2,
       "one-var": [2, "never"],
       "no-empty": 2,
       "space-in-parens": [2, "never"],
@@ -49,7 +48,7 @@
     "glob": "^5.0.15",
     "gulp": "^3.9.0",
     "gulp-css-globbing": "^0.1.8",
-    "gulp-eslint": "^1.0.0",
+    "gulp-eslint": "^2.0.0",
     "gulp-if": "^1.2.5",
     "gulp-less": "^3.0.3",
     "gulp-nunjucks": "^2.1.1",

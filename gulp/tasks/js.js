@@ -22,7 +22,7 @@ const isDev = argv.dev || false;
 
 // todo isDev ? sourcemaps
 
-const bundle = () => {
+function bundle() {
     const transforms = [envify, babelify];
     const opts = {
         entries: src.app.entry,
@@ -30,7 +30,7 @@ const bundle = () => {
         transform: isDev ? transforms : [...transforms, uglifyify]
     };
     const bundler = isDev ? watchify(browserify(Object.assign({}, watchify.args, opts))) : browserify(opts);
-    const rebundle = () => {
+    function rebundle() {
         return bundler.bundle()
             .on('error', e => gutil.log(gutil.colors.red(e.name) + e.message.substr(e.message.indexOf(': ') + 1)))
             .pipe(source(names.js.src))
@@ -48,4 +48,4 @@ const bundle = () => {
         .on('log', gutil.log);
     return rebundle();
 };
-gulp.task('js', ['lint'], () => bundle());
+gulp.task('js', ['lint'], bundle);
