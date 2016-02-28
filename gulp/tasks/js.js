@@ -2,7 +2,6 @@ import gulp from 'gulp';
 import { argv } from 'yargs';
 import gulpif from 'gulp-if';
 import rename from 'gulp-rename';
-// import sourcemaps from 'gulp-sourcemaps';
 import browserify from 'browserify';
 import watchify from 'watchify';
 import babelify from 'babelify';
@@ -19,8 +18,6 @@ import config from '../config';
 const { src, dist } = config.paths;
 const names = config.names;
 const isDev = argv.dev || false;
-
-// todo isDev ? sourcemaps
 
 function bundle() {
     const transforms = [envify, babelify];
