@@ -27,7 +27,8 @@ export default {
         dist: {
             base: './dist',
             css: './dist/css',
-            js: './dist/js'
+            js: './dist/js',
+            html: './dist/*.html'
         }
     },
     names: {

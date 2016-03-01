@@ -5,7 +5,7 @@ import config from '../config';
 const { src, dist } = config.paths;
 
 gulp.task('prettify', () => {
-    return gulp.src(src.html)
+    return gulp.src(isDev ? src.html : dist.html)
         .pipe(prettify())
-        .pipe(gulp.dest(dist.base));
+        .pipe(gulp.dest(isDev ? src.base : dist.base));
 });
