@@ -1,6 +1,7 @@
 import gulp from 'gulp';
 import { argv } from 'yargs';
 import nunjucks from 'gulp-nunjucks';
+import { Environment, FileSystemLoader } from 'nunjucks';
 import gutil from 'gulp-util';
 import glob from 'glob';
 import plumber from 'gulp-plumber';
@@ -23,13 +24,22 @@ gulp.task('tpl', () => {
         '_dev': isDev,
         '_pages': getPagesList()
     };
+    const searchPaths = isDev ? [src.tpl.base, src.icon.dest] : [src.tpl.base, dist.icon];
+    const options = {
+        noCache: true
+    };
 
     return gulp.src(entry)
         // Temporary fix for gulp's error handling within streams, see https://github.com/actum/gulp-dev-stack/issues/7#issuecomment-152490084
         .pipe(plumber({
             errorHandler: e => gutil.log(gutil.colors.red(`${e.name} in ${e.plugin}: ${e.message}`))
         }))
-        .pipe(nunjucks.compile(data))
+        // https://mozilla.github.io/nunjucks/api.html#filesystemloader
+        .pipe(nunjucks.compile(data, {
+            env: new Environment(
+                new FileSystemLoader(searchPaths, options)
+            )
+        }))
         .pipe(rename(path => path.extname = '.html'))
         .pipe(gulp.dest(isDev ? src.base : dist.base))
         .pipe(browserSync.stream({ once: true }));

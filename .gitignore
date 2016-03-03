@@ -7,7 +7,7 @@ npm-debug.log
 # app
 /src/css
 /src/js
-/src/gfx/svgo
+/src/gfx/icon
 /src/*.html
 
 # dist

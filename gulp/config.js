@@ -21,13 +21,17 @@ export default {
                 entry: './src/tpl/*.nunj',
                 all: './src/tpl/**/*.nunj'
             },
-            gfx: './src/gfx',
+            icon: {
+                entry: './src/gfx/svg/*.svg',
+                dest: './src/gfx/icon'
+            },
             html: './src/*.html'
         },
         dist: {
             base: './dist',
             css: './dist/css',
             js: './dist/js',
+            icon: './dist/gfx/icon',
             html: './dist/*.html'
         }
     },

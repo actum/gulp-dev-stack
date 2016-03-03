@@ -22,6 +22,7 @@ gulp.task('serve', ['prepare'], () => {
     if (isDev) {
         watch(src.less.all, ['less']);
         watch(src.tpl.all, ['tpl']);
+        watch(src.icon.entry, ['icon']);
         watch(src.app.all, ['lint:app']);
         watch(gulpfile, ['lint:gulpfile']);
     }

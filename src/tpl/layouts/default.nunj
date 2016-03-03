@@ -10,6 +10,13 @@
     {% endif %}
 </head>
 <body>
+    <div style="height: 0; width: 0; position: absolute; visibility: hidden">
+        {% if _dev %}
+            {% include '../../gfx/icon/svg.svg' %}
+        {% else %}
+            {% include '../../../dist/gfx/icon/svg.svg' %}
+        {% endif %}
+    </div>
     <div class="main">
         {% include '../partials/header.nunj' %}
         {% block content %}{% endblock %}
