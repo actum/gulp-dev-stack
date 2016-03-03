@@ -8,7 +8,7 @@ import runSequence from 'run-sequence';
 // TODO run browserSync after all tasks finished
 const isDev = argv.dev || false;
 const devSequence = ['icon', ['less', 'js', 'tpl']];
-const buildSequence = ['clean', ...devSequence, 'prettify'];
+const buildSequence = ['clean', ...devSequence];
 const sequence = isDev ? devSequence : buildSequence;
 
 gulp.task('prepare', () => runSequence(...sequence));

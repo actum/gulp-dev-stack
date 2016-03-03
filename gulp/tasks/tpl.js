@@ -3,10 +3,12 @@ import { argv } from 'yargs';
 import nunjucks from 'gulp-nunjucks';
 import { Environment, FileSystemLoader } from 'nunjucks';
 import gutil from 'gulp-util';
+import gulpif from 'gulp-if';
 import glob from 'glob';
 import plumber from 'gulp-plumber';
 import browserSync from 'browser-sync';
 import rename from 'gulp-rename';
+import prettify from 'gulp-prettify';
 import config from '../config';
 
 const { src, dist } = config.paths;
@@ -41,6 +43,7 @@ gulp.task('tpl', () => {
             )
         }))
         .pipe(rename(path => path.extname = '.html'))
+        .pipe(gulpif(!isDev, prettify()))
         .pipe(gulp.dest(isDev ? src.base : dist.base))
         .pipe(browserSync.stream({ once: true }));
 });
