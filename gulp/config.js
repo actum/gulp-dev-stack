@@ -1,6 +1,7 @@
 export default {
     paths: {
         gulpfile: './gulpfile.babel.js',
+        npm: './node_modules',
         src: {
             base: './src',
             bower: './src/bower',
