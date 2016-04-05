@@ -26,7 +26,6 @@ gulp.task('styles', () => {
     return gulp.src(src.styles.entry)
         .pipe(cssGlobbing({ extensions: ['.css', '.scss'] }))
         .pipe(sourcemaps.init())
-        // TODO test error handling
         .pipe(sass().on('error', sass.logError))
         .pipe(postcss(postcssPlugins))
         .pipe(gulpif(isDev, sourcemaps.write()))

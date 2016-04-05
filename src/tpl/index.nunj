@@ -8,4 +8,6 @@
             <li><a href="{{ path }}.html">{{ path }}</a></li>
         {% endfor %}
     </ul>
+
+    <a href="#" class="btn btn-primary">Click me to go nowhere</a>
 {% endblock %}
