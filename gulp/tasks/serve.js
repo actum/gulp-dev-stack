@@ -22,7 +22,7 @@ gulp.task('serve', ['prepare'], () => {
     const watch = (pathname, tasks) => gulp.watch(sanitize(pathname), tasks);
 
     if (isDev) {
-        watch(src.less.all, ['less']);
+        watch(src.styles.all, ['styles']);
         watch(src.tpl.all, ['tpl']);
         watch(src.icon.entry, ['icon']);
         watch(src.app.all, ['lint:app']);

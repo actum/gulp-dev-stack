@@ -4,10 +4,10 @@ import del from 'del';
 import config from '../config';
 
 const {
-    src: { less, app, icon, html },
+    src: { styles, app, icon, html },
     dist
 } = config.paths;
-const srcDest = [less.dest, app.dest, icon.dest, html];
+const srcDest = [styles.dest, app.dest, icon.dest, html];
 const distDest = dist.base;
 const isDev = argv.dev || false;
 

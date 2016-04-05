@@ -4,10 +4,10 @@ export default {
         npm: './node_modules',
         src: {
             base: './src',
-            less: {
-                base: './src/less',
-                entry: './src/less/main.less',
-                all: './src/less/**/*.less',
+            styles: {
+                base: './src/styles',
+                entry: './src/styles/main.scss',
+                all: './src/styles/**/*.scss',
                 dest: './src/css'
             },
             app: {
