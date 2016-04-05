@@ -97,6 +97,6 @@
     "yargs": "^3.27.0"
   },
   "dependencies": {
-    "bootstrap": "^4.0.0-alpha.2"
+    "bootstrap-sass": "^3.3.6"
   }
 }
