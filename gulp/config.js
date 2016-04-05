@@ -4,7 +4,6 @@ export default {
         npm: './node_modules',
         src: {
             base: './src',
-            bower: './src/bower',
             less: {
                 base: './src/less',
                 entry: './src/less/main.less',

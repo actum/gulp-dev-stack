@@ -31,7 +31,7 @@ gulp.task('less', () => {
         cssGlobbing({ extensions: ['.css', '.less'] }),
         sourcemaps.init(),
         less({
-            paths: [src.less.base, src.bower]
+            paths: [src.less.base]
         }),
         postcss(postcssPlugins),
         gulpif(isDev, sourcemaps.write()),
