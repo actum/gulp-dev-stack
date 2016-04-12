@@ -2,7 +2,7 @@ Front-end gulp dev stack.
 
 ## Features
 - **CSS:**
-    - [LESS](https://github.com/plus3network/gulp-less)
+    - [SASS](https://github.com/dlmanning/gulp-sass)
     - [Postcss](https://github.com/postcss/postcss) ([autoprefixer](https://github.com/postcss/autoprefixer), [cssnano](https://github.com/ben-eb/cssnano))
     - [Sourcemaps](https://github.com/floridoo/gulp-sourcemaps)
 - **JS:**
