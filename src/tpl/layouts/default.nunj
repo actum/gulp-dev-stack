@@ -28,8 +28,7 @@
         <script src="js/app.min.js"></script>
     {% endif %}
     <script>
-        var config = {};
-        app.start(config);
+        app.start({});
     </script>
 </body>
 </html>

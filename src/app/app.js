@@ -1,21 +1,11 @@
-import MyModule from './module.js';
+import init from './init';
+import factory from './factory';
+import MyModule from './components/module';
+import Alertifier from './components/alertifier';
 
-let app = {};
-
-app.start = function() {
-    app.myModule = app.init(MyModule, document.querySelector('.main'));
-};
-
-app.init = function(Klass, container, ...args) {
-    if (container) {
-        return new Klass(container, ...args);
+window.app = {
+    start(config) {
+        init(MyModule, document.querySelector('.main h1'));
+        this.alertifiers = factory(Alertifier, document.querySelectorAll('.btn'));
     }
 };
-
-app.factory = function(Klass, containers, ...args) {
-    return [...containers].map((container) => {
-        return new Klass(container, ...args);
-    });
-};
-
-window.app = app;

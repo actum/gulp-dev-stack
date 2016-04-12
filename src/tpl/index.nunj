@@ -9,5 +9,6 @@
         {% endfor %}
     </ul>
 
-    <a href="#" class="btn btn-primary">Click me to go nowhere</a>
+    <a href="#" class="btn btn-primary">Click me!</a>
+    <a href="#" class="btn btn-primary">No! Click me!</a>
 {% endblock %}
