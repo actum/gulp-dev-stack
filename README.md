@@ -32,7 +32,7 @@ Install gulp globally: `npm install -g gulp`.
 
 ### Development
 
-Run `gulp --dev` and develop happily in `src` folder.
+Run `gulp --dev` and develop in `src` folder.
 
 #### Remove built targets
 
