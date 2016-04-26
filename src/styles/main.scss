@@ -1,6 +1,6 @@
-@import "bootstrap/variables";
-@import "bootstrap/bootstrap";
-@import "variables";
+@import 'bootstrap/variables';
+@import 'bootstrap/bootstrap';
+@import 'variables';
 
 .main {
     padding: 1px 20px;
@@ -10,4 +10,4 @@ h1 {
     color: purple;
 }
 
-@import "components/*";
+@import 'components/*';
