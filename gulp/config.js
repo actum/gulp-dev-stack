@@ -6,7 +6,10 @@ export default {
             base: './src',
             styles: {
                 base: './src/styles',
-                entry: './src/styles/main.scss',
+                entry: [
+                    './src/styles/main.scss',
+                    './src/styles/secondary.scss'
+                ],
                 all: './src/styles/**/*.scss',
                 dest: './src/css'
             },
@@ -36,10 +39,6 @@ export default {
         }
     },
     names: {
-        css: {
-            src: 'style.css',
-            min: 'style.min.css'
-        },
         js: {
             src: 'app.js',
             min: 'app.min.js'

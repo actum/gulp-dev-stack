@@ -3,11 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>{{ title }}</title>
-    {% if _dev %}
-        <link rel="stylesheet" href="css/style.css">
-    {% else %}
-        <link rel="stylesheet" href="css/style.min.css">
-    {% endif %}
+    <link rel="stylesheet" href="css/main{% if not _dev %}.min{% endif %}.css">
 </head>
 <body>
     <div style="height: 0; width: 0; position: absolute; visibility: hidden">
