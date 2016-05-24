@@ -1,4 +1,5 @@
 export default {
+    port: 6000,
     paths: {
         gulpfile: './gulpfile.babel.js',
         npm: './node_modules',

@@ -5,18 +5,20 @@ import browserSync from 'browser-sync';
 import { copy as copyToClipboard } from 'copy-paste';
 import config from '../config';
 
-const { gulpfile, npm, src, dist } = config.paths;
+const {
+    port,
+    paths: { gulpfile, npm, src, dist }
+} = config;
 const isDev = argv.dev || false;
-const bsPort = 5500;
 
 gulp.task('serve', ['prepare'], () => {
     const baseDir = isDev ? [src.base, npm] : dist.base;
 
     browserSync({
-        port: bsPort,
+        port,
         server: { baseDir },
         open: false
-    }, () => copyToClipboard(`localhost:${bsPort}`, () => gutil.log(gutil.colors.green('Local server address has been copied to your clipboard'))));
+    }, () => copyToClipboard(`localhost:${port}`, () => gutil.log(gutil.colors.green('Local server address has been copied to your clipboard'))));
 
     const sanitize = pathname => pathname.replace(/^\.\//, '');
     const watch = (pathname, tasks) => gulp.watch(sanitize(pathname), tasks);

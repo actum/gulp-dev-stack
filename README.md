@@ -32,6 +32,8 @@ Install gulp globally: `npm install -g gulp`.
 
 ### Development
 
+**Change port number in `gulp/config.js`** to something unique to prevent port collisions with other projects.
+
 Run `gulp --dev` and develop in `src` folder.
 
 #### Remove built targets
