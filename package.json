@@ -56,7 +56,8 @@
       "linebreak-style": [
         2,
         "unix"
-      ]
+      ],
+      "indent": [2]
     }
   },
   "devDependencies": {
