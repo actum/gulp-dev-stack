@@ -19,7 +19,7 @@ gulp.task('styles', () => {
         autoprefixer({ browsers: ['last 2 versions'] })
     ];
     const postcssDistPlugins = [
-        cssnano()
+        cssnano({ safe: true })
     ];
 
     return gulp.src(src.styles.entry)
