@@ -57,7 +57,9 @@
         2,
         "unix"
       ],
-      "indent": [2]
+      "indent": [
+        2
+      ]
     }
   },
   "devDependencies": {
@@ -98,6 +100,8 @@
     "yargs": "^3.27.0"
   },
   "dependencies": {
-    "bootstrap-sass": "^3.3.6"
+    "babel-polyfill": "^6.9.1",
+    "bootstrap-sass": "^3.3.6",
+    "svgxuse": "^1.1.17"
   }
 }
