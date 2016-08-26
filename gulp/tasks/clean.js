@@ -1,12 +1,18 @@
-import gulp from 'gulp';
-import { argv } from 'yargs';
-import del from 'del';
-import config from '../config';
+const gulp = require('gulp');
+const argv = require('yargs').argv;
+const del = require('del');
+const config = require('../config');
 
-const {
-    src: { styles, app, icon, html },
-    dist
-} = config.paths;
+// const {
+//     src: { styles, app, icon, html },
+//     dist
+// } = config.paths;
+const styles = config.paths.src.styles;
+const app = config.paths.src.app;
+const icon = config.paths.src.icon;
+const html = config.paths.src.html;
+const dist = config.paths.dist;
+
 const srcDest = [styles.dest, app.dest, icon.dest, html];
 const distDest = dist.base;
 const isDev = argv.dev || false;

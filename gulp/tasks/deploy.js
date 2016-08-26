@@ -1,3 +1,3 @@
-import gulp from 'gulp';
+const gulp = require('gulp');
 
 gulp.task('deploy', () => 'todo…');

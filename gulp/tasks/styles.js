@@ -1,17 +1,19 @@
-import gulp from 'gulp';
-import { argv } from 'yargs';
-import gulpif from 'gulp-if';
-import rename from 'gulp-rename';
-import sourcemaps from 'gulp-sourcemaps';
-import sass from 'gulp-sass';
-import postcss from 'gulp-postcss';
-import autoprefixer from 'autoprefixer';
-import cssnano from 'cssnano';
-import cssGlobbing from 'gulp-css-globbing';
-import browserSync from 'browser-sync';
-import config from '../config';
+const gulp = require('gulp');
+const argv = require('yargs').argv;
+const gulpif = require('gulp-if');
+const rename = require('gulp-rename');
+const sourcemaps = require('gulp-sourcemaps');
+const sass = require('gulp-sass');
+const postcss = require('gulp-postcss');
+const autoprefixer = require('autoprefixer');
+const cssnano = require('cssnano');
+const cssGlobbing = require('gulp-css-globbing');
+const browserSync = require('browser-sync');
+const config = require('../config');
 
-const { src, dist } = config.paths;
+// const { src, dist } = config.paths
+const src = config.paths.src;
+const dist = config.paths.dist;
 const isDev = argv.dev || false;
 
 gulp.task('styles', () => {

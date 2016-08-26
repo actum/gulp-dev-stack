@@ -1,8 +1,8 @@
-export default {
+module.exports = {
     port: 5001,
     title: 'Gulp Dev Stack',
     paths: {
-        gulpfile: './gulpfile.babel.js',
+        gulpfile: './gulpfile.js',
         npm: './node_modules',
         src: {
             base: './src',
