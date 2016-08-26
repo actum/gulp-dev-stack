@@ -6,6 +6,7 @@ import sourcemaps from 'gulp-sourcemaps';
 import sass from 'gulp-sass';
 import postcss from 'gulp-postcss';
 import autoprefixer from 'autoprefixer';
+import flexbugsFixes from 'postcss-flexbugs-fixes';
 import cssnano from 'cssnano';
 import cssGlobbing from 'gulp-css-globbing';
 import browserSync from 'browser-sync';
@@ -16,6 +17,7 @@ const isDev = argv.dev || false;
 
 gulp.task('styles', () => {
     const postcssPlugins = [
+        flexbugsFixes, // first must be flexbugs, because flexbugs do not process vendor-prefixed variants
         autoprefixer({ browsers: ['last 2 versions'] })
     ];
     const postcssDistPlugins = [

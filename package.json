@@ -92,6 +92,7 @@
     "gulp-svgstore": "^5.0.5",
     "gulp-uglify": "^1.4.2",
     "gulp-util": "^3.0.6",
+    "postcss-flexbugs-fixes": "^2.0.0",
     "require-dir": "^0.3.0",
     "run-sequence": "^1.1.4",
     "uglifyify": "^3.0.1",
