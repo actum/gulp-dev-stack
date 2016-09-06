@@ -62,6 +62,15 @@
       ]
     }
   },
+  "stylelint": {
+    "extends": "stylelint-config-standard",
+    "rules": {
+      "indentation": 4,
+      "selector-pseudo-element-colon-notation": "single",
+      "declaration-empty-line-before": "never",
+      "number-leading-zero": null
+    }
+  },
   "devDependencies": {
     "autoprefixer": "^6.0.3",
     "babel-core": "^6.5.1",
@@ -88,6 +97,7 @@
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^2.2.0",
     "gulp-sourcemaps": "^1.6.0",
+    "gulp-stylelint": "^3.2.0",
     "gulp-svgmin": "^1.2.2",
     "gulp-svgstore": "^5.0.5",
     "gulp-uglify": "^1.4.2",
@@ -95,6 +105,8 @@
     "postcss-flexbugs-fixes": "^2.0.0",
     "require-dir": "^0.3.0",
     "run-sequence": "^1.1.4",
+    "stylelint": "^7.2.0",
+    "stylelint-config-standard": "^13.0.0",
     "uglifyify": "^3.0.1",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
