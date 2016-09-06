@@ -29,6 +29,7 @@ gulp.task('lint:styles', () => {
     return gulp
         .src(src.styles.all)
         .pipe(gulpStylelint({
+            failAfterError: false,
             reporters: [{
                 formatter: 'string',
                 console: true

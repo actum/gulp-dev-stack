@@ -1,6 +1,7 @@
 import gulp from 'gulp';
 import { argv } from 'yargs';
 import gutil from 'gulp-util';
+import runSequence from 'run-sequence';
 import browserSync from 'browser-sync';
 import { copy as copyToClipboard } from 'copy-paste';
 import config from '../config';
@@ -24,7 +25,7 @@ gulp.task('serve', ['prepare'], () => {
     const watch = (pathname, tasks) => gulp.watch(sanitize(pathname), tasks);
 
     if (isDev) {
-        watch(src.styles.all, ['styles']);
+        watch(src.styles.all, () => runSequence(['lint:styles', 'styles']));
         watch(src.tpl.all, ['tpl']);
         watch(src.icon.entry, ['icon']);
         watch(src.app.all, ['lint:app']);
