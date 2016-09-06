@@ -9,16 +9,8 @@ const { gulpfile, src } = config.paths;
 const isDev = argv.dev || false;
 
 const lint = (globs) => {
-    const opts = isDev ? {
-        'rules': {
-            'no-empty': 0,
-            'space-in-parens': 0,
-            'no-unused-vars': 0,
-            'no-multiple-empty-lines': 0
-        }
-    } : {};
     return gulp.src(globs)
-        .pipe(eslint(opts))
+        .pipe(eslint())
         .pipe(eslint.format())
         .pipe(gulpif(!isDev, eslint.failOnError()));
 };

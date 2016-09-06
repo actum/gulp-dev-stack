@@ -1,3 +1,5 @@
-export default function module(container) {
+export default function module (container) {
+
     container.innerText += '_js';
+
 }

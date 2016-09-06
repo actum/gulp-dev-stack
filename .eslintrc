@@ -1,0 +1,109 @@
+/* 0 = off, 1 = warn, 2 = error */
+{
+	"parserOptions": {
+		"ecmaVersion": 6,
+		"ecmaFeatures": {
+			"jsx": true,
+		},
+		"sourceType": "module"
+	},
+	"plugins": [
+		"babel",
+		"import"
+	],
+	"rules": {
+		/* General */
+		"indent": 1,
+		"no-const-assign": 2,
+		"no-var": 2,
+		"prefer-const": 1,
+
+		/* Variables */
+		"no-undef": 0,
+		"one-var": 2,
+
+		/* Object */
+		"no-new-object": 2,
+		"object-shorthand": 2,
+		"quote-props": 2,
+
+		/* Properties */
+		"dot-notation": 2,
+
+		/* Array */
+		"array-callback-return": 2,
+		"no-array-constructor": 2,
+
+		/* String */
+		"no-useless-escape": 2,
+		"prefer-template": 1,
+		"quotes": [2, "single"],
+		"template-curly-spacing": 2,
+
+		/* Function */
+		// "func-style": [2, "declaration"],
+		"no-loop-func": 2,
+		"no-new-func": 2,
+		"no-param-reassign": 2,
+		"prefer-rest-params": 1,
+		"prefer-spread": 1,
+		"space-before-blocks": 2,
+		"space-before-function-paren": 2,
+		"wrap-iife": 2,
+
+		/* Arrow function */
+		"arrow-body-style": 2,
+		"arrow-parens": 2,
+		"arrow-spacing": 2,
+		"no-confusing-arrow": 2,
+		"prefer-arrow-callback": 1,
+
+		/* Constructor */
+		"no-dupe-class-members": 2,
+		"no-useless-constructor": 2,
+
+		/* Modules */
+		"no-duplicate-imports": 2,
+		"import/default": 0,
+		"import/export": 1,
+		"import/imports-first": 2,
+		"import/newline-after-import": 1,
+		"import/no-mutable-exports": 2,
+		"import/prefer-default-export": 1,
+
+		/* Iterators & Generators */
+		"no-iterator": 2,
+		"no-restricted-syntax": 2,
+		// "generator-start-spacing": 2,
+
+		/* Comparison Operators & Equality */
+		"no-nested-ternary": 2,
+		"no-unneeded-ternary": 2,
+
+		/* Blocks */
+		"array-bracket-spacing": 2,
+		"brace-style": 2,
+		"eol-last": 2,
+		"keyword-spacing": 2,
+		"max-len": 0,
+		"newline-per-chained-call": 2,
+		"no-whitespace-before-property": 2,
+		"padded-blocks": 1,
+		"space-in-parens": 2,
+		"space-infix-ops": 2,
+
+		/* Semicolons, commas, etc. */
+		"comma-dangle": 2,
+		"comma-style": 2,
+		"semi": 2,
+
+		/* Type Casting & Coercion */
+		"radix": 2,
+
+		/* Naming Conventions */
+		"camelcase": 1,
+		"id-length": 0,
+		"new-cap": 2,
+		"no-underscore-dangle": 2
+	}
+}
