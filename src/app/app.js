@@ -12,10 +12,8 @@ import Alertifier from './components/alertifier';
 window.app = {
 
     start (config) {
-
         init(MyModule, document.querySelector('.main h1'));
         this.alertifiers = factory(Alertifier, document.querySelectorAll('.btn'));
-
     }
 
 };

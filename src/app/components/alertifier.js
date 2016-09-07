@@ -14,33 +14,31 @@ export const SALUTATION = 'Hey!';
 export default function Alertifier (container) {
 
     // Public constant (exposed in returned object)
-    const EVENT = 'click',
+    const EVENT = 'click';
 
     // Private constants
-        MESSAGE_BEFORE = 'You clicked',
-        MESSAGE_AFTER = 'To make buttons work again, run app.alertifiers[<index of the button>].destroy() in the console.';
+    const MESSAGE_BEFORE = 'You clicked';
+    const MESSAGE_AFTER = 'To make buttons work again, run app.alertifiers[<index of the button>].destroy() in the console.';
+
+    // Private method
+    function handleClick (e) {
+        console.log(`${SALUTATION}\n${MESSAGE_BEFORE} ${e.target.href}\n\n${MESSAGE_AFTER}`);
+
+        e.preventDefault();
+    }
+
+    console.log('someh');
 
     container.addEventListener(EVENT, handleClick);
 
     // Public method (exposed in returned object)
     // Usage: myAlertifier.destroy();
     function destroy () {
-
         container.removeEventListener(EVENT, handleClick);
-
-    }
-
-    // Private method
-    function handleClick (e) {
-
-        alert(`${SALUTATION}\n${MESSAGE_BEFORE} ${e.target.href}\n\n${MESSAGE_AFTER}`);
-        e.preventDefault();
-
     }
 
     return {
         EVENT,
         destroy
     };
-
 }
