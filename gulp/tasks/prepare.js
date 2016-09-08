@@ -1,6 +1,6 @@
-import gulp from 'gulp';
-import { argv } from 'yargs';
-import runSequence from 'run-sequence';
+const gulp = require('gulp');
+const argv = require('yargs').argv;
+const runSequence = require('run-sequence');
 
 // TODO run browserSync after all tasks finished
 const isDev = argv.dev || false;

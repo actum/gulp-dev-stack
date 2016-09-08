@@ -1,11 +1,13 @@
-import gulp from 'gulp';
-import { argv } from 'yargs';
-import gulpif from 'gulp-if';
-import eslint from 'gulp-eslint';
-import config from '../config';
+const gulp = require('gulp');
+const argv = require('yargs').argv;
+const gulpif = require('gulp-if');
+const eslint = require('gulp-eslint');
 const gulpStylelint = require('gulp-stylelint');
+const config = require('../config');
 
-const { gulpfile, src } = config.paths;
+// const { gulpfile, src } = config.paths;
+const gulpfile = config.paths.gulpfile;
+const src = config.paths.src;
 const isDev = argv.dev || false;
 
 /* Rule set for different environments */
