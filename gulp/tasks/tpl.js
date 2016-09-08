@@ -1,18 +1,22 @@
-import gulp from 'gulp';
-import { argv } from 'yargs';
-import nunjucks from 'gulp-nunjucks';
-import { Environment, FileSystemLoader } from 'nunjucks';
-import gutil from 'gulp-util';
-import gulpif from 'gulp-if';
-import glob from 'glob';
-import plumber from 'gulp-plumber';
-import browserSync from 'browser-sync';
-import rename from 'gulp-rename';
-import prettify from 'gulp-prettify';
-import config from '../config';
+const gulp = require('gulp');
+const argv = require('yargs').argv;
+const nunjucks = require('gulp-nunjucks');
+const nunj = require('nunjucks');
+const gutil = require('gulp-util');
+const gulpif = require('gulp-if');
+const glob = require('glob');
+const plumber = require('gulp-plumber');
+const browserSync = require('browser-sync');
+const rename = require('gulp-rename');
+const prettify = require('gulp-prettify');
+const config = require('../config');
 
-const { src, dist } = config.paths;
-const { entry } = src.tpl;
+const Environment = nunj.Environment;
+const FileSystemLoader = nunj.FileSystemLoader;
+// const { src, dist } = config.paths;
+const src = config.paths.src;
+const dist = config.paths.dist;
+const entry = src.tpl.entry;
 const isDev = argv.dev || false;
 
 function getPagesList() {

@@ -1,10 +1,12 @@
-import gulp from 'gulp';
-import realFavicon from 'gulp-real-favicon';
-import fs from 'fs';
-import { argv } from 'yargs';
-import config from '../config';
+const gulp = require('gulp');
+const realFavicon = require('gulp-real-favicon');
+const fs = require('fs');
+const argv = require('yargs').argv;
+const config = require('../config');
 
-const { src, dist } = config.paths;
+// const { src, dist } = config.paths;
+const src = config.paths.src;
+const dist = config.paths.dist;
 const isDev = argv.dev || false;
 const colors = {
     fg: '#e83a29',

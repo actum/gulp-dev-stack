@@ -2,6 +2,9 @@
   "name": "gulp-dev-stack",
   "version": "1.0.0",
   "description": "Gulp dev-stack",
+  "engines": {
+    "node" : ">=5"
+  },
   "babel": {
     "presets": [
       "react",
