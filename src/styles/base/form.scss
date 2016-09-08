@@ -1,0 +1,131 @@
+/**
+ * Form
+ *
+ * Styleguide Base - Form
+ */
+
+/**
+ * Input
+ *
+ * default - Normal text input
+ * :focus - Focus
+ *
+ * markup:
+ * <div class="form-group">
+ *     <label for="text-input">Name</label>
+ *     <input type="text" class="form-control {{modifier_class}}" placeholder="Jane Doe" id="text-input">
+ * </div>
+ *
+ * weight: -10
+ *
+ * Styleguide Base - Form - Input
+ */
+
+/**
+ * Checkbox and radio
+ *
+ * markup:
+ * <div class="checkbox">
+        <label>
+            <input type="checkbox" value="">
+            Option one is this and that&mdash;be sure to include why it's great
+        </label>
+    </div>
+    <div class="radio">
+        <label>
+            <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+            Option one is this and that&mdash;be sure to include why it's great
+        </label>
+    </div>
+    <div class="radio">
+        <label>
+            <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+            Option two can be something else and selecting it will deselect option one
+        </label>
+    </div>
+ *
+ * weight: -5
+ * 
+ * Styleguide Base - Form - Checkbox and radio
+ */
+
+/**
+ * Select
+ *
+ * default - Normal select
+ * :focus - Focus
+ *
+ * markup:
+ * <select class="form-control {{modifier_class}}">
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+    </select>
+ *
+ * weight: -5
+ * 
+ * Styleguide Base - Form - Select
+ */
+
+/**
+ * Textarea
+ *
+ * default - Normal textarea
+ * :focus - Focus
+ *
+ * markup:
+ * <textarea class="form-control {{modifier_class}}" rows="3"></textarea>
+ *
+ * weight: -5
+ * 
+ * Styleguide Base - Form - Textarea
+ */
+
+/**
+ * Help text
+ *
+ * markup:
+ * <div class="form-group">
+        <label for="exampleInputEmail1">Email address</label>
+        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+        <span class="help-block">A block of help text that breaks onto a new line and may extend beyond one line.</span>
+    </div>
+ *
+ * weight: -3
+ * 
+ * Styleguide Base - Form - Help text
+ */
+
+/**
+ * Validation success
+ *
+ * default - Normal
+ * :focus - Focus
+ *
+ * markup:
+ * <div class="form-group has-success">
+        <label for="cf1">Name</label>
+        <input type="text" class="form-control {{modifier_class}}" id="cf1">
+        <span class="help-block"><strong>Success</strong> message</span>
+    </div>
+ *
+ * Styleguide Base - Form - Validation Success
+ */
+
+/**
+ * Validation error
+ *
+ * default - Normal
+ * :focus - Focus
+ *
+ * markup:
+ * <div class="form-group has-error">
+        <label for="cf2">Name</label>
+        <input type="text" class="form-control {{modifier_class}}" id="cf2">
+        <span class="help-block"><strong>Error</strong> message</span>
+    </div>
+ *
+ * Styleguide Base - Form - Validation error
+ */
