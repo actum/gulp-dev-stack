@@ -32,7 +32,7 @@ gulp.task('styles', () => {
         .pipe(sass().on('error', sass.logError))
         .pipe(postcss(postcssPlugins))
         .pipe(gulpif(isDev, sourcemaps.write()))
-        .pipe(gulp.dest(isDev ? src.styles.dest : dist.css))
+        .pipe(gulp.dest(dist.css))
         .pipe(gulpif(isDev, browserSync.stream()))
         .pipe(gulpif(!isDev, postcss(postcssDistPlugins)))
         .pipe(gulpif(!isDev, rename(path => path.basename += '.min')))

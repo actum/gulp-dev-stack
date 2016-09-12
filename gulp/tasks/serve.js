@@ -18,7 +18,7 @@ const dist = config.paths.dist;
 const isDev = argv.dev || false;
 
 gulp.task('serve', ['prepare'], () => {
-    const baseDir = isDev ? [src.base, npm] : dist.base;
+    const baseDir = isDev ? [src.base, dist.base, npm] : dist.base;
 
     browserSync({
         port,

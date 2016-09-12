@@ -7,7 +7,6 @@ const config = require('../config');
 // const { src, dist } = config.paths;
 const src = config.paths.src;
 const dist = config.paths.dist;
-const isDev = argv.dev || false;
 const colors = {
     fg: '#e83a29',
     bg: '#ffffff'
@@ -23,7 +22,7 @@ var FAVICON_DATA_FILE = 'faviconData.json';
 gulp.task('generate-favicon', function(done) {
 	realFavicon.generateFavicon({
 		masterPicture: `${src.base}/gfx/favicon-source.png`,
-		dest: isDev ? src.base : dist.base,
+		dest: dist.base,
 		iconsPath: '/',
 		design: {
 			ios: {
@@ -85,9 +84,9 @@ gulp.task('generate-favicon', function(done) {
 // this task whenever you modify a page. You can keep this task
 // as is or refactor your existing HTML pipeline.
 gulp.task('inject-favicon-markups', function() {
-	gulp.src(isDev ? src.html : dist.html)
+	gulp.src(dist.html)
 		.pipe(realFavicon.injectFaviconMarkups(JSON.parse(fs.readFileSync(FAVICON_DATA_FILE)).favicon.html_code))
-		.pipe(gulp.dest(isDev ? src.base : dist.base));
+		.pipe(gulp.dest(dist.base));
 });
 
 // Check for updates on RealFaviconGenerator (think: Apple has just

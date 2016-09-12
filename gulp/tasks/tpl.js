@@ -30,7 +30,7 @@ gulp.task('tpl', () => {
         '_dev': isDev,
         '_pages': getPagesList()
     };
-    const searchPaths = isDev ? [src.tpl.base, src.icon.dest] : [src.tpl.base, dist.icon];
+    const searchPaths = [src.tpl.base, dist.icon];
     const options = {
         noCache: true
     };
@@ -48,6 +48,6 @@ gulp.task('tpl', () => {
         }))
         .pipe(rename(path => path.extname = '.html'))
         .pipe(gulpif(!isDev, prettify()))
-        .pipe(gulp.dest(isDev ? src.base : dist.base))
+        .pipe(gulp.dest(dist.base))
         .pipe(browserSync.stream({ once: true }));
 });

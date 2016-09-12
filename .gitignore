@@ -4,21 +4,8 @@
 /node_modules/
 npm-debug.log
 
-# app
-/src/css
-/src/js
-/src/gfx/icon
-/src/*.html
-
 # favicons
 /faviconData.json
-/src/android-chrome-*
-/src/apple-touch-icon.*
-/src/browserconfig.xml
-/src/favicon*
-/src/manifest.json
-/src/mstile-*
-/src/safari-pinned-tab.svg
 
 # dist
 /dist

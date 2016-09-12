@@ -41,7 +41,7 @@ Run `gulp --dev` and develop in `src` folder.
 If you want to revert back to a fresh state without built files, run
 
 ```sh
-gulp unbuild
+gulp clean
 ```
 
 It will remove `dist` and all built targets in `src`.

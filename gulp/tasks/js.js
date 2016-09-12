@@ -36,7 +36,7 @@ function bundle() {
             .pipe(buffer())
             .pipe(gulpif(isDev, sourcemaps.init({ loadMaps: true })))
             .pipe(gulpif(isDev, sourcemaps.write('./')))
-            .pipe(gulp.dest(isDev ? src.app.dest : dist.js))
+            .pipe(gulp.dest(dist.js))
             .pipe(gulpif(isDev, browserSync.stream()))
             .pipe(gulpif(!isDev, uglify()))
             .pipe(gulpif(!isDev, rename(names.js.min)))

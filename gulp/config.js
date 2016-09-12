@@ -12,24 +12,19 @@ module.exports = {
                     './src/styles/main.scss',
                     './src/styles/secondary.scss'
                 ],
-                all: './src/styles/**/*.scss',
-                dest: './src/css'
+                all: './src/styles/**/*.scss'
             },
             app: {
                 base: './src/app',
                 entry: './src/app/app.js',
-                all: './src/app/**/*.js',
-                dest: './src/js'
+                all: './src/app/**/*.js'
             },
             tpl: {
                 base: './src/tpl',
                 entry: './src/tpl/*.nunj',
                 all: './src/tpl/**/*.nunj'
             },
-            icon: {
-                entry: './src/gfx/svg/*.svg',
-                dest: './src/gfx/icon'
-            },
+            icon: './src/gfx/svg/*.svg',
             html: './src/*.html'
         },
         dist: {
