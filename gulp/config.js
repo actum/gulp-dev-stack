@@ -2,7 +2,10 @@ module.exports = {
     port: 5001,
     title: 'Gulp Dev Stack',
     paths: {
-        gulpfile: './gulpfile.js',
+        gulpfile: {
+            entry: './gulpfile.js',
+            rest: './gulp/**/*.js'
+        },
         npm: './node_modules',
         src: {
             base: './src',
@@ -41,4 +44,4 @@ module.exports = {
             min: 'app.min.js'
         }
     }
-}
+};

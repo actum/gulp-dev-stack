@@ -25,7 +25,7 @@ const lint = (globs) => {
         .pipe(gulpif(!isDev, eslint.failOnError()));
 };
 gulp.task('lint:app', () => lint(src.app.all));
-gulp.task('lint:gulpfile', () => lint(gulpfile));
+gulp.task('lint:gulpfile', () => lint([gulpfile.entry, gulpfile.rest]));
 
 gulp.task('lint:styles', () => {
     return gulp
