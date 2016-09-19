@@ -36,6 +36,15 @@ module.exports = {
             js: './dist/js',
             icon: './dist/gfx/icon',
             html: './dist/*.html'
+        },
+        styleguide: {
+            base: './styleguide',
+            source: './src/styles',
+            destination: './styleguide/styleguide',
+            template: './node_modules/styleguide/dist',
+            css: './css/main.css',
+            copyCss: true,
+            js: []
         }
     },
     names: {

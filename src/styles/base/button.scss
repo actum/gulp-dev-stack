@@ -1,0 +1,194 @@
+/**
+ * Button
+ *
+ * Styleguide Base - Button
+ */
+
+/**
+ * Default button
+ *
+ * default - Normal button
+ * :hover - Hover
+ * :active - Active
+ * :focus - Focus
+ *
+ * markup:
+ * <a class="btn btn-default {{modifier_class}}" href="#" role="button">Link</a>
+ * <button class="btn btn-default {{modifier_class}}" type="submit">Button</button>
+ * <input class="btn btn-default {{modifier_class}}" type="button" value="Input">
+ * <input class="btn btn-default {{modifier_class}}" type="submit" value="Submit">
+ *
+ * weight: -10
+ *
+ * Styleguide Base - Button - Default
+ */
+
+/**
+ * Primary button
+ *
+ * default - Normal button
+ * :hover - Hover
+ * :active - Active
+ * :focus - Focus
+ *
+ * weight: -10
+ *
+ * markup:
+ * <a class="btn btn-primary {{modifier_class}}" href="#" role="button">Link</a>
+ * <button class="btn btn-primary {{modifier_class}}" type="submit">Button</button>
+ * <input class="btn btn-primary {{modifier_class}}" type="button" value="Input">
+ * <input class="btn btn-primary {{modifier_class}}" type="submit" value="Submit">
+ *
+ * Styleguide Base - Button - Primary
+ */
+
+/**
+ * Success button
+ *
+ * default - Normal button
+ * :hover - Hover
+ * :active - Active
+ * :focus - Focus
+ *
+ * markup:
+ * <a class="btn btn-success {{modifier_class}}" href="#" role="button">Link</a>
+ * <button class="btn btn-success {{modifier_class}}" type="submit">Button</button>
+ * <input class="btn btn-success {{modifier_class}}" type="button" value="Input">
+ * <input class="btn btn-success {{modifier_class}}" type="submit" value="Submit">
+ *
+ * weight: -5
+ *
+ * Styleguide Base - Button - Success
+ */
+
+/**
+ * Info button
+ *
+ * default - Normal button
+ * :hover - Hover
+ * :active - Active
+ * :focus - Focus
+ *
+ * markup:
+ * <a class="btn btn-info {{modifier_class}}" href="#" role="button">Link</a>
+ * <button class="btn btn-info {{modifier_class}}" type="submit">Button</button>
+ * <input class="btn btn-info {{modifier_class}}" type="button" value="Input">
+ * <input class="btn btn-info {{modifier_class}}" type="submit" value="Submit">
+ *
+ * weight: -5
+ *
+ * Styleguide Base - Button - Info
+ */
+
+/**
+ * Warning button
+ *
+ * default - Normal button
+ * :hover - Hover
+ * :active - Active
+ * :focus - Focus
+ *
+ * markup:
+ * <a class="btn btn-warning {{modifier_class}}" href="#" role="button">Link</a>
+ * <button class="btn btn-warning {{modifier_class}}" type="submit">Button</button>
+ * <input class="btn btn-warning {{modifier_class}}" type="button" value="Input">
+ * <input class="btn btn-warning {{modifier_class}}" type="submit" value="Submit">
+ *
+ * weight: -5
+ *
+ * Styleguide Base - Button - Warning
+ */
+
+/**
+ * Danger button
+ *
+ * default - Normal button
+ * :hover - Hover
+ * :active - Active
+ * :focus - Focus
+ *
+ * markup:
+ * <a class="btn btn-danger {{modifier_class}}" href="#" role="button">Link</a>
+ * <button class="btn btn-danger {{modifier_class}}" type="submit">Button</button>
+ * <input class="btn btn-danger {{modifier_class}}" type="button" value="Input">
+ * <input class="btn btn-danger {{modifier_class}}" type="submit" value="Submit">
+ *
+ * weight: -5
+ *
+ * Styleguide Base - Button - Danger
+ */
+
+/**
+ * Link button
+ *
+ * default - Normal button
+ * :hover - Hover
+ * :active - Active
+ * :focus - Focus
+ *
+ * markup:
+ * <a class="btn btn-link {{modifier_class}}" href="#" role="button">Link</a>
+ * <button class="btn btn-link {{modifier_class}}" type="submit">Button</button>
+ * <input class="btn btn-link {{modifier_class}}" type="button" value="Input">
+ * <input class="btn btn-link {{modifier_class}}" type="submit" value="Submit">
+ *
+ * weight: -3
+ *
+ * Styleguide Base - Button - Link
+ */
+
+/**
+ * Disabled button
+ *
+ * markup:
+ * <a class="btn btn-default disabled" href="#" role="button">Link</a>
+ * <button class="btn btn-default" type="submit" disabled>Button</button>
+ * <input class="btn btn-default" type="button" value="Input" disabled>
+ * <input class="btn btn-default" type="submit" value="Submit" disabled>
+ * <a class="btn btn-primary disabled" href="#" role="button">Link</a>
+ * <button class="btn btn-primary" type="submit" disabled>Button</button>
+ * <input class="btn btn-primary" type="button" value="Input" disabled>
+ * <input class="btn btn-primary" type="submit" value="Submit" disabled>
+ * <a class="btn btn-secondary disabled" href="#" role="button">Link</a>
+ * <button class="btn btn-secondary" type="submit" disabled>Button</button>
+ * <input class="btn btn-secondary" type="button" value="Input" disabled>
+ * <input class="btn btn-secondary" type="submit" value="Submit" disabled>
+ *
+ * weight: -3
+ *
+ * Styleguide Base - Button - Disabled
+ */
+
+/**
+ * Button sizes
+ *
+ * markup:
+ * <p>
+      <button type="button" class="btn btn-primary btn-lg">Large button</button>
+      <button type="button" class="btn btn-default btn-lg">Large button</button>
+    </p>
+    <p>
+      <button type="button" class="btn btn-primary">Default button</button>
+      <button type="button" class="btn btn-default">Default button</button>
+    </p>
+    <p>
+      <button type="button" class="btn btn-primary btn-sm">Small button</button>
+      <button type="button" class="btn btn-default btn-sm">Small button</button>
+    </p>
+    <p>
+      <button type="button" class="btn btn-primary btn-xs">Extra small button</button>
+      <button type="button" class="btn btn-default btn-xs">Extra small button</button>
+    </p>
+ *
+ * Styleguide Base - Button - Sizes
+ */
+
+/**
+ * Block button
+ *
+ * markup:
+ * <button type="button" class="btn btn-primary btn-lg btn-block">Block level button</button>
+ * <button type="button" class="btn btn-default btn-lg btn-block">Block level button</button>
+ *
+ * Styleguide Base - Button - Block
+ */
