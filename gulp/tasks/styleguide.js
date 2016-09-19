@@ -20,6 +20,8 @@ const styleguideOptions = {
     css: [
         path.relative(styleguide.destination, styleguide.css)
     ],
+    // TODO: copyCss doesn't work
+    // copyCss: true
     js: []
 };
 

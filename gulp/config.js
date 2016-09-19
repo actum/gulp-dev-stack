@@ -43,7 +43,6 @@ module.exports = {
             destination: './styleguide/styleguide',
             template: './node_modules/styleguide/dist',
             css: './css/main.css',
-            copyCss: true,
             js: []
         }
     },
