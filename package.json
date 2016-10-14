@@ -10,60 +10,6 @@
     "precommit-msg": "echo 'Running build task...' && exit 0"
   },
   "pre-commit": ["precommit-msg", "build"],
-  "eslintConfig": {
-    "env": {
-      "es6": true,
-      "browser": true,
-      "node": true,
-      "jquery": true
-    },
-    "parserOptions": {
-      "ecmaVersion": 6,
-      "ecmaFeatures": {
-        "jsx": true
-      },
-      "sourceType": "module"
-    },
-    "rules": {
-      "semi": 2,
-      "quotes": [
-        2,
-        "single"
-      ],
-      "strict": [
-        2,
-        "never"
-      ],
-      "keyword-spacing": 2,
-      "one-var": [
-        2,
-        "never"
-      ],
-      "no-empty": 2,
-      "space-in-parens": [
-        2,
-        "never"
-      ],
-      "space-before-function-paren": [
-        2,
-        "never"
-      ],
-      "no-spaced-func": 2,
-      "no-multiple-empty-lines": [
-        2,
-        {
-          "max": 1
-        }
-      ],
-      "linebreak-style": [
-        2,
-        "unix"
-      ],
-      "indent": [
-        2
-      ]
-    }
-  },
   "devDependencies": {
     "autoprefixer": "^6.0.3",
     "babel-core": "^6.5.1",
