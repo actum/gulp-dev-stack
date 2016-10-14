@@ -64,15 +64,6 @@
       ]
     }
   },
-  "stylelint": {
-    "extends": "stylelint-config-standard",
-    "rules": {
-      "indentation": 4,
-      "selector-pseudo-element-colon-notation": "single",
-      "declaration-empty-line-before": "never",
-      "number-leading-zero": null
-    }
-  },
   "devDependencies": {
     "autoprefixer": "^6.0.3",
     "babel-core": "^6.5.1",
