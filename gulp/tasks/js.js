@@ -47,4 +47,4 @@ function bundle() {
         .on('log', gutil.log);
     return rebundle();
 };
-gulp.task('js', ['lint'], bundle);
+gulp.task('js', ['eslint'], bundle);

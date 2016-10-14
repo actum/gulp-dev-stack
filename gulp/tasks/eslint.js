@@ -2,7 +2,6 @@ const gulp = require('gulp');
 const argv = require('yargs').argv;
 const gulpif = require('gulp-if');
 const eslint = require('gulp-eslint');
-const gulpStylelint = require('gulp-stylelint');
 const config = require('../config');
 
 // const { gulpfile, src } = config.paths;
@@ -24,18 +23,7 @@ const lint = (globs) => {
         .pipe(eslint.format())
         .pipe(gulpif(!isDev, eslint.failOnError()));
 };
-gulp.task('lint:app', () => lint(src.app.all));
-gulp.task('lint:gulpfile', () => lint([gulpfile.entry, gulpfile.rest]));
+gulp.task('eslint:app', () => lint(src.app.all));
+gulp.task('eslint:gulpfile', () => lint([gulpfile.entry, gulpfile.rest]));
 
-gulp.task('lint:styles', () => {
-    return gulp
-        .src(src.styles.all)
-        .pipe(gulpStylelint({
-            failAfterError: false,
-            reporters: [{
-                formatter: 'string',
-                console: true
-            }]
-        }));
-});
-gulp.task('lint', ['lint:gulpfile', 'lint:app', 'lint:styles']);
+gulp.task('eslint', ['eslint:gulpfile', 'eslint:app']);

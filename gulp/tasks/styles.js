@@ -17,7 +17,7 @@ const src = config.paths.src;
 const dist = config.paths.dist;
 const isDev = argv.dev || false;
 
-gulp.task('styles', () => {
+gulp.task('styles', ['stylelint'], () => {
     const postcssPlugins = [
         flexbugsFixes, // first must be flexbugs, because flexbugs do not process vendor-prefixed variants
         autoprefixer({ browsers: ['last 2 versions'] })
