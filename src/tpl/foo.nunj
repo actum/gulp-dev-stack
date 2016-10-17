@@ -1,6 +1,6 @@
 {% extends "layouts/default.nunj" %}
 
-{% set title = "Gulpie" %}
+{% set title = "Gulp Development Stack" %}
 
 {% block content %}
     {% include './partials/p.nunj' %}

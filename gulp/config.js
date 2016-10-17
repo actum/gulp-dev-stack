@@ -14,10 +14,19 @@ module.exports = {
                 ],
                 all: './src/styles/**/*.scss'
             },
+            fonts: {
+                base: './src/styles/fonts',
+                faces: './src/styles/fonts/**/*.css',
+                all: './src/styles/fonts/**/*.ttf'
+            },
             app: {
                 base: './src/app',
                 entry: './src/app/app.js',
-                all: './src/app/**/*.js'
+                vendor: {
+                    base: './src/app/vendor',
+                    all: './src/app/vendor/**/*.js'
+                },
+                all: ['./src/app/**/*.js', '!./src/app/{vendor,vendor/**}']
             },
             tpl: {
                 base: './src/tpl',
@@ -30,7 +39,11 @@ module.exports = {
         dist: {
             base: './dist',
             css: './dist/css',
-            js: './dist/js',
+            fonts: './dist/css/fonts',
+            js: {
+                base: './dist/js',
+                vendor: './dist/js/vendor'
+            },
             icon: './dist/gfx/icon',
             html: './dist/*.html'
         }

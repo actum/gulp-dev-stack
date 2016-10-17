@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>{{ title }}</title>
+    <script async src="/js/vendor/webfontloader.js"></script>
     <link rel="stylesheet" href="css/main{% if not _dev %}.min{% endif %}.css">
 </head>
 <body>
@@ -16,8 +17,6 @@
     {% else %}
         <script src="js/app.min.js"></script>
     {% endif %}
-    <script>
-        app.start({});
-    </script>
+    <script>app.start({});</script>
 </body>
 </html>

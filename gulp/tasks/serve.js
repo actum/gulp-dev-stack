@@ -26,14 +26,20 @@ gulp.task('serve', ['prepare'], () => {
         open: false
     }, () => copyToClipboard(`localhost:${port}`, () => gutil.log(gutil.colors.green('Local server address has been copied to your clipboard'))));
 
-    const sanitize = pathname => pathname.replace(/^\.\//, '');
+    const sanitize = (pathname) => {
+        pathname instanceof Array || (pathname = [pathname]);
+        pathname.map(path => path.replace(/^\.\//, ''));
+        return pathname;
+    }
     const watch = (pathname, tasks) => gulp.watch(sanitize(pathname), tasks);
 
     if (isDev) {
         watch(src.styles.all, () => runSequence(['lint:styles', 'styles']));
+        watch([src.fonts.all, src.fonts.faces], ['fonts'])
         watch(src.tpl.all, ['tpl']);
-        watch(src.icon.entry, ['icon']);
+        watch(src.icon, ['icon']);
         watch(src.app.all, ['lint:app']);
         watch(gulpfile, ['lint:gulpfile']);
+        watch(src.app.vendor.all, ['js:vendor']);
     }
 });

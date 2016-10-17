@@ -29,7 +29,7 @@ gulp.task('lint:gulpfile', () => lint(gulpfile));
 
 gulp.task('lint:styles', () => {
     return gulp
-        .src(src.styles.all)
+        .src([src.styles.all, src.fonts.faces])
         .pipe(gulpStylelint({
             failAfterError: false,
             reporters: [{
