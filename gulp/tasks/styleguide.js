@@ -27,7 +27,7 @@ const styleguideOptions = {
 
 // kss-node 2.3.1 and later.
 gulp.task('styleguide', () => {
-    kss(styleguideOptions, () => {
-        browserSync.reload();
-    });
+    // kss(styleguideOptions, () => {
+    //     browserSync.reload();
+    // });
 });

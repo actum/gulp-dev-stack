@@ -1,5 +1,4 @@
 const gulp = require('gulp');
-const argv = require('yargs').argv;
 const del = require('del');
 const config = require('../config');
 

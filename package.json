@@ -9,7 +9,10 @@
     "build": "gulp build",
     "precommit-msg": "echo 'Running build task...' && exit 0"
   },
-  "pre-commit": ["precommit-msg", "build"],
+  "pre-commit": [
+    "precommit-msg",
+    "build"
+  ],
   "devDependencies": {
     "autoprefixer": "^6.0.3",
     "babel-core": "^6.5.1",

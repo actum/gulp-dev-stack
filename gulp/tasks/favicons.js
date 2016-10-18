@@ -1,7 +1,6 @@
 const gulp = require('gulp');
 const realFavicon = require('gulp-real-favicon');
 const fs = require('fs');
-const argv = require('yargs').argv;
 const config = require('../config');
 
 // const { src, dist } = config.paths;
