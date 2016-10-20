@@ -43,9 +43,9 @@ function bundle() {
             .pipe(gulpif(DEVELOPMENT, sourcemaps.write('./')))
             .pipe(gulp.dest(dist.js))
             .pipe(gulpif(DEVELOPMENT, browserSync.stream()))
-            .pipe(gulpif(!DEVELOPMENT, uglify()))
-            .pipe(gulpif(!DEVELOPMENT, rename(names.js.min)))
-            .pipe(gulpif(!DEVELOPMENT, gulp.dest(dist.js)));
+            .pipe(gulpif(PRODUCTION, uglify()))
+            .pipe(gulpif(PRODUCTION, rename(names.js.min)))
+            .pipe(gulpif(PRODUCTION, gulp.dest(dist.js)));
     };
     bundler
         .on('update', rebundle)
