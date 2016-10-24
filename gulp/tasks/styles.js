@@ -38,6 +38,8 @@ gulp.task('styles', ['stylelint'], () => {
         .pipe(gulp.dest(config.CSS_BUILD))
         .pipe(gulpif(DEVELOPMENT, browserSync.stream()))
         .pipe(gulpif(PRODUCTION, postcss(postcssDistPlugins)))
-        .pipe(gulpif(PRODUCTION, rename(path => path.basename += '.min')))
+        .pipe(gulpif(PRODUCTION, rename({
+            suffix: '.min'
+        })))
         .pipe(gulpif(PRODUCTION, gulp.dest(config.CSS_BUILD)));
 });
