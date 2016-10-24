@@ -1,13 +1,14 @@
-const autoprefixer = require('autoprefixer');
+/* Environment */
+const DEVELOPMENT = require('./environment').isDevelopment;
+const PRODUCTION = !DEVELOPMENT;
+
+/* Plugins */
 const config = require('./config');
 const path = require('path');
 const webpack = require('webpack');
 const argv = require('yargs').argv;
-
 const src = config.paths.src;
 const dist = config.paths.dist;
-
-const isDev = argv.dev || false;
 
 module.exports = {
     entry: {
@@ -16,8 +17,8 @@ module.exports = {
     output: {
         filename: '[name].js',
     },
-    devtool: isDev ? 'source-map' : null,
-    plugins: isDev ? [] : [
+    devtool: DEVELOPMENT ? 'source-map' : null,
+    plugins: DEVELOPMENT ? [] : [
         new webpack.optimize.DedupePlugin(),
         new webpack.optimize.UglifyJsPlugin({ compress: { warnings: false } })
     ],
@@ -37,16 +38,7 @@ module.exports = {
                 query: {
                     presets: ['es2015']
                 }
-            },
-            {
-                test: /\.scss$/,
-                exclude: /(node_modules)/,
-                loader: 'style!css!postcss-loader!sass'
             }
         ]
     }
-    // ,
-    // eslint: {
-    //     configFile: '.eslintrc'
-    // }
 };
