@@ -34,9 +34,9 @@ gulp.task('serve', ['prepare'], () => {
         watch(src.styles.all, () => runSequence(['styles', 'styleguide']));
         watch(src.tpl.all, ['tpl']);
         watch(src.icon, ['icon']);
-        watch(src.app.all, ['eslint:app']);
-        watch(gulpfile.entry, ['eslint:gulpfile']);
-        watch(gulpfile.rest, ['eslint:gulpfile']);
+        watch(src.app.all, ['js']);
+        // watch(gulpfile.entry, ['eslint:gulpfile']);
+        // watch(gulpfile.rest, ['eslint:gulpfile']);
         // TODO: modify watch to take also array of files [gulpfile.entry, gulpfile.rest]
         // Question is if we need it, because after changes in any gulp task, you have to run gulp again, so the lint will start anyway
     }
