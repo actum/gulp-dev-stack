@@ -1,5 +1,4 @@
 const gulp = require('gulp');
-const argv = require('yargs').argv;
 const svgstore = require('gulp-svgstore');
 const svgmin = require('gulp-svgmin');
 const path = require('path');

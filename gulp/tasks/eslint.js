@@ -1,16 +1,21 @@
+/* Environment */
+const DEVELOPMENT = require('../environment').isDevelopment;
+const PRODUCTION = !DEVELOPMENT;
+
+/* Plugins */
 const gulp = require('gulp');
 const argv = require('yargs').argv;
 const gulpif = require('gulp-if');
 const eslint = require('gulp-eslint');
 const config = require('../config');
 
+/* Plugins */
 // const { gulpfile, src } = config.paths;
 const gulpfile = config.paths.gulpfile;
 const src = config.paths.src;
-const isDev = argv.dev || false;
 
 const lint = (globs) => {
-    const opts = isDev ? {
+    const opts = DEVELOPMENT ? {
         'rules': {
             'no-empty': 0,
             'space-in-parens': 0,
@@ -21,8 +26,9 @@ const lint = (globs) => {
     return gulp.src(globs)
         .pipe(eslint(opts))
         .pipe(eslint.format())
-        .pipe(gulpif(!isDev, eslint.failOnError()));
+        .pipe(gulpif(PRODUCTION, eslint.failOnError()));
 };
+
 gulp.task('eslint:app', () => lint(src.app.all));
 gulp.task('eslint:gulpfile', () => lint([gulpfile.entry, gulpfile.rest]));
 
