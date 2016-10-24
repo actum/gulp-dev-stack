@@ -1,18 +1,14 @@
-/* Environment */
-const DEVELOPMENT = require('../environment').isDevelopment;
+/* Configuration */
+const config = require('../config');
+const DEVELOPMENT = config.ENVIRONMENT.IS_DEVELOPMENT;
 const PRODUCTION = !DEVELOPMENT;
 
-/* Plugins */
+/* Gulp */
 const gulp = require('gulp');
-const argv = require('yargs').argv;
 const gulpif = require('gulp-if');
-const eslint = require('gulp-eslint');
-const config = require('../config');
 
 /* Plugins */
-// const { gulpfile, src } = config.paths;
-const gulpfile = config.paths.gulpfile;
-const src = config.paths.src;
+const eslint = require('gulp-eslint');
 
 const lint = (globs) => {
     const opts = DEVELOPMENT ? {
@@ -23,13 +19,14 @@ const lint = (globs) => {
             'no-multiple-empty-lines': 0
         }
     } : {};
+
     return gulp.src(globs)
         .pipe(eslint(opts))
         .pipe(eslint.format())
         .pipe(gulpif(PRODUCTION, eslint.failOnError()));
 };
 
-gulp.task('eslint:app', () => lint(src.app.all));
-gulp.task('eslint:gulpfile', () => lint([gulpfile.entry, gulpfile.rest]));
+gulp.task('eslint:app', () => lint(config.JS_ALL));
+gulp.task('eslint:gulpfile', () => lint(config.GULP_ALL));
 
 gulp.task('eslint', ['eslint:gulpfile', 'eslint:app']);

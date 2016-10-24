@@ -1,18 +1,13 @@
-const gulp = require('gulp');
-const realFavicon = require('gulp-real-favicon');
-const fs = require('fs');
+/* Configuration */
 const config = require('../config');
 
-// const { src, dist } = config.paths;
-const src = config.paths.src;
-const dist = config.paths.dist;
-const colors = {
-    fg: '#e83a29',
-    bg: '#ffffff'
-};
+/* Gulp */
+const gulp = require('gulp');
+const fs = require('fs');
 
-// File where the favicon markups are stored
-var FAVICON_DATA_FILE = 'faviconData.json';
+/* Plugins */
+const realFavicon = require('gulp-real-favicon');
+const colors = config.FAVICON_COLORS;
 
 // Generate the icons. This task takes a few seconds to complete.
 // You should run it at least once to create the icons. Then,
@@ -20,8 +15,8 @@ var FAVICON_DATA_FILE = 'faviconData.json';
 // package (see the check-for-favicon-update task below).
 gulp.task('generate-favicon', function(done) {
     realFavicon.generateFavicon({
-        masterPicture: `${src.base}/gfx/favicon-source.png`,
-        dest: dist.base,
+        masterPicture: config.FAVICON_SOURCE,
+        dest: config.BUILD_BASE,
         iconsPath: '/',
         design: {
             ios: {
@@ -73,7 +68,7 @@ gulp.task('generate-favicon', function(done) {
             scalingAlgorithm: 'Mitchell',
             errorOnImageTooSmall: false
         },
-        markupFile: FAVICON_DATA_FILE
+        markupFile: config.FAVICON_JSON
     }, function() {
         done();
     });
@@ -83,9 +78,9 @@ gulp.task('generate-favicon', function(done) {
 // this task whenever you modify a page. You can keep this task
 // as is or refactor your existing HTML pipeline.
 gulp.task('inject-favicon-markups', function() {
-    gulp.src(dist.html)
-        .pipe(realFavicon.injectFaviconMarkups(JSON.parse(fs.readFileSync(FAVICON_DATA_FILE)).favicon.html_code))
-        .pipe(gulp.dest(dist.base));
+    gulp.src(config.HTML_BUILD)
+        .pipe(realFavicon.injectFaviconMarkups(JSON.parse(fs.readFileSync(config.FAVICON_JSON)).favicon.html_code))
+        .pipe(gulp.dest(config.BUILD_BASE));
 });
 
 // Check for updates on RealFaviconGenerator (think: Apple has just
@@ -93,7 +88,7 @@ gulp.task('inject-favicon-markups', function() {
 // Run this task from time to time. Ideally, make it part of your
 // continuous integration system.
 gulp.task('check-for-favicon-update', function(done) {
-    var currentVersion = JSON.parse(fs.readFileSync(FAVICON_DATA_FILE)).version;
+    var currentVersion = JSON.parse(fs.readFileSync(config.FAVICON_JSON)).version;
     realFavicon.checkForUpdates(currentVersion, function(err) {
         if (err) {
             throw err;

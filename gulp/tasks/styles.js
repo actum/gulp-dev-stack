@@ -1,24 +1,22 @@
-/* Environment */
-const DEVELOPMENT = require('../environment').isDevelopment;
+/* Configuration */
+const config = require('../config');
+const DEVELOPMENT = config.ENVIRONMENT.IS_DEVELOPMENT;
 const PRODUCTION = !DEVELOPMENT;
 
-/* Plugins */
+/* Gulp */
 const gulp = require('gulp');
 const gulpif = require('gulp-if');
 const rename = require('gulp-rename');
-const sourcemaps = require('gulp-sourcemaps');
-const sass = require('gulp-sass');
-const postcss = require('gulp-postcss');
-const autoprefixer = require('autoprefixer');
-const flexbugsFixes = require('postcss-flexbugs-fixes');
-const cssnano = require('cssnano');
-const cssGlobbing = require('gulp-css-globbing');
-const browserSync = require('browser-sync');
-const config = require('../config');
 
-/* Paths */
-const src = config.paths.src;
-const dist = config.paths.dist;
+/* Plugins */
+const autoprefixer = require('autoprefixer');
+const browserSync = require('browser-sync');
+const cssGlobbing = require('gulp-css-globbing');
+const cssnano = require('cssnano');
+const flexbugsFixes = require('postcss-flexbugs-fixes');
+const postcss = require('gulp-postcss');
+const sass = require('gulp-sass');
+const sourcemaps = require('gulp-sourcemaps');
 
 gulp.task('styles', ['stylelint'], () => {
 
@@ -31,15 +29,15 @@ gulp.task('styles', ['stylelint'], () => {
         cssnano({ safe: true })
     ];
 
-    return gulp.src(src.styles.entry)
+    return gulp.src(config.CSS_ENTRY)
         .pipe(cssGlobbing({ extensions: ['.css', '.scss'] }))
         .pipe(sourcemaps.init())
         .pipe(sass().on('error', sass.logError))
         .pipe(postcss(postcssPlugins))
         .pipe(gulpif(DEVELOPMENT, sourcemaps.write()))
-        .pipe(gulp.dest(dist.css))
+        .pipe(gulp.dest(config.CSS_BUILD))
         .pipe(gulpif(DEVELOPMENT, browserSync.stream()))
         .pipe(gulpif(PRODUCTION, postcss(postcssDistPlugins)))
         .pipe(gulpif(PRODUCTION, rename(path => path.basename += '.min')))
-        .pipe(gulpif(PRODUCTION, gulp.dest(dist.css)));
+        .pipe(gulpif(PRODUCTION, gulp.dest(config.CSS_BUILD)));
 });

@@ -4,11 +4,11 @@ const argv = require('yargs').argv;
 const DEVELOPMENT = 'DEVELOPMENT';
 const PRODUCTION = 'PRODUCTION';
 
-/* Declare */
+/* Define */
 const isDevelopment = argv.dev || false;
 
 module.exports = {
-    type: isDevelopment ? DEVELOPMENT : PRODUCTION,
+    name: isDevelopment ? DEVELOPMENT : PRODUCTION,
     isDevelopment,
     isProduction: !isDevelopment
 };

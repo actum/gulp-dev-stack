@@ -1,12 +1,15 @@
-const gulp = require('gulp');
-const stylelint = require('gulp-stylelint');
+/* Configuration */
 const config = require('../config');
 
-const src = config.paths.src;
+/* Gulp */
+const gulp = require('gulp');
+
+/* Plugins */
+const stylelint = require('gulp-stylelint');
 
 gulp.task('stylelint', () => {
     return gulp
-        .src(src.styles.all)
+        .src(config.CSS_ALL)
         .pipe(stylelint({
             failAfterError: false,
             reporters: [{

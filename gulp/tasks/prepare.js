@@ -1,9 +1,10 @@
 /* Environment */
 const DEVELOPMENT = require('../environment').isDevelopment;
 
-/* Plugins */
+/* Gulp */
 const gulp = require('gulp');
-const argv = require('yargs').argv;
+
+/* Plugins */
 const runSequence = require('run-sequence');
 
 // TODO run browserSync after all tasks finished

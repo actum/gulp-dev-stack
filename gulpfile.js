@@ -1,15 +1,15 @@
 /* Environment */
-const environment = require('./gulp/environment');
-process.env.NODE_ENV = environment.type;
+const config = require('./gulp/config');
+process.env.NODE_ENV = config.ENVIRONMENT.NAME;
 
-/* Plugins */
+/* Gulp */
 const gulp = require('gulp');
 const argv = require('yargs').argv;
 const requireDir = require('require-dir');
 
 requireDir('./gulp/tasks');
 
-// API
+/* API */
 gulp.task('default', ['serve']);
 gulp.task('build', ['prepare']);
 gulp.task('css', ['less']);
