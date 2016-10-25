@@ -6,13 +6,6 @@ const
     PORT                = 5001,
     TITLE               = 'Gulp Development Stack',
 
-    /* ENVIRONMENT */
-    ENVIRONMENT         = {
-        NAME:           environment.name,
-        IS_DEVELOPMENT: environment.isDevelopment,
-        IS_PRODUCTION:  environment.isProduction
-    },
-
     /* Paths */
     NPM                 = './node_modules',
     DEVELOPMENT_BASE    = './src',
@@ -35,6 +28,16 @@ const
 
     /* GFX */
     GFX_BASE            = `${DEVELOPMENT_BASE}/gfx`,
+    GFX_BUILD           = `${BUILD_BASE}/gfx`,
+
+    /* SVG */
+    SVG_BASE            = `${GFX_BASE}/svg`,
+    SVG_SINGLE_ALL      = `${SVG_BASE}/*.svg`,
+    SVG_SPRITE_ALL      = [
+        `${SVG_BASE}/**/*.svg`,
+        `!${SVG_SINGLE_ALL}`
+    ],
+    SVG_BUILD           = `${GFX_BUILD}/svg`,
 
     /* Favicon */
     FAVICON_COLORS      = {
@@ -45,9 +48,11 @@ const
     FAVICON_SOURCE      = `${FAVICON_BASE}/favicon-source.png`,
     FAVICON_JSON        = 'faviconData.json',
 
-    /* SVG */
-    SVG_ALL             = `${GFX_BASE}/svg/*.svg`,
-    SVG_BUILD           = `${BUILD_BASE}/gfx/icon`,
+    IMAGES_ALL          = [
+        `${GFX_BASE}/**/*.{jpg,jpeg,png,gif}`,
+        `${SVG_SINGLE_ALL}`,
+        `!${FAVICON_SOURCE}`
+    ],
 
     /* Templates */
     TEMPLATE_BASE       = `${DEVELOPMENT_BASE}/tpl`,
@@ -69,7 +74,8 @@ const
 module.exports = {
     PORT,
     TITLE,
-    ENVIRONMENT,
+    environment,
+
     NPM,
     DEVELOPMENT_BASE,
     BUILD_BASE,
@@ -86,11 +92,15 @@ module.exports = {
     JS_BUILD,
 
     GFX_BASE,
+    GFX_BUILD,
+    IMAGES_ALL,
     FAVICON_COLORS,
     FAVICON_BASE,
     FAVICON_SOURCE,
     FAVICON_JSON,
-    SVG_ALL,
+    SVG_BASE,
+    SVG_SINGLE_ALL,
+    SVG_SPRITE_ALL,
     SVG_BUILD,
 
     TEMPLATE_BASE,
@@ -106,59 +116,3 @@ module.exports = {
     STYLEGUIDE_CSS,
     STYLEGUIDE_JS
 };
-
-// module.exports = {
-//     port: 5001,
-//     title: 'Gulp Dev Stack',
-//     paths: {
-//         gulpfile: {
-//             entry: './gulpfile.js',
-//             rest: './gulp/**/*.js'
-//         },
-//         npm: './node_modules',
-//         src: {
-//             base: './src',
-//             styles: {
-//                 base: './src/styles',
-//                 entry: [
-//                     './src/styles/main.scss',
-//                     './src/styles/secondary.scss'
-//                 ],
-//                 all: './src/styles/**/*.scss'
-//             },
-//             app: {
-//                 base: './src/app',
-//                 entry: './src/app/app.js',
-//                 all: './src/app/**/*.js'
-//             },
-//             tpl: {
-//                 base: './src/tpl',
-//                 entry: './src/tpl/*.nunj',
-//                 all: './src/tpl/**/*.nunj'
-//             },
-//             icon: './src/gfx/svg/*.svg',
-//             html: './src/*.html'
-//         },
-//         dist: {
-//             base: './dist',
-//             css: './dist/css',
-//             js: './dist/js',
-//             icon: './dist/gfx/icon',
-//             html: './dist/*.html'
-//         },
-//         styleguide: {
-//             base: './styleguide',
-//             source: './src/styles',
-//             destination: './styleguide/styleguide',
-//             template: './node_modules/styleguide/dist',
-//             css: './css/main.css',
-//             js: []
-//         }
-//     },
-//     names: {
-//         js: {
-//             src: 'app.js',
-//             min: 'app.min.js'
-//         }
-//     }
-// };

@@ -1,6 +1,6 @@
 /* Configuration */
 const config = require('../config');
-const DEVELOPMENT = config.ENVIRONMENT.IS_DEVELOPMENT;
+const DEVELOPMENT = config.environment.isDevelopment;
 const PRODUCTION = !DEVELOPMENT;
 
 /* Gulp */

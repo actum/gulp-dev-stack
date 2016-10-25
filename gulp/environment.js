@@ -8,7 +8,7 @@ const PRODUCTION = 'PRODUCTION';
 const isDevelopment = argv.dev || false;
 
 module.exports = {
-    name: isDevelopment ? DEVELOPMENT : PRODUCTION,
+    type: isDevelopment ? DEVELOPMENT : PRODUCTION,
     isDevelopment,
     isProduction: !isDevelopment
 };

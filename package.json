@@ -31,6 +31,7 @@
     "gulp-css-globbing": "^0.1.8",
     "gulp-eslint": "^2.0.0",
     "gulp-if": "^1.2.5",
+    "gulp-imagemin": "^3.0.3",
     "gulp-nunjucks": "^2.1.1",
     "gulp-plumber": "^1.0.1",
     "gulp-postcss": "^6.0.1",

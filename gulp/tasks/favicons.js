@@ -47,7 +47,7 @@ gulp.task('generate-favicon', function(done) {
                 pictureAspect: 'noChange',
                 themeColor: colors.bg,
                 manifest: {
-                    name: config.title,
+                    name: config.TITLE,
                     display: 'standalone',
                     orientation: 'notSet',
                     onConflict: 'override',

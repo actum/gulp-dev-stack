@@ -1,6 +1,6 @@
 /* Configuration */
 const config = require('../config');
-const DEVELOPMENT = config.ENVIRONMENT.IS_DEVELOPMENT;
+const DEVELOPMENT = config.environment.isDevelopment;
 
 /* Gulp */
 const gulp = require('gulp');
@@ -40,8 +40,9 @@ gulp.task('serve', ['prepare'], () => {
     if (DEVELOPMENT) {
         watch(config.CSS_ALL, () => runSequence(['styles', 'styleguide']));
         watch(config.JS_ALL, ['eslint:app']);
+        watch(config.IMAGES_ALL, ['images', 'tpl']);
+        watch(config.SVG_SPRITE_ALL, ['svg', 'tpl']);
         watch(config.TEMPLATE_ALL, ['tpl']);
-        watch(config.SVG_ALL, ['icon']);
         watch(config.GULP_ALL, ['eslint:gulpfile']);
     }
 });

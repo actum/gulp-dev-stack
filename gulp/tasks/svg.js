@@ -1,16 +1,29 @@
 /* Configuration */
 const config = require('../config');
+const DEVELOPMENT = config.environment.isDevelopment;
+
+/* Gulp */
+const gulp = require('gulp');
+const gulpif = require('gulp-if');
+const path = require('path');
+const rename = require('gulp-rename');
 
 /* Plugins */
-const gulp = require('gulp');
-const path = require('path');
+const browserSync = require('browser-sync');
 const svgmin = require('gulp-svgmin');
 const svgstore = require('gulp-svgstore');
 
-gulp.task('icon', () => {
-    return gulp.src(config.SVG_ALL)
+/* SVG sprites */
+gulp.task('svg:sprite', () => {
+    var spriteName;
+
+    return gulp.src(config.SVG_SPRITE_ALL)
         .pipe(svgmin((file) => {
             const prefix = path.basename(file.relative, path.extname(file.relative));
+
+            /* Get dynamic sprite folder name */
+            spriteName = path.dirname(file.relative);
+
             return {
                 plugins: [{
                     cleanupIDs: {
@@ -23,7 +36,14 @@ gulp.task('icon', () => {
         .pipe(svgstore({
             inlineSvg: true
         }))
-        .pipe(gulp.dest(config.SVG_BUILD));
+        .pipe(rename((file) => {
+            file.basename = spriteName;
+            return file;
+        }))
+        .pipe(gulp.dest(config.SVG_BUILD))
+        .pipe(gulpif(DEVELOPMENT, browserSync.stream()));
         // TODO run 'tpl' task and 'browserSync' after icon task
         // to include svg.svg file into all templates
 });
+
+gulp.task('svg', ['svg:sprite']);
