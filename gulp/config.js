@@ -1,5 +1,6 @@
 /* eslint-disable one-var */
 const environment = require('./environment');
+const path = require('path');
 
 const
     /* General */
@@ -19,6 +20,7 @@ const
     CSS_ENTRY           = `${CSS_BASE}/main.scss`,
     CSS_ALL             = `${CSS_BASE}/**/*.scss`,
     CSS_BUILD           = `${BUILD_BASE}/css`,
+    CSS_BUILD_ENTRY     = `${CSS_BUILD}/${path.parse(CSS_ENTRY).name}.css`,
 
     /* JavaScript */
     JS_BASE             = `${DEVELOPMENT_BASE}/app`,
@@ -85,6 +87,7 @@ module.exports = {
     CSS_ENTRY,
     CSS_ALL,
     CSS_BUILD,
+    CSS_BUILD_ENTRY,
 
     JS_BASE,
     JS_ENTRY,

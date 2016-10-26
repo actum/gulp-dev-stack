@@ -17,8 +17,9 @@ const flexbugsFixes = require('postcss-flexbugs-fixes');
 const postcss = require('gulp-postcss');
 const sass = require('gulp-sass');
 const sourcemaps = require('gulp-sourcemaps');
+const critical = require('critical').stream;
 
-gulp.task('styles', ['stylelint'], () => {
+gulp.task('styles:compile', ['stylelint'], () => {
 
     const postcssPlugins = [
         flexbugsFixes, // first must be flexbugs, because flexbugs do not process vendor-prefixed variants
@@ -43,3 +44,16 @@ gulp.task('styles', ['stylelint'], () => {
         })))
         .pipe(gulpif(PRODUCTION, gulp.dest(config.CSS_BUILD)));
 });
+
+gulp.task('styles:critical', ['styles:compile'], () => {
+    return gulp.src(config.HTML_BUILD)
+        .pipe(critical({
+            base: config.BUILD_BASE,
+            inline: true,
+            css: config.CSS_BUILD_ENTRY
+        }))
+        .pipe(gulp.dest(config.BUILD_BASE));
+});
+
+gulp.task('styles', ['styles:compile', 'styles:critical']);
+
