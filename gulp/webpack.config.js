@@ -10,39 +10,36 @@ const argv = require('yargs').argv;
 const src = config.paths.src;
 const dist = config.paths.dist;
 
-// Parser does not handle "let" variables:
-// https://github.com/mishoo/UglifyJS2/issues/448
-let UglifyJsPluginConfig = {
-    compress: {
-        warnings: false
-    },
-    sourceMap: true,
-    mangle: false,
-    comments: false
-};
-
 module.exports = {
     entry: {
         'app' : src.app.entry
     },
     output: {
-        filename: '[name].js'
+        path: path.join(__dirname, dist.js),
+        filename: DEVELOPMENT ? '[name].js' : '[name].min.js'
     },
-    devtool: DEVELOPMENT ? 'cheap-eval-source-map' : 'hidden-source-map',
-    plugins: DEVELOPMENT ? [] : [
+    devtool: DEVELOPMENT ? 'cheap-eval-source-map' : false,
+    plugins: DEVELOPMENT ? [ ] : [
         new webpack.optimize.DedupePlugin(),
-        new webpack.optimize.UglifyJsPlugin(UglifyJsPluginConfig)
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: false
+            },
+            sourceMap: true,
+            mangle: false,
+            comments: false
+        })
     ],
     module: {
         rules: [
             {
-                test: /\.js?$/,
+                test: /\.js?/,
                 use: 'eslint',
                 enforce: 'pre',
                 exclude: /(node_modules)/
             },
             {
-                test: /\.js$/,
+                test: /\.js?/,
                 use: 'babel',
                 exclude: /(node_modules)/,
                 options: {
