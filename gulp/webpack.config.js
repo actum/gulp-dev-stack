@@ -1,10 +1,12 @@
 /* Configuration */
 const config = require('./config');
-const DEVELOPMENT = config.environment.isDevelopment;
+const environment = config.environment;
+const DEVELOPMENT = environment.isDevelopment;
 
 /* Plugins */
 const path = require('path');
 const webpack = require('webpack');
+const eslintConfig = require('eslint-config-actum').getConfig({ environment });
 
 module.exports = {
     entry: {
@@ -30,7 +32,7 @@ module.exports = {
         rules: [
             {
                 test: /\.js?/,
-                use: 'eslint',
+                use: `eslint?{ configFile: '${eslintConfig}' }`,
                 enforce: 'pre',
                 exclude: /(node_modules)/
             },

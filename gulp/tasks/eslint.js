@@ -11,14 +11,14 @@ const eslint = require('gulp-eslint');
 const eslintConfig = require('eslint-config-actum').getConfig({ environment });
 
 const lint = (globs) => {
-    // const options = {
-    //     configName: eslintConfig
-    // };
+    const options = {
+        configFile: eslintConfig
+    };
 
-    // return gulp.src(globs)
-    //     .pipe(eslint(options))
-    //     .pipe(eslint.format())
-    //     .pipe(gulpif(PRODUCTION, eslint.failOnError()));
+    return gulp.src(globs)
+        .pipe(eslint(options))
+        .pipe(eslint.format())
+        .pipe(gulpif(PRODUCTION, eslint.failOnError()));
 };
 
 gulp.task('eslint:gulpfile', () => lint(config.GULP_ALL));

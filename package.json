@@ -13,9 +13,6 @@
     "precommit-msg",
     "build"
   ],
-  "eslintConfig": {
-    "extends": "actum"
-  },
   "devDependencies": {
     "autoprefixer": "^6.0.3",
     "babel-core": "^6.17.0",
@@ -34,7 +31,7 @@
     "glob": "^5.0.15",
     "gulp": "^3.9.0",
     "gulp-css-globbing": "^0.1.8",
-    "gulp-eslint": "^2.0.0",
+    "gulp-eslint": "^3.0.1",
     "gulp-if": "^1.2.5",
     "gulp-imagemin": "^3.0.3",
     "gulp-nunjucks": "^2.1.1",
