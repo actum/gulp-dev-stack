@@ -1,26 +1,24 @@
 /* Environment */
 const config = require('../config');
-const DEVELOPMENT = config.environment.isDevelopment;
+const environment = config.environment;
+const DEVELOPMENT = environment.isDevelopment;
 const PRODUCTION = !DEVELOPMENT;
 
 /* Gulp */
 const gulp = require('gulp');
 const gulpif = require('gulp-if');
 const eslint = require('gulp-eslint');
+const eslintConfig = require('eslint-config-actum').getConfig({ environment });
 
 const lint = (globs) => {
-    const opts = DEVELOPMENT ? {
-        'rules': {
-            'no-empty': 0,
-            'space-in-parens': 0,
-            'no-unused-vars': 0,
-            'no-multiple-empty-lines': 0
-        }
-    } : {};
-    return gulp.src(globs)
-        .pipe(eslint(opts))
-        .pipe(eslint.format())
-        .pipe(gulpif(PRODUCTION, eslint.failOnError()));
+    // const options = {
+    //     configName: eslintConfig
+    // };
+
+    // return gulp.src(globs)
+    //     .pipe(eslint(options))
+    //     .pipe(eslint.format())
+    //     .pipe(gulpif(PRODUCTION, eslint.failOnError()));
 };
 
 gulp.task('eslint:gulpfile', () => lint(config.GULP_ALL));

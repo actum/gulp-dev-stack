@@ -13,6 +13,9 @@
     "precommit-msg",
     "build"
   ],
+  "eslintConfig": {
+    "extends": "actum"
+  },
   "devDependencies": {
     "autoprefixer": "^6.0.3",
     "babel-core": "^6.17.0",
