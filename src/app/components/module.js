@@ -1,3 +1,6 @@
-export default function module(container) {
-    container.innerText += '_js';
+export default {
+	init(container, config = {}) {
+		console.warn('MODULE.JS: init()');
+		container.innerHTML += '_JS';
+	}
 }

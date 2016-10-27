@@ -24,6 +24,7 @@ const
     JS_BASE             = `${DEVELOPMENT_BASE}/app`,
     JS_ENTRY            = `${JS_BASE}/app.js`,
     JS_ALL              = `${JS_BASE}/**/*.js`,
+    JS_VENDOR_ALL       = `${JS_BASE}/vendor/**/*.js`,
     JS_BUILD            = `${BUILD_BASE}/js`,
 
     /* GFX */
@@ -89,6 +90,7 @@ module.exports = {
     JS_BASE,
     JS_ENTRY,
     JS_ALL,
+    JS_VENDOR_ALL,
     JS_BUILD,
 
     GFX_BASE,

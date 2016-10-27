@@ -28,8 +28,8 @@ function getPagesList() {
 
 gulp.task('tpl', () => {
     const data = {
-        '_dev': DEVELOPMENT,
-        '_pages': getPagesList()
+        _dev: DEVELOPMENT,
+        _pages: getPagesList()
     };
     const searchPaths = [config.TEMPLATE_BASE, config.SVG_BUILD];
     const options = {
