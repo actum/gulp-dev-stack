@@ -21,9 +21,9 @@ const Environment = nunj.Environment;
 const FileSystemLoader = nunj.FileSystemLoader;
 
 function getPagesList() {
-    return glob.sync(config.TEMPLATE_ENTRY)
+    return glob.sync(config.TEMPLATE_PAGES)
         .map(pathname => pathname.replace(/\.[^\.]+$/, '').substring(pathname.lastIndexOf('/') + 1, pathname.length - 1))
-        .filter(name => 'index' !== name);
+        .filter(name => name !== 'index');
 }
 
 gulp.task('tpl', () => {
@@ -36,7 +36,7 @@ gulp.task('tpl', () => {
         noCache: true
     };
 
-    return gulp.src(config.TEMPLATE_ENTRY)
+    return gulp.src(config.TEMPLATE_PAGES)
         // Temporary fix for gulp's error handling within streams, see https://github.com/actum/gulp-dev-stack/issues/7#issuecomment-152490084
         .pipe(plumber({
             errorHandler: e => gutil.log(gutil.colors.red(`${e.name} in ${e.plugin}: ${e.message}`))

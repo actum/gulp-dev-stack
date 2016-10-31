@@ -19,7 +19,6 @@ const sass = require('gulp-sass');
 const sourcemaps = require('gulp-sourcemaps');
 
 gulp.task('styles', ['stylelint'], () => {
-
     const postcssPlugins = [
         flexbugsFixes, // first must be flexbugs, because flexbugs do not process vendor-prefixed variants
         autoprefixer({ browsers: ['last 2 versions'] })

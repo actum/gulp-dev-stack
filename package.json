@@ -1,13 +1,18 @@
 {
   "name": "gulp-dev-stack",
-  "version": "1.0.0",
-  "description": "Gulp dev-stack",
+  "version": "2.0.0",
+  "repository": {
+    "type" : "git",
+    "url": "https://github.com/actum/gulp-dev-stack"
+  },
+  "description": "Gulp Development Stack",
   "engines": {
     "node": ">=5"
   },
   "scripts": {
     "build": "gulp build",
-    "precommit-msg": "echo 'Running build task...' && exit 0"
+    "precommit-msg": "echo 'Running build task...' && exit 0",
+    "ext-react": "gulp extension:react"
   },
   "pre-commit": [
     "precommit-msg",
@@ -48,9 +53,11 @@
     "gulp-uglify": "^1.4.2",
     "gulp-util": "^3.0.6",
     "kss": "^2.4.0",
+    "path": "^0.12.7",
     "postcss-flexbugs-fixes": "^2.0.0",
     "postcss-loader": "^1.0.0",
     "pre-commit": "^1.1.3",
+    "react": "^15.3.2",
     "require-dir": "^0.3.0",
     "run-sequence": "^1.1.4",
     "styleguide": "github:actum/styleguide",
@@ -62,6 +69,7 @@
     "watchify": "^3.4.0",
     "webpack": "^2.1.0-beta.25",
     "webpack-stream": "^3.2.0",
+    "write": "^0.3.2",
     "yargs": "^3.27.0"
   },
   "dependencies": {

@@ -1,3 +1,5 @@
+'use strict';
+
 /* Configuration */
 const config = require('../config');
 const DEVELOPMENT = config.environment.isDevelopment;
@@ -14,8 +16,9 @@ const svgmin = require('gulp-svgmin');
 const svgstore = require('gulp-svgstore');
 
 /* SVG sprites */
+/* Single SVG images are optimized in "images.js" */
 gulp.task('svg:sprite', () => {
-    var spriteName;
+    let spriteName;
 
     return gulp.src(config.SVG_SPRITE_ALL)
         .pipe(svgmin((file) => {
@@ -27,7 +30,7 @@ gulp.task('svg:sprite', () => {
             return {
                 plugins: [{
                     cleanupIDs: {
-                        prefix: prefix + '-',
+                        prefix: `${prefix}-`,
                         minify: true
                     }
                 }]
@@ -42,8 +45,6 @@ gulp.task('svg:sprite', () => {
         }))
         .pipe(gulp.dest(config.SVG_BUILD))
         .pipe(gulpif(DEVELOPMENT, browserSync.stream()));
-        // TODO run 'tpl' task and 'browserSync' after icon task
-        // to include svg.svg file into all templates
 });
 
 gulp.task('svg', ['svg:sprite']);

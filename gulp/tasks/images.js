@@ -7,7 +7,8 @@ const gulp = require('gulp');
 /* Plugins */
 const imagemin = require('gulp-imagemin');
 
-/* Task */
+/* Optimize images */
+/* Handles common images format (jpg, png, gif) and single SVG images */
 gulp.task('images:optimize', () => {
     return gulp.src(config.IMAGES_ALL, { base: config.GFX_BASE })
         .pipe(imagemin())

@@ -1,4 +1,4 @@
-{% from 'helper/svg.nunj' import svg %}
+{% from 'helpers/svg.nunj' import svg %}
 
 {% extends "layouts/default.nunj" %}
 

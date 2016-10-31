@@ -1,4 +1,4 @@
-/* eslint-disable one-var */
+/* eslint-disable one-var, no-multi-spaces */
 const environment = require('./environment');
 
 const
@@ -57,7 +57,7 @@ const
 
     /* Templates */
     TEMPLATE_BASE       = `${DEVELOPMENT_BASE}/tpl`,
-    TEMPLATE_ENTRY      = `${TEMPLATE_BASE}/*.nunj`,
+    TEMPLATE_PAGES      = `${TEMPLATE_BASE}/*.nunj`,
     TEMPLATE_ALL        = `${TEMPLATE_BASE}/**/*.nunj`,
 
     /* HTML */
@@ -106,7 +106,7 @@ module.exports = {
     SVG_BUILD,
 
     TEMPLATE_BASE,
-    TEMPLATE_ENTRY,
+    TEMPLATE_PAGES,
     TEMPLATE_ALL,
     HTML_ALL,
     HTML_BUILD,
