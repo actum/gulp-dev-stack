@@ -1,12 +1,15 @@
-Front-end Gulp development stack.
+Front-end development stack used at [Actum](https://www.actum.cz).
 
 # Summary
 * [Features](#features)
 * [Getting started]()
 * [Project structure]()
+* [Extensions]()
+* [Naming conventions]()
 * [Workflow]()
 * [Troubleshooting]()
 
+<br>
 ## Features
 
   | Pre-processing | Quality control | Post-processing
@@ -39,30 +42,28 @@ Front-end Gulp development stack.
 - **Deployment**
     - `todo`
 
+<br>
 ## Getting started
 ### Preparations
-**NOTE:** If you have already installed Node and Gulp on your machine, you may skip this step.
-
 1. This development stack uses [Node](https://nodejs.org), so make sure you have it installed.
 2. Install [Gulp](http://gulpjs.com) globally:  
 ```bash
 npm install -g gulp
 ```
+**NOTE:** If you have already installed Node and Gulp on your machine, you may skip this step.
 
 ### Setup
-1. Clone the repository:
-```
-mkdir NEW_PROJECT
-git clone https://github.com/actum/gulp-dev-stack ./NEW_PROJECT
-```
-2. Install package dependencies:
-```bash
-npm install
-```
-It will take you through the automated process of installing all the required dependencies from `package.json`. Make sure you are at the same directory that the package file (the root of the project).
+1. **Clone the repository:** `git clone https://github.com/actum/gulp-dev-stack ./PROJECT_NAME`
+2. **Install package dependencies with `npm install`**. It will take you through the automated process of installing all the required dependencies from `package.json`. Make sure you are at the same directory that the package file (the root of the project).
 
+3. **Configure the project**. Do not forget to change the respective keys in `package.json` according to your project's info, and setup **a unique listening port** in `./gulp/config.js`.
+
+### Extend the stack (Optional)
+After setup, this is the right moment to add some flavour into the bundle. For detailed instructions how to extend this development stack according to your project's needs read about the [Extensions]().
+
+<br>
 ## Project structure
-Following a certain file and folder structure keeps development, maintenance and debugging processes much easier when switching from project to project.
+Following a certain file and folder structure keeps development, maintenance and debugging processes much easier when switching from project to project based on the same development stack.
 * ### dist/
 
     Build (production) folder generated and changed automatically by various Gulp tasks. Contains production-ready compiled CSS (`dist/css`), JavaScript (`dist/js`), graphics (`dist/gfx`) and templated HTML. Should not be edited manually.
@@ -91,29 +92,79 @@ Following a certain file and folder structure keeps development, maintenance and
     * **NAME.nunj**
         Template page written in [Nunjucks](https://github.com/sindresorhus/gulp-nunjucks) and compiled to `dist/NAME.html`.
 
+<br>
 ## Workflow
 ### Development
-To start your development process, run `gulp --dev` in the terminal. This will prepare the project for the work and launch watch tasks to update the files on-the-fly as you work.
+To start your development process, run `gulp --dev` in the terminal. This will prepare the project for the work and launch watch tasks to update the files on-the-fly as you work. A `--dev` flag will notify the automatization tasks to add or omit certain steps (i.e. your JavaScript files are not uglified while in development mode).
 
-### Development
-
-**Change port number in `gulp/config.js`** to something unique to prevent port collisions with other projects.
-
-Run `gulp --dev` and develop in `src` folder.
-
-#### Remove built targets
-
+### Remove built targets
 If you want to revert back to a fresh state without built files, run
 
 ```sh
 gulp clean
 ```
 
-It will remove `dist` and all built targets in `src`.
+It will remove the `dist/` folder and all built targets in `src/`.
 
 ### Production build
+To prepare production-ready files, run `gulp` and grab built assets from `dist` folder.
 
-Run `gulp` and pick built assets from `dist` folder.
+<br>
+## Naming conventions
+One of the pillars of a solid quality code is setting and following a specific naming convention.
 
+### CSS
+Use [BEM](http://getbem.com/naming/) in naming your classes when writing stylesheets. This is tremendously easier with pre-processors. Take a look at this example in SCSS:
+```css
+/* SCSS */
+.menu {
+    &__item {
+        &--highlighted { ... }
+    }
+}
+
+/* CSS */
+.menu {}
+.menu__item {}
+.menu__item--highlighted {}
+```
+
+### JavaScript
+Use [cammelCase](https://en.wikipedia.org/wiki/Camel_case) when working with JavaScript. This way your declaration starts with a lowercase **letter**, while each next word within it starts with a capital one.
+```js
+/* Variables */
+const namingConvention = 'cammelCase';
+
+/* Methods */
+function followConvention(developer, namingConvention) {};
+```
+**Notice:** React components should begin with a capital letter for easier differentiation between component's declaration and its instance:
+```js
+/* Declaration */
+class MyReactComponent extends Component { ... }
+
+/* Instance */
+const myReactComponent = <MyReactComponent />
+```
+
+<br>
+## Extensions
+We work hard to gather the essential tools needed for modern web development. Of course, each projects has its own requirements and features. To make it easier and faster to adjust this development stack to various needs we use extensions.
+
+Extension — is a shorthand for adding specific technologies into the stack. Each extension has its own name with `ext-` prefix following ahead. Extensions may be installed after Setup step of [Getting started]:
+```bash
+npm install && npm run ext-react
+```
+This will install `react` and `react-dom` packages, add them to the project's dependencies and insert an example React component into JavaScript development folder. Everything up and ready to dive into work without further distractions.
+### Supported extensions:
+* `ext-react` React, React DOM
+* More coming soon
+
+<br>
 ## Troubleshooting
+Common errors  |
+------------ |
+**Error:**  "*Local gulp not found in ...*" when running `gulp`. |
+**Solution:** Make sure you run `npm install` after cloning the repository. |
+
 When you have encountered a bug, or have a useful suggestion how to improve this development stack, do not hesitate to [Create a new issue]().
