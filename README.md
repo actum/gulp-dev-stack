@@ -2,12 +2,12 @@ Front-end development stack used at [Actum](https://www.actum.cz).
 
 # Summary
 * [Features](#features)
-* [Getting started]()
-* [Project structure]()
-* [Extensions]()
-* [Naming conventions]()
-* [Workflow]()
-* [Troubleshooting]()
+* [Getting started](#getting-started)
+* [Project structure](#project-structure)
+* [Extensions](#extensions)
+* [Naming conventions](#naming-conventions)
+* [Workflow](#workflow)
+* [Troubleshooting](#troubleshooting)
 
 <br>
 ## Features
