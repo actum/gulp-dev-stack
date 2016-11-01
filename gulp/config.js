@@ -118,3 +118,4 @@ module.exports = {
     STYLEGUIDE_CSS,
     STYLEGUIDE_JS
 };
+/* eslint-enable one-var, no-multi-spaces */
