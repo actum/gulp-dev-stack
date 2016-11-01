@@ -59,7 +59,7 @@ npm install -g gulp
 3. **Configure the project**. Do not forget to change the respective keys in `package.json` according to your project's info, and setup **a unique listening port** in `./gulp/config.js`.
 
 ### Extend the stack (Optional)
-After setup, this is the right moment to add some flavour into the bundle. For detailed instructions how to extend this development stack according to your project's needs read about the [Extensions]().
+After setup, this is the right moment to add some flavour into the bundle. For detailed instructions how to extend this development stack according to your project's needs read about the [Extensions](#extensions).
 
 <br>
 ## Project structure
@@ -108,44 +108,6 @@ It will remove the `dist/` folder and all built targets in `src/`.
 
 ### Production build
 To prepare production-ready files, run `gulp` and grab built assets from `dist` folder.
-
-<br>
-## Naming conventions
-One of the pillars of a solid quality code is setting and following a specific naming convention.
-
-### CSS
-Use [BEM](http://getbem.com/naming/) in naming your classes when writing stylesheets. This is tremendously easier with pre-processors. Take a look at this example in SCSS:
-```css
-/* SCSS */
-.menu {
-    &__item {
-        &--highlighted { ... }
-    }
-}
-
-/* CSS */
-.menu {}
-.menu__item {}
-.menu__item--highlighted {}
-```
-
-### JavaScript
-Use [cammelCase](https://en.wikipedia.org/wiki/Camel_case) when working with JavaScript. This way your declaration starts with a lowercase **letter**, while each next word within it starts with a capital one.
-```js
-/* Variables */
-const namingConvention = 'cammelCase';
-
-/* Methods */
-function followConvention(developer, namingConvention) {};
-```
-**Notice:** React components should begin with a capital letter for easier differentiation between component's declaration and its instance:
-```js
-/* Declaration */
-class MyReactComponent extends Component { ... }
-
-/* Instance */
-const myReactComponent = <MyReactComponent />
-```
 
 <br>
 ## Extensions
