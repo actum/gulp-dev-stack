@@ -34,16 +34,17 @@ module.exports = {
             base: './dist',
             css: './dist/css',
             js: './dist/js',
+            gfx: './dist/gfx',
             icon: './dist/gfx/icon',
             html: './dist/*.html'
         },
         styleguide: {
             base: './styleguide',
-            source: './src/styles',
             destination: './styleguide/styleguide',
             template: './node_modules/styleguide/dist',
+            homepage: '../../styleguide.md',
             css: './css/main.css',
-            js: []
+            js: './js/app.js'
         }
     },
     names: {

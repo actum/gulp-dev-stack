@@ -1,3 +1,6 @@
+/* Environment */
+const DEVELOPMENT = require('../environment').isDevelopment;
+
 const gulp = require('gulp');
 const argv = require('yargs').argv;
 const gutil = require('gulp-util');
@@ -16,10 +19,9 @@ const npm = config.paths.npm;
 const src = config.paths.src;
 const dist = config.paths.dist;
 const styleguide = config.paths.styleguide;
-const isDev = argv.dev || false;
 
 gulp.task('serve', ['prepare'], () => {
-    const baseDir = isDev ? [src.base, dist.base, npm, styleguide.base] : dist.base;
+    const baseDir = DEVELOPMENT ? [src.base, dist.base, npm, styleguide.base] : dist.base;
 
     browserSync({
         port,
@@ -30,13 +32,13 @@ gulp.task('serve', ['prepare'], () => {
     const sanitize = pathname => pathname.replace(/^\.\//, '');
     const watch = (pathname, tasks) => gulp.watch(sanitize(pathname), tasks);
 
-    if (isDev) {
-        watch(src.styles.all, () => runSequence(['lint:styles', 'styles', 'styleguide']));
+    if (DEVELOPMENT) {
+        watch(src.styles.all, () => runSequence(['styles', 'styleguide']));
         watch(src.tpl.all, ['tpl']);
         watch(src.icon, ['icon']);
-        watch(src.app.all, ['lint:app']);
-        watch(gulpfile.entry, ['lint:gulpfile']);
-        watch(gulpfile.rest, ['lint:gulpfile']);
+        watch(src.app.all, ['eslint:app']);
+        watch(gulpfile.entry, ['eslint:gulpfile']);
+        watch(gulpfile.rest, ['eslint:gulpfile']);
         // TODO: modify watch to take also array of files [gulpfile.entry, gulpfile.rest]
         // Question is if we need it, because after changes in any gulp task, you have to run gulp again, so the lint will start anyway
     }
