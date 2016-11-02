@@ -9,7 +9,10 @@
     "build": "gulp build",
     "precommit-msg": "echo 'Running build task...' && exit 0"
   },
-  "pre-commit": ["precommit-msg", "build"],
+  "pre-commit": [
+    "precommit-msg",
+    "build"
+  ],
   "babel": {
     "presets": [
       "react",
@@ -127,6 +130,7 @@
   "dependencies": {
     "babel-polyfill": "^6.9.1",
     "bootstrap-sass": "^3.3.6",
+    "fg-loadcss": "^1.2.0",
     "svgxuse": "^1.1.17"
   }
 }

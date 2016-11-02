@@ -13,7 +13,7 @@ module.exports = {
                 base: './src/styles',
                 entry: [
                     './src/styles/main.scss',
-                    './src/styles/secondary.scss'
+                    './src/styles/critical.scss'
                 ],
                 all: './src/styles/**/*.scss'
             },
