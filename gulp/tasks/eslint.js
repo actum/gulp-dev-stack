@@ -17,7 +17,7 @@ const gulpfile = config.paths.gulpfile;
 const src = config.paths.src;
 
 const lint = (globs) => {
-    const options = { configFile: eslintConfig};
+    const options = { configFile: eslintConfig };
 
     return gulp.src(globs)
         .pipe(eslint(options))
