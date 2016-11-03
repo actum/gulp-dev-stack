@@ -21,6 +21,7 @@ const lint = (globs) => {
         .pipe(gulpif(PRODUCTION, eslint.failOnError()));
 };
 
+gulp.task('eslint:app', () => lint(config.JS_ALL));
 gulp.task('eslint:gulpfile', () => lint(config.GULP_ALL));
 
 gulp.task('eslint', ['eslint:gulpfile']);

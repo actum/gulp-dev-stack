@@ -1,23 +1,49 @@
-/* Configuration */
-const config = require('../config');
-
-/* Gulp */
-const gulp = require('gulp');
-const plumber = require('gulp-plumber');
+/* Environment */
+const DEVELOPMENT = require('../environment').isDevelopment;
+const PRODUCTION = !DEVELOPMENT;
 
 /* Plugins */
+const gulp = require('gulp');
+const argv = require('yargs').argv;
+const gulpif = require('gulp-if');
+const rename = require('gulp-rename');
+const browserify = require('browserify');
+const watchify = require('watchify');
+const babelify = require('babelify');
+const uglifyify = require('uglifyify');
+const envify = require('envify');
+const source = require('vinyl-source-stream');
+const buffer = require('vinyl-buffer');
+const sourcemaps = require('gulp-sourcemaps');
+const uglify = require('gulp-uglify');
+const gutil = require('gulp-util');
 const browserSync = require('browser-sync');
-const webpack = require('webpack');
-const webpackStream = require('webpack-stream');
-const webpackConfig = require('../webpack.config.js');
+const config = require('../config');
 
-gulp.task('js', () => {
-    return gulp.src(config.JS_ENTRY)
-        .pipe(plumber(function() {
-            this.emit('end');
-        }))
-        .pipe(webpackStream(webpackConfig, webpack))
-        .pipe(browserSync.stream())
-        .pipe(gulp.dest(config.JS_BUILD))
-        .pipe(plumber.stop());
-});
+function bundle() {
+    const transforms = [envify, babelify];
+    const opts = {
+        entries: config.JS_ENTRY,
+        debug: DEVELOPMENT,
+        transform: DEVELOPMENT ? transforms : [...transforms, uglifyify]
+    };
+    const bundler = DEVELOPMENT ? watchify(browserify(Object.assign({}, watchify.args, opts))) : browserify(opts);
+    function rebundle() {
+        return bundler.bundle()
+            .on('error', e => gutil.log(gutil.colors.red(e.name) + e.message.substr(e.message.indexOf(': ') + 1)))
+            .pipe(source('app.js'))
+            .pipe(buffer())
+            .pipe(gulpif(DEVELOPMENT, sourcemaps.init({ loadMaps: true })))
+            .pipe(gulpif(DEVELOPMENT, sourcemaps.write('./')))
+            .pipe(gulp.dest(config.JS_BUILD))
+            .pipe(gulpif(DEVELOPMENT, browserSync.stream()))
+            .pipe(gulpif(PRODUCTION, uglify()))
+            .pipe(gulpif(PRODUCTION, rename('app.min.js')))
+            .pipe(gulpif(PRODUCTION, gulp.dest(config.JS_BUILD)));
+    };
+    bundler
+        .on('update', rebundle)
+        .on('log', gutil.log);
+    return rebundle();
+};
+gulp.task('js', ['eslint'], bundle);
