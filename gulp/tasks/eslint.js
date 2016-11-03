@@ -1,5 +1,5 @@
 /* Environment */
-const environment = require('../environment')
+const environment = require('../environment');
 const DEVELOPMENT = environment.isDevelopment;
 const PRODUCTION = !DEVELOPMENT;
 
