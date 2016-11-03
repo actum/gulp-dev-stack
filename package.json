@@ -61,6 +61,7 @@
   "dependencies": {
     "babel-polyfill": "^6.9.1",
     "bootstrap-sass": "^3.3.6",
+    "fg-loadcss": "^1.2.0",
     "merge-stream": "^1.0.0",
     "styleguide": "actum/styleguide",
     "svgxuse": "^1.1.17"

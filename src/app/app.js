@@ -9,9 +9,16 @@ import factory from './factory';
 import MyModule from './components/module';
 import Alertifier from './components/alertifier';
 
-window.app = {
-    start(config) {
+const App = () => {
+    const start = (config) => {
         init(MyModule, document.querySelector('.main h1'));
-        this.alertifiers = factory(Alertifier, document.querySelectorAll('.btn'));
-    }
+        factory(Alertifier, document.querySelectorAll('.btn'));
+    };
+
+    return {
+        start
+    };
 };
+
+const app = App();
+app.start(window.config);

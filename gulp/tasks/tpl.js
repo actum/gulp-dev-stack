@@ -30,7 +30,7 @@ gulp.task('tpl', () => {
         '_dev': isDev,
         '_pages': getPagesList()
     };
-    const searchPaths = [src.tpl.base, dist.icon];
+    const searchPaths = [src.tpl.base, './'];
     const options = {
         noCache: true
     };

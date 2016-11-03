@@ -7,7 +7,7 @@ const argv = require('yargs').argv;
 const runSequence = require('run-sequence');
 
 // TODO run browserSync after all tasks finished
-const devSequence = ['clean', 'icon', ['styles', 'js', 'tpl'], 'styleguide', 'copySgAssets'];
+const devSequence = ['clean', ['icon', 'styles', 'js'], 'tpl', 'styleguide', 'copySgAssets'];
 const buildSequence = devSequence;
 const sequence = DEVELOPMENT ? devSequence : buildSequence;
 
