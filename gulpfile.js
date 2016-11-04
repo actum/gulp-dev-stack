@@ -4,7 +4,6 @@ process.env.NODE_ENV = environment.type;
 
 /* Plugins */
 const gulp = require('gulp');
-const argv = require('yargs').argv;
 const requireDir = require('require-dir');
 
 requireDir('./gulp/tasks');

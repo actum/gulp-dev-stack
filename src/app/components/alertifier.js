@@ -21,16 +21,17 @@ const Alertifier = (container) => {
 
     // Public method (exposed in returned object)
     // Usage: myAlertifier.destroy();
-    const destroy = ()  => {
+    function destroy() {
         container.removeEventListener(EVENT, handleClick);
-    };
+    }
 
     // Private method
-    const handleClick = (e) => {
+    function handleClick(e) {
+        /* eslint no-alert: 0 */
         alert(`${SALUTATION}\n${MESSAGE_BEFORE} ${e.target.href}\n\n${MESSAGE_AFTER}`);
 
         e.preventDefault();
-    };
+    }
 
     container.addEventListener(EVENT, handleClick);
 

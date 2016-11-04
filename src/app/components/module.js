@@ -1,3 +1,5 @@
-export default module = (container) => {
+const module = (container) => {
     container.innerText += '_js';
 };
+
+export default module;
