@@ -11,7 +11,7 @@ export const SALUTATION = 'Hey!';
  *
  * Usage: const myAlertifier = Alertifier(document.querySelector('#myAlertifier'));
  */
-export default (container) => {
+const Alertifier = (container) => {
     // Public constant (exposed in returned object)
     const EVENT = 'click';
 
@@ -39,3 +39,5 @@ export default (container) => {
         destroy
     };
 };
+
+export default Alertifier;
