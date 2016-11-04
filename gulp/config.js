@@ -52,5 +52,10 @@ module.exports = {
             src: 'app.js',
             min: 'app.min.js'
         }
+    },
+    deploy: {
+        host: '',
+        username: '',
+        password: ''
     }
 };
