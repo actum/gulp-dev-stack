@@ -15,7 +15,7 @@ gulp.task('icon', () => {
             return {
                 plugins: [{
                     cleanupIDs: {
-                        prefix: prefix + '-',
+                        prefix: `${prefix}-`,
                         minify: true
                     }
                 }]

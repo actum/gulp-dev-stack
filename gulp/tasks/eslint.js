@@ -5,7 +5,6 @@ const PRODUCTION = !DEVELOPMENT;
 
 /* Plugins */
 const gulp = require('gulp');
-const argv = require('yargs').argv;
 const gulpif = require('gulp-if');
 const eslint = require('gulp-eslint');
 const config = require('../config');

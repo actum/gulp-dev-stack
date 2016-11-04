@@ -2,11 +2,8 @@ const browserSync = require('browser-sync');
 const config = require('../config');
 const gulp = require('gulp');
 const kss = require('kss');
-const path = require('path');
 
 const src = config.paths.src;
-const dist = config.paths.dist;
-const names = config.paths.names;
 const styleguide = config.paths.styleguide;
 
 const styleguideOptions = {

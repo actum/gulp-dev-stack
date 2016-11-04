@@ -2,7 +2,6 @@
 const DEVELOPMENT = require('../environment').isDevelopment;
 
 const gulp = require('gulp');
-const argv = require('yargs').argv;
 const gutil = require('gulp-util');
 const runSequence = require('run-sequence');
 const browserSync = require('browser-sync');

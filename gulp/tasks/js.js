@@ -4,7 +4,6 @@ const PRODUCTION = !DEVELOPMENT;
 
 /* Plugins */
 const gulp = require('gulp');
-const argv = require('yargs').argv;
 const gulpif = require('gulp-if');
 const rename = require('gulp-rename');
 const browserify = require('browserify');
@@ -26,7 +25,7 @@ const src = config.paths.src;
 const dist = config.paths.dist;
 const names = config.names;
 
-function bundle() {
+const bundle = () => {
     const transforms = [envify, babelify];
     const opts = {
         entries: src.app.entry,
@@ -34,7 +33,7 @@ function bundle() {
         transform: DEVELOPMENT ? transforms : [...transforms, uglifyify]
     };
     const bundler = DEVELOPMENT ? watchify(browserify(Object.assign({}, watchify.args, opts))) : browserify(opts);
-    function rebundle() {
+    const rebundle = () => {
         return bundler.bundle()
             .on('error', e => gutil.log(gutil.colors.red(e.name) + e.message.substr(e.message.indexOf(': ') + 1)))
             .pipe(source(names.js.src))
@@ -52,4 +51,5 @@ function bundle() {
         .on('log', gutil.log);
     return rebundle();
 };
+
 gulp.task('js', ['eslint'], bundle);

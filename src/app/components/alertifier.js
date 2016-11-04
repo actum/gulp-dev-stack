@@ -11,7 +11,7 @@ export const SALUTATION = 'Hey!';
  *
  * Usage: const myAlertifier = Alertifier(document.querySelector('#myAlertifier'));
  */
-export default Alertifier = (container) => {
+const Alertifier = (container) => {
     // Public constant (exposed in returned object)
     const EVENT = 'click';
 
@@ -23,19 +23,22 @@ export default Alertifier = (container) => {
 
     // Public method (exposed in returned object)
     // Usage: myAlertifier.destroy();
-    const destroy = ()  => {
+    function destroy() {
         container.removeEventListener(EVENT, handleClick);
-    };
+    }
 
     // Private method
-    const handleClick = (e) => {
+    function handleClick(e) {
+        /* eslint no-alert: 0 */
         alert(`${SALUTATION}\n${MESSAGE_BEFORE} ${e.target.href}\n\n${MESSAGE_AFTER}`);
 
         e.preventDefault();
-    };
+    }
 
     return {
         EVENT,
         destroy
     };
 };
+
+export default Alertifier;
