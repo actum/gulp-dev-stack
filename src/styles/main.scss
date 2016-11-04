@@ -2,6 +2,14 @@
 @import 'bootstrap/bootstrap';
 @import 'variables';
 
+body {
+    font-family: 'Roboto', $font-family-base;
+
+    &.wf-active {
+        font-family: $font-family-base;
+    }
+}
+
 .main {
     padding: 1px 20px;
 }
