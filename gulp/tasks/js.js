@@ -4,7 +4,6 @@ const PRODUCTION = !DEVELOPMENT;
 
 /* Plugins */
 const gulp = require('gulp');
-const argv = require('yargs').argv;
 const gulpif = require('gulp-if');
 const rename = require('gulp-rename');
 const browserify = require('browserify');
@@ -28,7 +27,7 @@ function bundle() {
         transform: DEVELOPMENT ? transforms : [...transforms, uglifyify]
     };
     const bundler = DEVELOPMENT ? watchify(browserify(Object.assign({}, watchify.args, opts))) : browserify(opts);
-    function rebundle() {
+    const rebundle = () => {
         return bundler.bundle()
             .on('error', e => gutil.log(gutil.colors.red(e.name) + e.message.substr(e.message.indexOf(': ') + 1)))
             .pipe(source('app.js'))
@@ -46,4 +45,5 @@ function bundle() {
         .on('log', gutil.log);
     return rebundle();
 };
+
 gulp.task('js', ['eslint'], bundle);

@@ -22,7 +22,7 @@ const FileSystemLoader = nunj.FileSystemLoader;
 
 function getPagesList() {
     return glob.sync(config.TEMPLATE_PAGES)
-        .map(pathname => pathname.replace(/\.[^\.]+$/, '').substring(pathname.lastIndexOf('/') + 1, pathname.length - 1))
+        .map(pathname => pathname.replace(/\.[^.]+$/, '').substring(pathname.lastIndexOf('/') + 1, pathname.length - 1))
         .filter(name => name !== 'index');
 }
 

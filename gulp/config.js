@@ -67,6 +67,7 @@ const
     /* Styleguide */
     STYLEGUIDE_BASE     = './styleguide',
     STYLEGUIDE_SOURCE   = `${CSS_BASE}`,
+    STYLEGUIDE_HOMEPAGE = `./styleguide.md`,
     STYLEGUIDE_DEST     = `${STYLEGUIDE_BASE}/styleguide`,
     STYLEGUIDE_TEMPLATE = `${NPM}/styleguide/dist`,
     STYLEGUIDE_CSS      = `${CSS_BUILD}/main.css`,
@@ -113,6 +114,7 @@ module.exports = {
 
     STYLEGUIDE_BASE,
     STYLEGUIDE_SOURCE,
+    STYLEGUIDE_HOMEPAGE,
     STYLEGUIDE_DEST,
     STYLEGUIDE_TEMPLATE,
     STYLEGUIDE_CSS,

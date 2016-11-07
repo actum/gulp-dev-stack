@@ -5,23 +5,21 @@ const config = require('../config');
 const browserSync = require('browser-sync');
 const gulp = require('gulp');
 const kss = require('kss');
-const path = require('path');
 
 const styleguideOptions = {
-    source: [
-        config.STYLEGUIDE_SOURCE
-    ],
+    source: config.CSS_BASE,
     destination: config.STYLEGUIDE_DEST,
     template: config.STYLEGUIDE_TEMPLATE,
-
+    homepage: config.STYLEGUIDE_HOMEPAGE,
+    custom: ['wrap'],
     // The css and js paths are URLs, like '/misc/jquery.js'.
     // The following paths are relative to the generated style guide.
     css: [
-        path.relative(config.STYLEGUIDE_DEST, config.STYLEGUIDE_CSS)
+        config.STYLEGUIDE_CSS
     ],
-    // TODO: copyCss doesn't work
-    // copyCss: true
-    js: config.STYLEGUIDE_JS
+    js: [
+        config.STYLEGUIDE_JS
+    ]
 };
 
 // kss-node 2.3.1 and later.
