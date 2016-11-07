@@ -67,7 +67,7 @@ const
     /* Styleguide */
     STYLEGUIDE_BASE     = './styleguide',
     STYLEGUIDE_SOURCE   = `${CSS_BASE}`,
-    STYLEGUIDE_HOMEPAGE = `./styleguide.md`,
+    STYLEGUIDE_HOMEPAGE = `../../styleguide.md`,
     STYLEGUIDE_DEST     = `${STYLEGUIDE_BASE}/styleguide`,
     STYLEGUIDE_TEMPLATE = `${NPM}/styleguide/dist`,
     STYLEGUIDE_CSS      = `${CSS_BUILD}/main.css`,
