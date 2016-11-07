@@ -1,7 +1,4 @@
-/* Configuration */
 const config = require('../config');
-
-/* Plugins */
 const browserSync = require('browser-sync');
 const gulp = require('gulp');
 const kss = require('kss');
