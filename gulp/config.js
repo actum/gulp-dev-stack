@@ -70,7 +70,7 @@ const
     STYLEGUIDE_DEST     = `${STYLEGUIDE_BASE}/styleguide`,
     STYLEGUIDE_TEMPLATE = `${NPM}/styleguide/dist`,
     STYLEGUIDE_CSS      = `${CSS_BUILD}/main.css`,
-    STYLEGUIDE_JS       = [];
+    STYLEGUIDE_JS       = `${JS_BUILD}/app.js`;
 
 module.exports = {
     PORT,
