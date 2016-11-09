@@ -1,11 +1,6 @@
-/* Configuration */
 const config = require('../config');
-
-/* Gulp */
 const gulp = require('gulp');
 const fs = require('fs');
-
-/* Plugins */
 const realFavicon = require('gulp-real-favicon');
 const colors = config.FAVICON_COLORS;
 

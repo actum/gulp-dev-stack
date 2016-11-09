@@ -1,8 +1,5 @@
-/* Environment */
 const config = require('./gulp/config');
 process.env.NODE_ENV = config.environment.type;
-
-/* Gulp */
 const gulp = require('gulp');
 const requireDir = require('require-dir');
 

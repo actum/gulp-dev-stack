@@ -1,15 +1,10 @@
-/* Environment */
 const config = require('../config');
 const DEVELOPMENT = config.environment.isDevelopment;
-
-/* Gulp */
 const gulp = require('gulp');
-
-/* Plugins */
 const runSequence = require('run-sequence');
 
 // TODO run browserSync after all tasks finished
-const devSequence = ['clean', 'images', 'svg', ['styles', 'js', 'tpl'], 'styleguide'];
+const devSequence = devSequence = ['clean', ['images', 'svg', 'styles', 'js'], 'tpl', 'styleguide', 'copySgAssets'];
 const buildSequence = devSequence;
 const sequence = DEVELOPMENT ? devSequence : buildSequence;
 

@@ -1,16 +1,9 @@
-'use strict';
-
-/* Configuration */
 const config = require('../config');
 const DEVELOPMENT = config.environment.isDevelopment;
-
-/* Gulp */
 const gulp = require('gulp');
 const gulpif = require('gulp-if');
 const path = require('path');
 const rename = require('gulp-rename');
-
-/* Plugins */
 const browserSync = require('browser-sync');
 const svgmin = require('gulp-svgmin');
 const svgstore = require('gulp-svgstore');
@@ -18,7 +11,7 @@ const svgstore = require('gulp-svgstore');
 /* SVG sprites */
 /* Single SVG images are optimized in "images.js" */
 gulp.task('svg:sprite', () => {
-    let spriteName;
+    var spriteName;
 
     return gulp.src(config.SVG_SPRITE_ALL)
         .pipe(svgmin((file) => {

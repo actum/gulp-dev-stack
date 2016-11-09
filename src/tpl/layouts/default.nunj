@@ -41,18 +41,10 @@
     {% endif %}
 </head>
 <body>
-    {# Header #}
-    {% include '../partials/header.nunj' %}
-    {% block post_header %}{% endblock %}
-
     {# Main content of the page #}
     <main role="main">
         {% block content %}{% endblock %}
     </main>
-
-    {# Pre-footer hook for related content (newsletters, etc.) #}
-    {% block pre_footer %}{% endblock %}
-    {% include '../partials/footer.nunj' %}
 
     {# Scripts #}
     <script>

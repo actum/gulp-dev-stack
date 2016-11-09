@@ -1,17 +1,12 @@
-/* Configuration */
 const config = require('../config');
 const DEVELOPMENT = config.environment.isDevelopment;
 const PRODUCTION = !DEVELOPMENT;
-
-/* Gulp */
 const glob = require('glob');
 const gulp = require('gulp');
 const gulpif = require('gulp-if');
 const gutil = require('gulp-util');
 const plumber = require('gulp-plumber');
 const rename = require('gulp-rename');
-
-/* Plugins */
 const browserSync = require('browser-sync');
 const nunj = require('nunjucks');
 const nunjucks = require('gulp-nunjucks');

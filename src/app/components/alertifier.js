@@ -20,11 +20,11 @@ const Alertifier = (container) => {
     const MESSAGE_AFTER = 'To make buttons work again, run app.alertifiers[<index of the button>].destroy() in the console.';
 
     // Private method
-    const handleClick = (e) => {
+    function handleClick(e) {
         alert(`${SALUTATION}\n${MESSAGE_BEFORE} ${e.target.href}\n\n${MESSAGE_AFTER}`);
 
         e.preventDefault();
-    };
+    }
 
     // Public method (exposed in returned object)
     // Usage: myAlertifier.destroy();

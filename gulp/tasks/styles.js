@@ -1,14 +1,9 @@
-/* Configuration */
 const config = require('../config');
 const DEVELOPMENT = config.environment.isDevelopment;
 const PRODUCTION = !DEVELOPMENT;
-
-/* Gulp */
 const gulp = require('gulp');
 const gulpif = require('gulp-if');
 const rename = require('gulp-rename');
-
-/* Plugins */
 const autoprefixer = require('autoprefixer');
 const browserSync = require('browser-sync');
 const cssGlobbing = require('gulp-css-globbing');

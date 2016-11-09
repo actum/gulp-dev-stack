@@ -1,8 +1,5 @@
-/* Environment */
 const DEVELOPMENT = require('../environment').isDevelopment;
 const PRODUCTION = !DEVELOPMENT;
-
-/* Plugins */
 const gulp = require('gulp');
 const gulpif = require('gulp-if');
 const rename = require('gulp-rename');

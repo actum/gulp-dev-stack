@@ -1,10 +1,5 @@
-/* Configuration */
 const config = require('../config');
-
-/* Gulp */
 const gulp = require('gulp');
-
-/* Plugins */
 const imagemin = require('gulp-imagemin');
 
 /* Optimize images */

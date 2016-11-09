@@ -1,10 +1,7 @@
-/* Environment */
 const config = require('../config');
 const environment = config.environment;
 const DEVELOPMENT = environment.isDevelopment;
 const PRODUCTION = !DEVELOPMENT;
-
-/* Gulp */
 const gulp = require('gulp');
 const gulpif = require('gulp-if');
 const eslint = require('gulp-eslint');
