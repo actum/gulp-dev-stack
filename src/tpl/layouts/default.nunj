@@ -41,11 +41,12 @@
     {% endif %}
 </head>
 <body>
-    <div class="main">
-        {% include '../partials/header.nunj' %}
+    {# Main content of the page #}
+    <main role="main">
         {% block content %}{% endblock %}
-    </div>
+    </main>
 
+    {# Scripts #}
     <script>
         var config = {};
     </script>

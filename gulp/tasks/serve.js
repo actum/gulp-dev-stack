@@ -1,26 +1,20 @@
-/* Environment */
-const DEVELOPMENT = require('../environment').isDevelopment;
-
+const config = require('../config');
+const DEVELOPMENT = config.environment.isDevelopment;
 const gulp = require('gulp');
 const gutil = require('gulp-util');
-const runSequence = require('run-sequence');
 const browserSync = require('browser-sync');
 const copyToClipboard = require('copy-paste').copy;
-const config = require('../config');
-
-// const {
-//     port,
-//     paths: { gulpfile, npm, src, dist, styleguide }
-// } = config;
-const port = config.port;
-const gulpfile = config.paths.gulpfile;
-const npm = config.paths.npm;
-const src = config.paths.src;
-const dist = config.paths.dist;
-const styleguide = config.paths.styleguide;
+const runSequence = require('run-sequence');
+const port = config.PORT;
 
 gulp.task('serve', ['prepare'], () => {
-    const baseDir = DEVELOPMENT ? [src.base, dist.base, npm, styleguide.base] : dist.base;
+    const baseDir = DEVELOPMENT ? [
+        config.DEVELOPMENT_BASE,
+        config.BUILD_BASE,
+        config.NPM,
+        config.STYLEGUIDE_BASE
+
+    ] : config.BUILD_BASE;
 
     browserSync({
         port,
@@ -28,17 +22,19 @@ gulp.task('serve', ['prepare'], () => {
         open: false
     }, () => copyToClipboard(`localhost:${port}`, () => gutil.log(gutil.colors.green('Local server address has been copied to your clipboard'))));
 
-    const sanitize = pathname => pathname.replace(/^\.\//, '');
+    const sanitize = (pathname) => {
+        pathname instanceof Array || (pathname = [pathname]);
+        pathname.map(path => path.replace(/^\.\//, ''));
+        return pathname;
+    };
+
     const watch = (pathname, tasks) => gulp.watch(sanitize(pathname), tasks);
 
     if (DEVELOPMENT) {
-        watch(src.styles.all, () => runSequence(['styles', 'styleguide']));
-        watch(src.tpl.all, ['tpl']);
-        watch(src.icon, ['icon']);
-        watch(src.app.all, ['eslint:app']);
-        watch(gulpfile.entry, ['eslint:gulpfile']);
-        watch(gulpfile.rest, ['eslint:gulpfile']);
-        // TODO: modify watch to take also array of files [gulpfile.entry, gulpfile.rest]
-        // Question is if we need it, because after changes in any gulp task, you have to run gulp again, so the lint will start anyway
+        watch(config.CSS_ALL, () => runSequence(['styles', 'styleguide']));
+        watch(config.JS_ALL, ['eslint:app']);
+        watch(config.IMAGES_ALL, ['images', 'tpl']);
+        watch(config.SVG_SPRITE_ALL, ['svg', 'tpl']);
+        watch(config.TEMPLATE_ALL, ['tpl']);
     }
 });

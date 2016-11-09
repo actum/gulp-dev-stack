@@ -38,7 +38,7 @@ Run `gulp --dev` and develop in `src` folder.
 
 #### Remove built targets
 
-If you want to revert back to a fresh state without built files, run
+If you want to revert back to a fresh state without built files, run
 
 ```sh
 gulp clean

@@ -3,11 +3,14 @@
 {% set title = "Gulpie" %}
 
 {% block content %}
+    <h1>Pages</h1>
     <ul>
         {% for path in _pages %}
             <li><a href="{{ path }}.html">{{ path }}</a></li>
         {% endfor %}
     </ul>
+
+    {% include 'partials/p.nunj' %}
 
     <a href="#" class="btn btn-primary">Click me!</a>
     <a href="#" class="btn btn-primary">No! Click me!</a>
