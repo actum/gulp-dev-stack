@@ -21,16 +21,16 @@ const isDev = argv.dev || false;
 
 function getPagesList() {
     return glob.sync(entry)
-        .map(pathname => pathname.replace(/\.[^\.]+$/, '').substring(pathname.lastIndexOf('/') + 1, pathname.length - 1))
-        .filter(name => 'index' !== name);
+        .map(pathname => pathname.replace(/\.[^.]+$/, '').substring(pathname.lastIndexOf('/') + 1, pathname.length - 1))
+        .filter(name => name !== 'index');
 }
 
 gulp.task('tpl', () => {
     const data = {
-        '_dev': isDev,
-        '_pages': getPagesList()
+        _dev: isDev,
+        _pages: getPagesList()
     };
-    const searchPaths = [src.tpl.base, dist.icon];
+    const searchPaths = [src.tpl.base, './'];
     const options = {
         noCache: true
     };

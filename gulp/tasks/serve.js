@@ -1,5 +1,7 @@
+/* Environment */
+const DEVELOPMENT = require('../environment').isDevelopment;
+
 const gulp = require('gulp');
-const argv = require('yargs').argv;
 const gutil = require('gulp-util');
 const runSequence = require('run-sequence');
 const browserSync = require('browser-sync');
@@ -16,10 +18,9 @@ const npm = config.paths.npm;
 const src = config.paths.src;
 const dist = config.paths.dist;
 const styleguide = config.paths.styleguide;
-const isDev = argv.dev || false;
 
 gulp.task('serve', ['prepare'], () => {
-    const baseDir = isDev ? [src.base, dist.base, npm, styleguide.base] : dist.base;
+    const baseDir = DEVELOPMENT ? [src.base, dist.base, npm, styleguide.base] : dist.base;
 
     browserSync({
         port,
@@ -30,7 +31,7 @@ gulp.task('serve', ['prepare'], () => {
     const sanitize = pathname => pathname.replace(/^\.\//, '');
     const watch = (pathname, tasks) => gulp.watch(sanitize(pathname), tasks);
 
-    if (isDev) {
+    if (DEVELOPMENT) {
         watch(src.styles.all, () => runSequence(['styles', 'styleguide']));
         watch(src.tpl.all, ['tpl']);
         watch(src.icon, ['icon']);

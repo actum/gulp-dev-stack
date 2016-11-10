@@ -1,9 +1,44 @@
+{# first visit without cookie, without main css file in cache
+    - critical css is inlined into page
+    - main css file is loaded async with preload/onload technic
+    - fallback for browsers without preload support with loadCSS js
+    - cookie is created (main.css is in browser cache)
+   other requests
+    - cookie is set, main.css is in cache, so we serve only link to main.css #}
+{% set firstVisit = false %}
 <!DOCTYPE html>
 <html lang="cs">
 <head>
     <meta charset="utf-8">
     <title>{{ title }}</title>
-    <link rel="stylesheet" href="css/main{% if not _dev %}.min{% endif %}.css">
+    {% if firstVisit %}
+        <style>
+            {% if _dev %}
+                {% include '../../../dist/css/critical.css' %}
+            {% else %}
+                {% include '../../../dist/css/critical.min.css' %}
+            {% endif %}
+        </style>
+        <link rel="preload" href="css/main{% if not _dev %}.min{% endif %}.css" as="style" onload="this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="css/main{% if not _dev %}.min{% endif %}.css"></noscript>
+        <script src="https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js" async defer></script>
+        <link rel="prefetch" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
+        <script>
+            // TODO: load minified scripts
+            {% include '../../../node_modules/fg-loadcss/src/loadCSS.js' %}
+            {% include '../../../node_modules/fg-loadcss/src/cssrelpreload.js' %}
+            WebFontConfig = {
+                google: {
+                    families: ['Roboto:400,700:latin']
+                }
+            };
+            {# cookie expired after 24 hours #}
+            document.cookie ='cache=1; expires='+(new Date(new Date().getTime() + 86400000)).toGMTString()+'; path=/'
+        </script>
+    {% else %}
+        <link rel="stylesheet" href="css/main{% if not _dev %}.min{% endif %}.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700:latin">
+    {% endif %}
 </head>
 <body>
     <div class="main">
@@ -11,13 +46,13 @@
         {% block content %}{% endblock %}
     </div>
 
-    {% if _dev %}
-        <script src="js/app.js"></script>
-    {% else %}
-        <script src="js/app.min.js"></script>
-    {% endif %}
     <script>
-        app.start({});
+        var config = {};
     </script>
+    {% if _dev %}
+        <script src="js/app.js" async></script>
+    {% else %}
+        <script src="js/app.min.js" async></script>
+    {% endif %}
 </body>
 </html>

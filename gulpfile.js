@@ -1,9 +1,10 @@
-const gulp = require('gulp');
-const argv = require('yargs').argv;
-const requireDir = require('require-dir');
+/* Environment */
+const environment = require('./gulp/environment');
+process.env.NODE_ENV = environment.type;
 
-const isDev = argv.dev || false;
-process.env.NODE_ENV = isDev ? 'development' : 'production';
+/* Plugins */
+const gulp = require('gulp');
+const requireDir = require('require-dir');
 
 requireDir('./gulp/tasks');
 
