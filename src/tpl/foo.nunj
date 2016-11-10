@@ -1,7 +1,0 @@
-{% extends "layouts/default.nunj" %}
-
-{% set title = "Gulpie" %}
-
-{% block content %}
-    {% include './partials/p.nunj' %}
-{% endblock %}

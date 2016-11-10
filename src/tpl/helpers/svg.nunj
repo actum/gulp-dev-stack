@@ -1,0 +1,5 @@
+{# SVG shorhand #}
+{# Specify which sprite and which svg file to use within in #}
+{% macro svg(spriteName = 'sprite', name, className) %}
+    <svg class="icon"><use{% if className %} class="{{ className }}"{% endif %} xlink:href="/gfx/svg/{{ spriteName }}.svg#{{ name }}" /></svg>
+{% endmacro %}

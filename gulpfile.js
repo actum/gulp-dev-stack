@@ -1,14 +1,11 @@
-/* Environment */
-const environment = require('./gulp/environment');
-process.env.NODE_ENV = environment.type;
-
-/* Plugins */
+const config = require('./gulp/config');
+process.env.NODE_ENV = config.environment.type;
 const gulp = require('gulp');
 const requireDir = require('require-dir');
 
 requireDir('./gulp/tasks');
 
-// API
+/* API */
 gulp.task('default', ['serve']);
 gulp.task('build', ['prepare']);
 gulp.task('css', ['less']);

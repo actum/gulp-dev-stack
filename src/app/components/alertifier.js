@@ -19,20 +19,21 @@ const Alertifier = (container) => {
     const MESSAGE_BEFORE = 'You clicked';
     const MESSAGE_AFTER = 'To make buttons work again, run app.alertifiers[<index of the button>].destroy() in the console.';
 
-    // Public method (exposed in returned object)
-    // Usage: myAlertifier.destroy();
-    function destroy() {
-        container.removeEventListener(EVENT, handleClick);
-    }
-
     // Private method
     function handleClick(e) {
-        /* eslint no-alert: 0 */
+        // eslint-disable-next-line no-alert
         alert(`${SALUTATION}\n${MESSAGE_BEFORE} ${e.target.href}\n\n${MESSAGE_AFTER}`);
 
         e.preventDefault();
     }
 
+    // Public method (exposed in returned object)
+    // Usage: myAlertifier.destroy();
+    const destroy = () => {
+        container.removeEventListener(EVENT, handleClick);
+    };
+
+    container.addEventListener(EVENT, handleClick);
     container.addEventListener(EVENT, handleClick);
 
     return {
