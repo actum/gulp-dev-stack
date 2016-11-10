@@ -21,6 +21,7 @@ const Alertifier = (container) => {
 
     // Private method
     function handleClick(e) {
+        // eslint-disable-next-line no-alert
         alert(`${SALUTATION}\n${MESSAGE_BEFORE} ${e.target.href}\n\n${MESSAGE_AFTER}`);
 
         e.preventDefault();

@@ -70,7 +70,13 @@ const
     STYLEGUIDE_DEST = `${STYLEGUIDE_BASE}/styleguide`,
     STYLEGUIDE_TEMPLATE = `${NPM}/styleguide/dist`,
     STYLEGUIDE_CSS = `${CSS_BUILD}/main.css`,
-    STYLEGUIDE_JS = `${JS_BUILD}/app.js`;
+    STYLEGUIDE_JS = `${JS_BUILD}/app.js`,
+
+    // deploy
+    DEPLOY_HOST = '',
+    DEPLOY_USERNAME = '',
+    DEPLOY_PASSWORD = '',
+    DEPLOY_DEST = '/home/deploy/packages';
 
 module.exports = {
     PORT,
@@ -116,6 +122,11 @@ module.exports = {
     STYLEGUIDE_DEST,
     STYLEGUIDE_TEMPLATE,
     STYLEGUIDE_CSS,
-    STYLEGUIDE_JS
+    STYLEGUIDE_JS,
+
+    DEPLOY_HOST,
+    DEPLOY_USERNAME,
+    DEPLOY_PASSWORD,
+    DEPLOY_DEST
 };
 /* eslint-enable one-var */

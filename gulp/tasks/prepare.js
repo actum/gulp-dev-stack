@@ -9,3 +9,7 @@ const buildSequence = devSequence;
 const sequence = DEVELOPMENT ? devSequence : buildSequence;
 
 gulp.task('prepare', () => runSequence(...sequence));
+
+module.exports = {
+    buildSequence
+};
