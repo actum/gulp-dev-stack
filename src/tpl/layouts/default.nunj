@@ -42,7 +42,7 @@
 </head>
 <body>
     {# Main content of the page #}
-    <main role="main">
+    <main role="main" class="container">
         {% block content %}{% endblock %}
     </main>
 
