@@ -6,7 +6,7 @@ const gulpif = require('gulp-if');
 const rename = require('gulp-rename');
 const autoprefixer = require('autoprefixer');
 const browserSync = require('browser-sync');
-const cssGlobbing = require('gulp-css-globbing');
+const sassGlob = require('gulp-sass-glob');
 const cssnano = require('cssnano');
 const flexbugsFixes = require('postcss-flexbugs-fixes');
 const postcss = require('gulp-postcss');
@@ -24,7 +24,7 @@ gulp.task('styles', ['stylelint'], () => {
     ];
 
     return gulp.src(config.CSS_ENTRY)
-        .pipe(cssGlobbing({ extensions: ['.css', '.scss'] }))
+        .pipe(sassGlob())
         .pipe(sourcemaps.init())
         .pipe(sass().on('error', sass.logError))
         .pipe(postcss(postcssPlugins))
@@ -32,8 +32,6 @@ gulp.task('styles', ['stylelint'], () => {
         .pipe(gulp.dest(config.CSS_BUILD))
         .pipe(gulpif(DEVELOPMENT, browserSync.stream()))
         .pipe(gulpif(PRODUCTION, postcss(postcssDistPlugins)))
-        .pipe(gulpif(PRODUCTION, rename({
-            suffix: '.min'
-        })))
+        .pipe(gulpif(PRODUCTION, rename({ suffix: '.min' })))
         .pipe(gulpif(PRODUCTION, gulp.dest(config.CSS_BUILD)));
 });
