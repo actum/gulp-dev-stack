@@ -31,7 +31,7 @@ gulp.task('serve', ['prepare'], () => {
     const watch = (pathname, tasks) => gulp.watch(sanitize(pathname), tasks);
 
     if (DEVELOPMENT) {
-        watch(config.CSS_ALL, () => runSequence(['styles', 'styleguide']));
+        watch(config.CSS_ALL, () => runSequence('styles', 'styleguide'));
         watch(config.JS_ALL, ['eslint:app']);
         watch(config.IMAGES_ALL, ['images', 'tpl']);
         watch(config.SVG_SPRITE_ALL, ['svg', 'tpl']);
