@@ -2,6 +2,7 @@ const config = require('../config');
 const DEVELOPMENT = config.environment.isDevelopment;
 const gulp = require('gulp');
 const gutil = require('gulp-util');
+const gwatch = require('gulp-watch');
 const browserSync = require('browser-sync');
 const copyToClipboard = require('copy-paste').copy;
 const runSequence = require('run-sequence');
@@ -28,10 +29,10 @@ gulp.task('serve', ['prepare'], () => {
         return pathname;
     };
 
-    const watch = (pathname, tasks) => gulp.watch(sanitize(pathname), tasks);
+    const watch = (pathname, tasks) => gwatch(sanitize(pathname), () => runSequence(...tasks));
 
     if (DEVELOPMENT) {
-        watch(config.CSS_ALL, () => runSequence('styles', 'styleguide'));
+        watch(config.CSS_ALL, ['styles', 'styleguide']);
         watch(config.JS_ALL, ['eslint:app']);
         watch(config.IMAGES_ALL, ['images', 'tpl']);
         watch(config.SVG_SPRITE_ALL, ['svg', 'tpl']);
