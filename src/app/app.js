@@ -5,13 +5,11 @@ import 'babel-polyfill';
  */
 import 'svgxuse';
 import init from './init';
-import factory from './factory';
-import MyModule from './components/module';
-import Alertifier from './components/alertifier';
+// import factory from './factory';
+import CookiesBar from './components/cookies-bar';
 
-const app = () => {
-    init(MyModule, document.querySelector('.main h1'));
-    factory(Alertifier, document.querySelectorAll('.btn'));
+const app = (config) => {
+    init(CookiesBar, document.body, config.cookiesBar);
 };
 
 app(window.config);

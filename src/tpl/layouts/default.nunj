@@ -48,7 +48,12 @@
 
     {# Scripts #}
     <script>
-        var config = {};
+        var config = {
+            cookiesBar: {
+                disclaimer: 'We use cookies to spy on you!',
+                buttonLabel: 'I agree!'
+            }
+        };
     </script>
     {% if _dev %}
         <script src="js/app.js" async></script>

@@ -11,7 +11,4 @@
     </ul>
 
     {% include 'partials/p.nunj' %}
-
-    <a href="#" class="btn btn-primary">Click me!</a>
-    <a href="#" class="btn btn-primary">No! Click me!</a>
 {% endblock %}
