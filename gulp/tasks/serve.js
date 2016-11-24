@@ -20,7 +20,13 @@ gulp.task('serve', ['prepare'], () => {
         port,
         server: { baseDir },
         open: false
-    }, () => copyToClipboard(`localhost:${port}`, () => gutil.log(gutil.colors.green('Local server address has been copied to your clipboard'))));
+    }, (unknown, bs) => {
+        const finalPort = bs.options.get('port');
+        copyToClipboard(
+            `localhost:${finalPort}`,
+            () => gutil.log(gutil.colors.green('Local server address has been copied to your clipboard'))
+        )
+    });
 
     const sanitize = (pathname) => {
         pathname instanceof Array || (pathname = [pathname]);
