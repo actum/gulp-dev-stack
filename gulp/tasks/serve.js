@@ -23,13 +23,7 @@ gulp.task('serve', ['prepare'], () => {
         open: false
     }, () => copyToClipboard(`localhost:${port}`, () => gutil.log(gutil.colors.green('Local server address has been copied to your clipboard'))));
 
-    const sanitize = (pathname) => {
-        pathname instanceof Array || (pathname = [pathname]);
-        pathname.map(path => path.replace(/^\.\//, ''));
-        return pathname;
-    };
-
-    const watch = (pathname, tasks) => gwatch(sanitize(pathname), () => runSequence(...tasks));
+    const watch = (glob, tasks) => gwatch(glob, () => runSequence(...tasks));
 
     if (DEVELOPMENT) {
         watch(config.CSS_ALL, ['styles', 'styleguide']);
