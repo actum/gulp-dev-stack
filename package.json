@@ -55,6 +55,7 @@
     "gulp-tar": "^1.9.0",
     "gulp-uglify": "^1.4.2",
     "gulp-util": "^3.0.6",
+    "gulp-watch": "^4.3.11",
     "kss": "^2.4.0",
     "postcss-flexbugs-fixes": "^2.0.0",
     "postcss-loader": "^1.0.0",
