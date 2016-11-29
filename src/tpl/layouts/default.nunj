@@ -41,6 +41,8 @@
     {% endif %}
 </head>
 <body>
+    {% include "../partials/cookie-law.nunj" %}
+
     {# Main content of the page #}
     <main role="main" class="container">
         {% block content %}{% endblock %}
@@ -48,12 +50,7 @@
 
     {# Scripts #}
     <script>
-        var config = {
-            cookiesBar: {
-                disclaimer: 'We use cookies to spy on you!',
-                buttonLabel: 'I agree!'
-            }
-        };
+        var config = {};
     </script>
     {% if _dev %}
         <script src="js/app.js" async></script>

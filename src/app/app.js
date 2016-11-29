@@ -6,10 +6,10 @@ import 'babel-polyfill';
 import 'svgxuse';
 import init from './init';
 // import factory from './factory';
-import CookiesBar from './components/cookies-bar';
+import cookieLaw from './components/cookie-law';
 
-const app = (config) => {
-    init(CookiesBar, document.body, config.cookiesBar);
+const app = () => {
+    init(cookieLaw, document.getElementById('cookie-law'));
 };
 
 app(window.config);
