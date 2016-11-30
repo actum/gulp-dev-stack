@@ -1,6 +1,7 @@
 @import 'bootstrap/variables';
 @import 'bootstrap/bootstrap';
 @import 'variables';
+@import 'base/utilities';
 
 body {
     font-family: 'Roboto', $font-family-base;
@@ -12,10 +13,6 @@ body {
 
 h1 {
     color: aquamarine;
-}
-
-.hidden {
-    display: none;
 }
 
 @import 'components/*';

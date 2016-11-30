@@ -10,5 +10,5 @@
         {% endfor %}
     </ul>
 
-    {% include 'partials/p.nunj' %}
+    {% include 'components/p.nunj' %}
 {% endblock %}

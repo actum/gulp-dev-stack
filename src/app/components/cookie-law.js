@@ -1,6 +1,6 @@
 export default function cookieLaw(container) {
     const ID = 'cookielaw=1';
-    const HIDDEN_CLASS = 'hidden';
+    const HIDDEN_CLASS = 'u-hidden';
     const isAccepted = () => document.cookie.indexOf(ID) !== -1;
 
     if (isAccepted()) {
