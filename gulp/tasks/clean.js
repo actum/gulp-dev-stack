@@ -1,8 +1,5 @@
+const config = require('../config');
 const gulp = require('gulp');
 const del = require('del');
-const config = require('../config');
 
-// const { dist } = config.paths;
-const dist = config.paths.dist;
-
-gulp.task('clean', () => del(dist.base));
+gulp.task('clean', () => del(config.BUILD_BASE));

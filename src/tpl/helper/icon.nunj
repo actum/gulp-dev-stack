@@ -1,3 +1,0 @@
-{% macro icon(name, modifier) %}
-    <svg class="icon"><use{% if modifier %} class="{{ modifier }}"{% endif %} xlink:href="/gfx/icon/svg.svg#{{ name }}" /></svg>
-{% endmacro %}

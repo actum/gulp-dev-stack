@@ -1,8 +1,8 @@
-{% from 'helper/icon.nunj' import icon %}
+{% from 'helpers/svg.nunj' import svg %}
 
 {% extends "layouts/default.nunj" %}
 
-{% set title = "Icons" %}
+{% set title = "SVG Icons" %}
 
 {% block content %}
     <style>
@@ -10,8 +10,7 @@
         .ad2 { fill: darkblue; }
         .ad3 { fill: maroon; }
     </style>
-    {{ icon('adoption') }}
-    {{ icon('adoption', 'ad2') }}
-    {{ icon('adoption', 'ad3') }}
-    {{ icon('bulb') }}
+    {{ svg('sprite-svg-01') }}
+    {{ svg('sprite-svg-02', 'ad2') }}
+    {{ svg('bulb') }}
 {% endblock %}

@@ -2,12 +2,16 @@
 @import 'bootstrap/bootstrap';
 @import 'variables';
 
-.main {
-    padding: 1px 20px;
+body {
+    font-family: 'Roboto', $font-family-base;
+
+    &.wf-active {
+        font-family: $font-family-base;
+    }
 }
 
 h1 {
-    color: purple;
+    color: aquamarine;
 }
 
 @import 'components/*';
