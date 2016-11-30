@@ -9,7 +9,6 @@ const gulpif = require('gulp-if');
 const eslint = require('gulp-eslint');
 const config = require('../config');
 const cached = require('gulp-cached');
-const debug = require('gulp-debug');
 
 /* Plugins */
 // const { gulpfile, src } = config.paths;
@@ -27,7 +26,6 @@ const lint = (globs) => {
     } : {};
     return gulp.src(globs)
         .pipe(cached('esling'))
-        .pipe(debug())
         .pipe(eslint(opts))
         .pipe(eslint.format())
         .pipe(gulpif(PRODUCTION, eslint.failOnError()));
