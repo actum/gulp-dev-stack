@@ -14,7 +14,7 @@ const lint = (globs) => {
     };
 
     return gulp.src(globs)
-        .pipe(cached('esling'))
+        .pipe(cached('eslint'))
         .pipe(eslint(options))
         .pipe(eslint.format())
         .pipe(gulpif(PRODUCTION, eslint.failOnError()));
