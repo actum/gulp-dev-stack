@@ -35,6 +35,7 @@
     "eslint-loader": "^1.6.0",
     "glob": "^5.0.15",
     "gulp": "^3.9.0",
+    "gulp-cached": "^1.1.1",
     "gulp-eslint": "^3.0.1",
     "gulp-gzip": "^1.4.0",
     "gulp-if": "^1.2.5",

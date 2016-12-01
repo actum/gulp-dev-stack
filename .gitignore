@@ -1,4 +1,6 @@
+# editors
 *.sublime-*
+.idea
 
 # npm
 /node_modules/
