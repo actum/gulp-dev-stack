@@ -17,7 +17,7 @@ const browserSync = require('browser-sync');
 const config = require('../config');
 
 function bundle() {
-    const transforms = [envify, babelify];
+    const transforms = [babelify, envify];
     const opts = {
         entries: config.JS_ENTRY,
         debug: DEVELOPMENT,

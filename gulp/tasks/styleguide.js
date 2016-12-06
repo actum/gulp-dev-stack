@@ -19,8 +19,6 @@ const styleguideOptions = {
     ]
 };
 
-gulp.task('styleguide', () => {
-    kss(styleguideOptions, () => {
-        browserSync.reload();
-    });
+gulp.task('styleguide', (cb) => {
+    kss(styleguideOptions, cb);
 });
