@@ -1,14 +1,13 @@
 module.exports = () => {
-    const usersCount = 10;
-    const createUser = (val, i) => ({
-        id: i,
-        name: `${val}_${i}`
+    const createUser = id => ({
+        id,
+        name: `user_${id}`
     });
-    const data = {
-        users: Array(usersCount)
-            .fill('user')
-            .map(createUser)
-    };
+    const users = [];
+    const usersCount = 10;
+    for (let i = 0; i < usersCount; i++) {
+        users.push(createUser(i));
+    }
 
-    return data;
+    return { users };
 };
