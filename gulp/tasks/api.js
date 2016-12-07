@@ -18,8 +18,10 @@ function start(cb) {
     app.use(middleware);
     app.use(router);
     server = app.listen(config.API_PORT, () => {
-        gutil.log(gutil.colors.green('JSON Server is running'));
-        gutil.log(gutil.colors.gray(`open http://localhost:${config.API_PORT}`));
+        gutil.log(
+            gutil.colors.green(`JSON Server is running…`),
+            gutil.colors.gray(`http://localhost:${config.API_PORT}`)
+        );
     });
     enableDestroy(server);
 }
