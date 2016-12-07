@@ -37,5 +37,6 @@ gulp.task('serve', ['prepare'], () => {
         watch(config.IMAGES_ALL, ['images', 'tpl']);
         watch(config.SVG_SPRITE_ALL, ['svg', 'tpl']);
         watch(config.TEMPLATE_ALL, ['tpl']);
+        watch(config.API, ['api-reload']);
     }
 });

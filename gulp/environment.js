@@ -1,10 +1,12 @@
 const argv = require('yargs').argv;
-const isDevelopment = argv.dev || false;
 const package = require('../package.json');
 const gutil = require('gulp-util');
 
 const DEVELOPMENT = 'DEVELOPMENT';
 const PRODUCTION = 'PRODUCTION';
+
+const isDevelopment = argv.dev || false;
+const isApi = argv.api || false;
 
 // check the minimal supported version of node
 function check() {
@@ -24,5 +26,6 @@ module.exports = {
     type: isDevelopment ? DEVELOPMENT : PRODUCTION,
     isDevelopment,
     isProduction: !isDevelopment,
+    isApi,
     check
 };

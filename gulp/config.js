@@ -76,7 +76,11 @@ const
     DEPLOY_HOST = '',
     DEPLOY_USERNAME = '',
     DEPLOY_PASSWORD = '',
-    DEPLOY_DEST = '/home/deploy/packages';
+    DEPLOY_DEST = '/home/deploy/packages',
+
+    // api
+    API = `${DEVELOPMENT_BASE}/api/api.js`,
+    API_PORT = 5003;
 
 module.exports = {
     PORT,
@@ -127,6 +131,9 @@ module.exports = {
     DEPLOY_HOST,
     DEPLOY_USERNAME,
     DEPLOY_PASSWORD,
-    DEPLOY_DEST
+    DEPLOY_DEST,
+
+    API,
+    API_PORT
 };
 /* eslint-enable one-var */
