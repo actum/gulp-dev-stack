@@ -14,8 +14,8 @@ function start(cb) {
     const api = requireUncached('../../src/api/api');
     const app = jsonServer.create();
     const router = jsonServer.router(api());
-    const middlewares = jsonServer.defaults();
-    app.use(middlewares);
+    const middleware = jsonServer.defaults();
+    app.use(middleware);
     app.use(router);
     server = app.listen(config.API_PORT, () => {
         gutil.log(gutil.colors.green('JSON Server is running'));
