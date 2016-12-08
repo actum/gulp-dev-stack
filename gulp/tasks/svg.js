@@ -12,14 +12,14 @@ const svgstore = require('gulp-svgstore');
 /* SVG sprites */
 /* Returns an Object in a format { folderName: globbingPath } */
 function getSprites() {
-    var sprites = [];
+    const sprites = [];
 
     function getSpriteFolders(SVG_FOLDER) {
         return fs.readdirSync(SVG_FOLDER).filter(file => fs.statSync(path.join(SVG_FOLDER, file)).isDirectory());
     }
     const spriteFolders = getSpriteFolders(config.SVG_BASE);
 
-    spriteFolders.map((spriteName) => {
+    spriteFolders.forEach((spriteName) => {
         var spriteGlob = path.resolve(`${config.SVG_BASE}/${spriteName}/*.svg`);
         spriteGlob = path.relative(process.cwd(), spriteGlob);
         sprites.push({ name: spriteName, glob: spriteGlob });
@@ -57,7 +57,7 @@ gulp.task('svg:sprite', () => {
     }
 
     const sprites = getSprites();
-    return sprites.map(sprite => bundle(sprite));
+    return sprites.forEach(sprite => bundle(sprite));
 });
 
 gulp.task('svg', ['svg:sprite']);
