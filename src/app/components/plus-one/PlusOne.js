@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as actions from './actions';
+import { increment } from './actions';
 
 class PlusOne extends Component {
     constructor(props) {
@@ -11,15 +10,19 @@ class PlusOne extends Component {
     }
 
     handleClick() {
-        const { increment } = this.props;
-        increment();
+        this.props.increment();
     }
 
     render() {
-        const { counter } = this.props;
         return (
             <p>
-                <button type="button" className="btn btn-primary" onClick={this.handleClick}>+ {counter}</button>
+                <button
+                    type="button"
+                    className="btn btn-primary"
+                    onClick={this.handleClick}
+                >
+                    + {this.props.counter}
+                </button>
             </p>
         );
     }
@@ -37,5 +40,5 @@ export default connect(
     state => ({
         counter: state.counter
     }),
-    dispatch => bindActionCreators(actions, dispatch)
+    { increment }
 )(PlusOne);

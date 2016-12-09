@@ -7,7 +7,7 @@ export function render(Component, container, props, store) {
         if (store) {
             ReactDOM.render(
                 <Provider store={store}>
-                    <Component />
+                    <Component {...props} />
                 </Provider>,
                 container
             );
