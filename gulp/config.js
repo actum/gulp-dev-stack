@@ -39,6 +39,7 @@ const
         `!${SVG_SINGLE_ALL}`
     ],
     SVG_BUILD = `${GFX_BUILD}/svg`,
+    SVG_BUILD_SPRITES = `${SVG_BUILD}/sprites`,
 
     /* Favicon */
     FAVICON_COLORS = {
@@ -114,6 +115,7 @@ module.exports = {
     SVG_SINGLE_ALL,
     SVG_SPRITE_ALL,
     SVG_BUILD,
+    SVG_BUILD_SPRITES,
 
     TEMPLATE_BASE,
     TEMPLATE_PAGES,
