@@ -1,4 +1,4 @@
-Front-end development stack used at [Actum](https://www.actum.cz).
+Front-end development stack used at [Actum](https://www.actum.cz) to create beautiful things.
 
 # Summary
 * [Features](#features)
@@ -42,7 +42,6 @@ Front-end development stack used at [Actum](https://www.actum.cz).
 - **Deployment**
     - `todo`
 
-<br>
 ## Getting started
 ### Preparations
 1. This development stack uses [Node](https://nodejs.org), so make sure you have it installed.
@@ -53,28 +52,21 @@ npm install -g gulp
 **NOTE:** If you have already installed Node and Gulp on your machine, you may skip this step.
 
 ### Setup
-1. **Clone the repository:** `git clone https://github.com/actum/gulp-dev-stack ./PROJECT_NAME`
-2. **Install package dependencies with `npm install`**. It will take you through the automated process of installing all the required dependencies from `package.json`. Make sure you are at the same directory that the package file (the root of the project).
+1. Clone the repository: `git clone https://github.com/actum/gulp-dev-stack ./PROJECT_NAME`
+
+2. Install package dependencies with `npm install` under the root of your `PROJECT_NAME` folder.
 
 3. **Configure the project**. Do not forget to change the respective keys in `package.json` according to your project's info, and setup **a unique listening port** in `./gulp/config.js`.
 
-### Extend the stack (Optional)
-After setup, this is the right moment to add some flavour into the bundle. For detailed instructions how to extend this development stack according to your project's needs read about the [Extensions](#extensions).
-
-<br>
 ## Project structure
 Following a certain file and folder structure keeps development, maintenance and debugging processes much easier when switching from project to project based on the same development stack.
 * ### dist/
 
-    Build (production) folder generated and changed automatically by various Gulp tasks. Contains production-ready compiled CSS (`dist/css`), JavaScript (`dist/js`), graphics (`dist/gfx`) and templated HTML. Should not be edited manually.
-
-    * **tasks/**
-    * **js/**
-    * **gfx/**
+    Build (production) folder generated and changed automatically by various Gulp tasks. Contains production-ready compiled CSS (`dist/css`), JavaScript (`dist/js`), graphics (`dist/gfx`) and HTML. Should not be edited manually.
 
 * ### gulp/
     * **tasks/**
-        The list of Gulp tasks. Each task is responsible for handling automation for different file types (i.e. `styles.js` compiles SCSS to CSS, and `serve.js` launches a local server for testing). Do not edit unless you know what you are doing.
+        The list of Gulp tasks. Each task is responsible for handling automation for different file types (i.e. `styles.js` compiles SCSS to CSS, and `serve.js` launches a local server for development). Do not edit unless you know what you are doing.
 
     * **config.js**
         Global Gulp configuration, consisting of declaring *environment* and *folder/file paths*. While we would not recommend to change the project structure references, you may and **should** customize such keys as `PORT` or `TITLE`, which are unique for each project.
@@ -83,16 +75,37 @@ Following a certain file and folder structure keeps development, maintenance and
         Determines current working environment (`DEVELOPMENT` or `PRODUCTION`).
 
 * ### src/
-    Development folder. This is where all the action, all your changes happen.
-    * **app/**
-        JavaScript.
+    Development folder. This is where all the action happens.
+    * **api/**
+    * **app/** JavaScript source files.
+        * **components/** React-driven components.
+        * **modules/** Vanilla JS classes.
+        * **store/** Redux store.
+        * **utilities/** Small helpers for everyday routine.
+        * **app.js** Entry point for JS bundling.
+        * **factory.js** Functions for initializing one instance of module on multiple containers.
+        * **init.js** Functions for initializing one instance of module per one container.
+        * **render.js** Functions for initilizing React components.
 
     * **gfx/**
+        * **svg/**
+            * **sprites/** Folder for SVG sprites, where each nested folder represents a sprite name, and containing files - the icons bundled into that sprite.
+            * **example.svg** Single SVG icons, optimized and outputted individually for direct usage.
+        * **image.png**
     * **styles/**
-    * **NAME.nunj**
-        Template page written in [Nunjucks](https://github.com/sindresorhus/gulp-nunjucks) and compiled to `dist/NAME.html`.
+        * **base/** Base components used by Styleguide.
+        * **bootstrap/** Bootstrap overrides.
+        * **components/** Custom components.
+        * **critical.scss** Critical CSS
+        * **main.scss** Entry point for SCSS compiling.
+        * **variables.scss** Custom variables
+    * **tpl/**
+        * **components/**
+        * **helpers/**
+        * **layouts/**
+        * **PAGE.nunj**
+        Template page written in [Nunjucks](https://github.com/sindresorhus/gulp-nunjucks) and compiled to `dist/PAGE.html`.
 
-<br>
 ## Workflow
 ### Development
 To start your development process, run `gulp --dev` in the terminal. This will prepare the project for the work and launch watch tasks to update the files on-the-fly as you work. A `--dev` flag will notify the automatization tasks to add or omit certain steps (i.e. your JavaScript files are not uglified while in development mode).
@@ -109,7 +122,6 @@ It will remove the `dist/` folder and all built targets in `src/`.
 ### Production build
 To prepare production-ready files, run `gulp` and grab built assets from `dist` folder.
 
-<br>
 ## Extensions
 We work hard to gather the essential tools needed for modern web development. Of course, each projects has its own requirements and features. To make it easier and faster to adjust this development stack to various needs we use extensions.
 
