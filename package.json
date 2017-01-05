@@ -62,7 +62,6 @@
     "postcss-flexbugs-fixes": "^2.0.0",
     "postcss-loader": "^1.0.0",
     "pre-push": "^0.1.1",
-    "react": "^15.3.2",
     "require-dir": "^0.3.0",
     "run-sequence": "^1.1.4",
     "stylelint": "^7.2.0",
