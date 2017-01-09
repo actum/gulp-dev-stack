@@ -41,11 +41,16 @@
     {% endif %}
 </head>
 <body>
-    <div class="main">
-        {% include '../partials/header.nunj' %}
-        {% block content %}{% endblock %}
-    </div>
+    {% include "../components/cookie-law.nunj" %}
 
+    {# Main content of the page #}
+    <main>
+        <div class="container">
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+
+    {# Scripts #}
     <script>
         var config = {};
     </script>

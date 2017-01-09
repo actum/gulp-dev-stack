@@ -1,8 +1,5 @@
-/* Environment */
 const DEVELOPMENT = require('../environment').isDevelopment;
 const PRODUCTION = !DEVELOPMENT;
-
-/* Plugins */
 const gulp = require('gulp');
 const gulpif = require('gulp-if');
 const rename = require('gulp-rename');
@@ -19,16 +16,10 @@ const gutil = require('gulp-util');
 const browserSync = require('browser-sync');
 const config = require('../config');
 
-/* Paths */
-// const { src, dist } = config.paths;
-const src = config.paths.src;
-const dist = config.paths.dist;
-const names = config.names;
-
-const bundle = () => {
-    const transforms = [envify, babelify];
+function bundle() {
+    const transforms = [babelify, envify];
     const opts = {
-        entries: src.app.entry,
+        entries: config.JS_ENTRY,
         debug: DEVELOPMENT,
         transform: DEVELOPMENT ? transforms : [...transforms, uglifyify]
     };
@@ -36,15 +27,15 @@ const bundle = () => {
     const rebundle = () => {
         return bundler.bundle()
             .on('error', e => gutil.log(gutil.colors.red(e.name) + e.message.substr(e.message.indexOf(': ') + 1)))
-            .pipe(source(names.js.src))
+            .pipe(source('app.js'))
             .pipe(buffer())
             .pipe(gulpif(DEVELOPMENT, sourcemaps.init({ loadMaps: true })))
             .pipe(gulpif(DEVELOPMENT, sourcemaps.write('./')))
-            .pipe(gulp.dest(dist.js))
+            .pipe(gulp.dest(config.JS_BUILD))
             .pipe(gulpif(DEVELOPMENT, browserSync.stream()))
             .pipe(gulpif(PRODUCTION, uglify()))
-            .pipe(gulpif(PRODUCTION, rename(names.js.min)))
-            .pipe(gulpif(PRODUCTION, gulp.dest(dist.js)));
+            .pipe(gulpif(PRODUCTION, rename('app.min.js')))
+            .pipe(gulpif(PRODUCTION, gulp.dest(config.JS_BUILD)));
     };
     bundler
         .on('update', rebundle)

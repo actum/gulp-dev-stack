@@ -1,6 +1,7 @@
 @import 'bootstrap/variables';
 @import 'bootstrap/bootstrap';
 @import 'variables';
+@import 'base/utilities';
 
 body {
     font-family: 'Roboto', $font-family-base;
@@ -8,14 +9,6 @@ body {
     &.wf-active {
         font-family: $font-family-base;
     }
-}
-
-.main {
-    padding: 1px 20px;
-}
-
-h1 {
-    color: aquamarine;
 }
 
 @import 'components/*';

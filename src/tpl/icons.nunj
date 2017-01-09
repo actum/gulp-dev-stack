@@ -1,0 +1,22 @@
+{% from "helpers/svg.nunj" import svg %}
+
+{% extends "layouts/default.nunj" %}
+
+{% set title = "SVG Icons" %}
+
+{% block content %}
+    <style>
+        .icon-purple { fill: rebeccapurple; }
+        .icon-blue { fill: darkblue; }
+        .icon-maroon { fill: maroon; }
+    </style>
+
+    <h1>SVG icons</h1>
+    {# Icon from detault sprite (svg/sprites/icons) #}
+    {{ svg("stadium", "icon-blue") }}
+    {{ svg("marker", "icon-purple") }}
+
+    {# Icon from custom sprite #}
+    {{ svg(sprite = "demo", "baby", "icon-maroon") }}
+
+{% endblock %}

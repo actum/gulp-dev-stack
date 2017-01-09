@@ -13,7 +13,7 @@ Front-end development stack used at [Actum](https://www.actum.cz) to create beau
 ## Features
 
   | Pre-processing | Quality control | Post-processing
------------- | ------------- | ------------- | -------------
+------------možná | ------------- | ------------- | -------------
 **CSS** | [SASS](https://github.com/dlmanning/gulp-sass) | Stylelint | **[PostCSS](https://github.com/postcss/postcss)** ([autoprefixer](https://github.com/postcss/autoprefixer),  [cssnano](https://github.com/ben-eb/cssnano)) <br>[Sourcemaps](https://github.com/floridoo/gulp-sourcemaps)
 **JavaScript** | Babel | [ESLint](http://eslint.org) | [Browserify](http://browserify.org) <br>[Watchify](https://github.com/substack/watchify) <br>[Uglify](https://github.com/terinjokes/gulp-uglify)
 **SVG** | | | svgmin <br>[SVGStore](https://github.com/w0rm/gulp-svgstore)
@@ -86,7 +86,6 @@ Following a certain file and folder structure keeps development, maintenance and
         * **factory.js** Functions for initializing one instance of module on multiple containers.
         * **init.js** Functions for initializing one instance of module per one container.
         * **render.js** Functions for initilizing React components.
-
     * **gfx/**
         * **svg/**
             * **sprites/** Folder for SVG sprites, where each nested folder represents a sprite name, and containing files - the icons bundled into that sprite.
@@ -134,7 +133,6 @@ This will install `react` and `react-dom` packages, add them to the project's de
 * `ext-react` React, React DOM
 * More coming soon
 
-<br>
 ## Troubleshooting
 Common errors  |
 ------------ |
