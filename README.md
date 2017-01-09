@@ -4,16 +4,14 @@ Front-end development stack used at [Actum](https://www.actum.cz) to create beau
 * [Features](#features)
 * [Getting started](#getting-started)
 * [Project structure](#project-structure)
-* [Extensions](#extensions)
 * [Naming conventions](#naming-conventions)
 * [Workflow](#workflow)
 * [Troubleshooting](#troubleshooting)
 
-<br>
 ## Features
 
   | Pre-processing | Quality control | Post-processing
-------------možná | ------------- | ------------- | -------------
+------------ | ------------- | ------------- | -------------
 **CSS** | [SASS](https://github.com/dlmanning/gulp-sass) | Stylelint | **[PostCSS](https://github.com/postcss/postcss)** ([autoprefixer](https://github.com/postcss/autoprefixer),  [cssnano](https://github.com/ben-eb/cssnano)) <br>[Sourcemaps](https://github.com/floridoo/gulp-sourcemaps)
 **JavaScript** | Babel | [ESLint](http://eslint.org) | [Browserify](http://browserify.org) <br>[Watchify](https://github.com/substack/watchify) <br>[Uglify](https://github.com/terinjokes/gulp-uglify)
 **SVG** | | | svgmin <br>[SVGStore](https://github.com/w0rm/gulp-svgstore)
@@ -120,18 +118,6 @@ It will remove the `dist/` folder and all built targets in `src/`.
 
 ### Production build
 To prepare production-ready files, run `gulp` and grab built assets from `dist` folder.
-
-## Extensions
-We work hard to gather the essential tools needed for modern web development. Of course, each projects has its own requirements and features. To make it easier and faster to adjust this development stack to various needs we use extensions.
-
-Extension — is a shorthand for adding specific technologies into the stack. Each extension has its own name with `ext-` prefix following ahead. Extensions may be installed after Setup step of [Getting started]:
-```bash
-npm install && npm run ext-react
-```
-This will install `react` and `react-dom` packages, add them to the project's dependencies and insert an example React component into JavaScript development folder. Everything up and ready to dive into work without further distractions.
-### Supported extensions:
-* `ext-react` React, React DOM
-* More coming soon
 
 ## Troubleshooting
 Common errors  |
