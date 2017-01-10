@@ -12,23 +12,11 @@ Front-end development stack used at [Actum](https://www.actum.cz) to create beau
 
   | Pre-processing | Quality control | Post-processing
 ------------ | ------------- | ------------- | -------------
-**CSS** | [SASS](https://github.com/dlmanning/gulp-sass) | Stylelint | **[PostCSS](https://github.com/postcss/postcss)** ([autoprefixer](https://github.com/postcss/autoprefixer),  [cssnano](https://github.com/ben-eb/cssnano)) <br>[Sourcemaps](https://github.com/floridoo/gulp-sourcemaps)
-**JavaScript** | Babel | [ESLint](http://eslint.org) | [Browserify](http://browserify.org) <br>[Watchify](https://github.com/substack/watchify) <br>[Uglify](https://github.com/terinjokes/gulp-uglify)
-**SVG** | | | svgmin <br>[SVGStore](https://github.com/w0rm/gulp-svgstore)
+**CSS** | [SASS](https://github.com/dlmanning/gulp-sass) | [Stylelint](http://stylelint.io/) | **[PostCSS](https://github.com/postcss/postcss)** ([autoprefixer](https://github.com/postcss/autoprefixer),  [cssnano](https://github.com/ben-eb/cssnano)) <br>[Sourcemaps](https://github.com/floridoo/gulp-sourcemaps)
+**JavaScript** | [Babel](http://babeljs.io/) | [ESLint](http://eslint.org) | [Browserify](http://browserify.org) <br>[Watchify](https://github.com/substack/watchify) <br>[Uglify](https://github.com/terinjokes/gulp-uglify)
+**SVG** | | | [svgmin](https://github.com/ben-eb/gulp-svgmin) <br>[SVGStore](https://github.com/w0rm/gulp-svgstore)
 **HTML** | [Nunjucks](https://github.com/sindresorhus/gulp-nunjucks) | | [Prettify](https://github.com/jonschlinkert/gulp-prettify)
 
-- **CSS:**
-    - [SASS](https://github.com/dlmanning/gulp-sass)
-    - [Postcss](https://github.com/postcss/postcss) ([autoprefixer](https://github.com/postcss/autoprefixer), [cssnano](https://github.com/ben-eb/cssnano))
-    - [Sourcemaps](https://github.com/floridoo/gulp-sourcemaps)
-- **JS:**
-    - [Eslint](http://eslint.org)
-    - [Browserify](http://browserify.org) w/ [Watchify](https://github.com/substack/watchify) for faster rebuilds
-    - [Babel](http://babeljs.io)
-    - [Uglify](https://github.com/terinjokes/gulp-uglify)
-- **HTML:**
-    - [Nunjucks](https://github.com/sindresorhus/gulp-nunjucks) for static templating
-    - [Prettify](https://github.com/jonschlinkert/gulp-prettify)
 - **Icons:**
     - [SVGStore](https://github.com/w0rm/gulp-svgstore) combines SVG files into one with `<symbol>` elements
 - **Development mode:**
@@ -47,7 +35,6 @@ Front-end development stack used at [Actum](https://www.actum.cz) to create beau
 ```bash
 npm install -g gulp
 ```
-**NOTE:** If you have already installed Node and Gulp on your machine, you may skip this step.
 
 ### Setup
 1. Clone the repository: `git clone https://github.com/actum/gulp-dev-stack ./PROJECT_NAME`
@@ -125,4 +112,4 @@ Common errors  |
 **Error:**  "*Local gulp not found in ...*" when running `gulp`. |
 **Solution:** Make sure you run `npm install` after cloning the repository. |
 
-When you have encountered a bug, or have a useful suggestion how to improve this development stack, do not hesitate to [Create a new issue]().
+When you have encountered a bug, or have a useful suggestion how to improve this development stack, do not hesitate to [Create a new issue](/actum/gulp-dev-stack/issues).
