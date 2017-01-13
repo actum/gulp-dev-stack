@@ -27,14 +27,14 @@ function bundle() {
     const rebundle = () => {
         return bundler.bundle()
             .on('error', e => gutil.log(gutil.colors.red(e.name) + e.message.substr(e.message.indexOf(': ') + 1)))
-            .pipe(source('app.js'))
+            .pipe(source(config.JS_MAIN_FILENAME))
             .pipe(buffer())
             .pipe(gulpif(DEVELOPMENT, sourcemaps.init({ loadMaps: true })))
             .pipe(gulpif(DEVELOPMENT, sourcemaps.write('./')))
             .pipe(gulp.dest(config.JS_BUILD))
             .pipe(gulpif(DEVELOPMENT, browserSync.stream()))
             .pipe(gulpif(PRODUCTION, uglify()))
-            .pipe(gulpif(PRODUCTION, rename('app.min.js')))
+            .pipe(gulpif(PRODUCTION, rename({ suffix: '.min' })))
             .pipe(gulpif(PRODUCTION, gulp.dest(config.JS_BUILD)));
     };
     bundler
