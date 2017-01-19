@@ -1,0 +1,15 @@
+machine:
+  environment:
+    NODE_ENV: production
+  node:
+    version: 6.9.1
+
+dependencies:
+  cache_directories:
+    - node_modules
+  pre:
+    - npm install -g gulp
+
+test:
+  override:
+    - gulp build
