@@ -2,8 +2,8 @@ const argv = require('yargs').argv;
 const package = require('../package.json');
 const gutil = require('gulp-util');
 
-const DEVELOPMENT = 'DEVELOPMENT';
-const PRODUCTION = 'PRODUCTION';
+const DEVELOPMENT = 'development';
+const PRODUCTION = 'production';
 
 const isDevelopment = argv.dev || false;
 const isApi = argv.api || false;
