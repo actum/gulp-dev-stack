@@ -26,7 +26,7 @@ gulp.task('styles', ['stylelint'], () => {
     return gulp.src(config.CSS_ENTRY)
         .pipe(sassGlob())
         .pipe(sourcemaps.init())
-        .pipe(sass().on('error', sass.logError))
+        .pipe(sass()).on('error', sass.logError)
         .pipe(postcss(postcssPlugins))
         .pipe(gulpif(DEVELOPMENT, sourcemaps.write()))
         .pipe(gulp.dest(config.CSS_BUILD))
