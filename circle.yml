@@ -5,10 +5,12 @@ machine:
     version: 6.9.4
 
 dependencies:
+  override:
+    - yarn
   cache_directories:
-    - node_modules
+    - ~/.cache/yarn
   pre:
-    - npm install -g gulp
+    - yarn global add gulp
 
 test:
   override:
