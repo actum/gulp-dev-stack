@@ -95,8 +95,8 @@ Following a certain file and folder structure keeps development, maintenance and
 ### Development
 To start your development process, run `gulp --dev` in the terminal. This will prepare the project for the work and launch watch tasks to update the files on-the-fly as you work. A `--dev` flag will notify the automatization tasks to add or omit certain steps (i.e. your JavaScript files are not minified while in development mode).
 
-#### Api sever
-If you want to start also an api server, run `gulp --dev --api`. This server will run on different port which is defined in `gulp/config.js` as `API_PORT`.
+#### API mock sever
+If you want to start also an API server, run `gulp --dev --api`. This server will run on different port which is defined in `gulp/config.js` as `API_PORT`.
 
 ### Remove built targets
 If you want to revert back to a fresh state without built files, run
