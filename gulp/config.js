@@ -70,9 +70,7 @@ const
     STYLEGUIDE_BASE = './styleguide',
     STYLEGUIDE_HOMEPAGE = `../../styleguide.md`,
     STYLEGUIDE_DEST = `${STYLEGUIDE_BASE}/styleguide`,
-    STYLEGUIDE_TEMPLATE = `${NPM}/styleguide/dist`,
-    STYLEGUIDE_CSS = `${CSS_BUILD}/main.css`,
-    STYLEGUIDE_JS = `${JS_BUILD}/${JS_MAIN_FILENAME}`,
+    STYLEGUIDE_TEMPLATE = `${NPM}/styleguide/dist`
 
     // deploy
     DEPLOY_HOST = '',
@@ -129,8 +127,6 @@ module.exports = {
     STYLEGUIDE_HOMEPAGE,
     STYLEGUIDE_DEST,
     STYLEGUIDE_TEMPLATE,
-    STYLEGUIDE_CSS,
-    STYLEGUIDE_JS,
 
     DEPLOY_HOST,
     DEPLOY_USERNAME,
