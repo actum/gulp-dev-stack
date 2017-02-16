@@ -6,6 +6,7 @@
     <h1>Pages</h1>
     <div class="plus-one"></div>
     <ul>
+        <li><a href="/styleguide">Styleguide</a></li>
         {% for path in _pages %}
             <li><a href="{{ path }}.html">{{ path }}</a></li>
         {% endfor %}
