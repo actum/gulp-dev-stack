@@ -12,10 +12,10 @@ const styleguideOptions = {
     // The css and js paths are URLs, like '/misc/jquery.js'.
     // The following paths are relative to the generated style guide.
     css: [
-        'css/main.min.css'
+        'css/main.css'
     ],
     js: [
-        'css/app.min.js'
+        'css/app.js'
     ]
 };
 
