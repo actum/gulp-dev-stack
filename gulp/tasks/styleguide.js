@@ -12,7 +12,8 @@ const styleguideOptions = {
     // The css and js paths are URLs, like '/misc/jquery.js'.
     // The following paths are relative to the generated style guide.
     css: [
-        'css/main.min.css'
+        'css/main.css',
+        'https://fonts.googleapis.com/css?family=Roboto:400,700:latin'
     ],
     js: [
         'css/app.min.js'
