@@ -16,7 +16,7 @@ const styleguideOptions = {
         'https://fonts.googleapis.com/css?family=Roboto:400,700:latin'
     ],
     js: [
-        'css/app.js'
+        'js/app.js'
     ]
 };
 
