@@ -19,6 +19,7 @@ const
     CSS_ENTRY = `${CSS_BASE}/main.scss`,
     CSS_ALL = `${CSS_BASE}/**/*.scss`,
     CSS_BUILD = `${BUILD_BASE}/css`,
+    CSS_TPL_PATH = '/css',
 
     /* JavaScript */
     JS_BASE = `${DEVELOPMENT_BASE}/app`,
@@ -27,10 +28,12 @@ const
     JS_ALL = `${JS_BASE}/**/*.js`,
     JS_VENDOR_ALL = `${JS_BASE}/vendor/**/*.js`,
     JS_BUILD = `${BUILD_BASE}/js`,
+    JS_TPL_PATH = '/js',
 
     /* GFX */
     GFX_BASE = `${DEVELOPMENT_BASE}/gfx`,
     GFX_BUILD = `${BUILD_BASE}/gfx`,
+    GFX_TPL_PATH = '/gfx',
 
     /* SVG */
     SVG_BASE = `${GFX_BASE}/svg`,
@@ -41,6 +44,8 @@ const
     ],
     SVG_BUILD = `${GFX_BUILD}/svg`,
     SVG_BUILD_SPRITES = `${SVG_BUILD}/sprites`,
+    SVG_TPL_PATH = `${GFX_TPL_PATH}/svg`,
+    SVG_SPRITES_TPL_PATH = `${SVG_TPL_PATH}/sprites`,
 
     /* Favicon */
     FAVICON_COLORS = {
@@ -96,6 +101,7 @@ module.exports = {
     CSS_ENTRY,
     CSS_ALL,
     CSS_BUILD,
+    CSS_TPL_PATH,
 
     JS_BASE,
     JS_MAIN_FILENAME,
@@ -103,9 +109,11 @@ module.exports = {
     JS_ALL,
     JS_VENDOR_ALL,
     JS_BUILD,
+    JS_TPL_PATH,
 
     GFX_BASE,
     GFX_BUILD,
+    GFX_TPL_PATH,
     IMAGES_ALL,
     FAVICON_COLORS,
     FAVICON_BASE,
@@ -116,6 +124,8 @@ module.exports = {
     SVG_SPRITE_ALL,
     SVG_BUILD,
     SVG_BUILD_SPRITES,
+    SVG_TPL_PATH,
+    SVG_SPRITES_TPL_PATH,
 
     TEMPLATE_BASE,
     TEMPLATE_PAGES,

@@ -4,6 +4,6 @@
 {# Example: {{ svg(sprite="my-sprite", "icon-2") }} uses "svg/sprites/my-sprite/icon-2.svg" #}
 {% macro svg(name, className, sprite = "icons") %}
     <svg class="icon">
-        <use{% if className %} class="{{ className }}"{% endif %} xlink:href="/gfx/svg/sprites/{{ sprite }}.svg#{{ name }}" />
+        <use{% if className %} class="{{ className }}"{% endif %} xlink:href="{{ _svgSpritesPath }}/{{ sprite }}.svg#{{ name }}" />
     </svg>
 {% endmacro %}

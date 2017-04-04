@@ -30,6 +30,14 @@ gulp.task('tpl', () => {
     const options = {
         noCache: true
     };
+    const env = new Environment(
+        new FileSystemLoader(searchPaths, options)
+    );
+    env.addGlobal('_cssPath', config.CSS_TPL_PATH);
+    env.addGlobal('_jsPath', config.JS_TPL_PATH);
+    env.addGlobal('_gfxPath', config.GFX_TPL_PATH);
+    env.addGlobal('_svgPath', config.SVG_TPL_PATH);
+    env.addGlobal('_svgSpritesPath', config.SVG_SPRITES_TPL_PATH);
 
     return gulp.src(config.TEMPLATE_PAGES)
         // Temporary fix for gulp's error handling within streams, see https://github.com/actum/gulp-dev-stack/issues/7#issuecomment-152490084
@@ -37,11 +45,7 @@ gulp.task('tpl', () => {
             errorHandler: e => gutil.log(gutil.colors.red(`${e.name} in ${e.plugin}: ${e.message}`))
         }))
         // https://mozilla.github.io/nunjucks/api.html#filesystemloader
-        .pipe(nunjucks.compile(data, {
-            env: new Environment(
-                new FileSystemLoader(searchPaths, options)
-            )
-        }))
+        .pipe(nunjucks.compile(data, { env }))
         .pipe(rename(path => path.extname = '.html'))
         .pipe(gulpif(PRODUCTION, prettify()))
         .pipe(gulp.dest(config.BUILD_BASE))
