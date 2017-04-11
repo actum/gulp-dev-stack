@@ -41,7 +41,7 @@ npm install -g gulp
 
 2. Install package dependencies with `npm install` under the root of your `PROJECT_NAME` folder.
 
-3. **Configure the project**. Do not forget to change the respective keys in `package.json` according to your project's info, and setup **a unique listening port** in `./gulp/config.js`.
+3. **Configure the project**. Do not forget to change the respective keys in `package.json` according to your project’s info, and setup **a unique listening port** in `./gulp/config.js`.
 
 ## Project structure
 Following a certain file and folder structure keeps development, maintenance and debugging processes much easier when switching from project to project based on the same development stack.
@@ -109,6 +109,15 @@ It will remove the `dist/` folder and all built targets in `src/`.
 
 ### Production build
 To prepare production-ready files, run `gulp` and grab built assets from `dist` folder.
+
+## Updates from devstack to your project
+- create branch in your project’s repo (eg. `devstack-update`) and push it
+- add devstack as remote to your project (`git remote add devstack git@github.com:actum/gulp-dev-stack.git`)
+- fetch remote (`git fetch devstack`)
+- merge branch from devstack remote to `devstack-update` (use `--allow-unrelated-histories` if necessary)
+- merge your project’s `master` to `devstack-update`
+- solve eventual conflicts
+- create PR from `devstack-update` to your `master`
 
 ## Troubleshooting
 Common errors  |
