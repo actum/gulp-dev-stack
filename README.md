@@ -111,12 +111,13 @@ It will remove the `dist/` folder and all built targets in `src/`.
 To prepare production-ready files, run `gulp` and grab built assets from `dist` folder.
 
 ## Updates from devstack to your project
-- create branch in your project’s repo (eg. `devstack-update`) and push it
-- add devstack as remote to your project (`git remote add devstack git@github.com:actum/gulp-dev-stack.git`)
+- create branch in your project’s repo (eg. `devstack-update`)
+- add devstack as a remote to your project (`git remote add devstack git@github.com:actum/gulp-dev-stack.git`)
 - fetch remote (`git fetch devstack`)
 - merge branch from devstack remote to `devstack-update` (use `--allow-unrelated-histories` if necessary)
 - merge your project’s `master` to `devstack-update`
 - solve eventual conflicts
+- push the `devstack-update` branch
 - create PR from `devstack-update` to your `master`
 
 ## Troubleshooting
