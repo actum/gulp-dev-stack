@@ -4,6 +4,6 @@
         "indentation": 4,
         "selector-pseudo-element-colon-notation": "single",
         "declaration-empty-line-before": "never",
-        "number-leading-zero": null
+        "number-leading-zero": never
     }
 }
