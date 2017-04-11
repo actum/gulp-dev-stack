@@ -10,12 +10,16 @@ Front-end development stack used at [Actum](https://www.actum.cz) to create beau
 
 ## Features
 
-  | Pre-processing | Quality control | Post-processing
------------- | ------------- | ------------- | -------------
+ | Preprocessing | Linting | Postprocessing
+-|-------------- | ------- | --------------
 **CSS** | [SASS](https://github.com/dlmanning/gulp-sass) | [Stylelint](http://stylelint.io/) | **[PostCSS](https://github.com/postcss/postcss)** ([autoprefixer](https://github.com/postcss/autoprefixer),  [cssnano](https://github.com/ben-eb/cssnano)) <br>[Sourcemaps](https://github.com/floridoo/gulp-sourcemaps)
-**JavaScript** | [Babel](http://babeljs.io/) | [ESLint](http://eslint.org) | [Browserify](http://browserify.org) <br>[Watchify](https://github.com/substack/watchify) <br>[Uglify](https://github.com/terinjokes/gulp-uglify)
-**SVG** | | | [svgmin](https://github.com/ben-eb/gulp-svgmin) <br>[SVGStore](https://github.com/w0rm/gulp-svgstore)
+**JavaScript** | [Babel](http://babeljs.io/) | [ESLint](http://eslint.org) | [Browserify](http://browserify.org) <br>[Watchify](https://github.com/substack/watchify) <br>[Uglify](https://github.com/terinjokes/gulp-uglify) <br>[Sourcemaps](https://github.com/floridoo/gulp-sourcemaps)
+**SVG** | | | [SVGStore](https://github.com/w0rm/gulp-svgstore) <br>[svgmin](https://github.com/ben-eb/gulp-svgmin)
+**Images** | | | [imagemin](https://github.com/sindresorhus/gulp-imagemin)
+**Favicons** | | | [gulp-real-favicon](https://github.com/RealFaviconGenerator/gulp-real-favicon)
 **HTML** | [Nunjucks](https://github.com/sindresorhus/gulp-nunjucks) | | [Prettify](https://github.com/jonschlinkert/gulp-prettify)
+**Dev server** | | | [browser-sync](https://browsersync.io)
+**API mocking** | | | [json-server](https://github.com/typicode/json-server)
 
 - **Icons:**
     - [SVGStore](https://github.com/w0rm/gulp-svgstore) combines SVG files into one with `<symbol>` elements
