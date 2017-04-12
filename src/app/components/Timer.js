@@ -8,18 +8,18 @@ export default class Timer extends Component {
         };
     }
 
-    tick() {
-        this.setState({
-            secondsElapsed: this.state.secondsElapsed + 1
-        });
-    }
-
     componentDidMount() {
         this.interval = setInterval(() => this.tick(), 1000);
     }
 
     componentWillUnmount() {
         clearInterval(this.interval);
+    }
+
+    tick() {
+        this.setState({
+            secondsElapsed: this.state.secondsElapsed + 1
+        });
     }
 
     render() {
