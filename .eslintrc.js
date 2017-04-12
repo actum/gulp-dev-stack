@@ -3,11 +3,12 @@ module.exports = {
     extends: ['airbnb', 'plugin:flowtype/recommended'],
     plugins: ['flowtype', 'fp'],
     env: {
-        browser: true,
+        browser: true
     },
     rules: {
         'arrow-body-style': 0,
         'arrow-parens': 0, // Does not work with Flow generic types.
+        'comma-dangle': [1, 'never'],
         'fp/no-mutating-assign': 2,
         'import/extensions': 2, // Ensure consistent use of file extension.
         'import/first': 0, // Este sorts by atom/sort-lines natural order.
@@ -39,6 +40,6 @@ module.exports = {
         'react/prop-types': 0, // Can't detect flowtype correctly.
         // 'sort-keys': 2,
         'space-before-function-paren': 0,
-        strict: 0,
+        strict: 0
     },
 };
