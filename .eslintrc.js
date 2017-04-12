@@ -36,6 +36,7 @@ module.exports = {
         'react/forbid-prop-types': 0, // Este is going to use Flow types.
         'react/jsx-filename-extension': 0, // No, JSX belongs to .js files
         'react/jsx-indent': 0, // Damn. We need Yarn asap.
+        'react/jsx-indent-props': [1, 4],
         'react/no-unused-prop-types': 0, // Este is going to use Flow types.
         'react/prop-types': 0, // Can't detect flowtype correctly.
         // 'sort-keys': 2,
