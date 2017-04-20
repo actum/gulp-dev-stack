@@ -5,15 +5,17 @@ import 'babel-polyfill';
  */
 import 'svgxuse';
 import init from './init';
-// import factory from './factory';
+import factory from './factory';
 import { render, renderFactory } from './render';
 import configureStore from './store/configureStore';
 import cookieLaw from './components/cookie-law';
+import collapse from './components/collapse';
 import Timer from './components/Timer';
 import PlusOne from './components/plus-one/PlusOne';
 
 const app = (config) => {
     init(cookieLaw, document.getElementById('cookie-law'));
+    factory(collapse, document.getElementsByClassName('collapse'));
 
     const store = configureStore(config);
     render(Timer, document.getElementById('timer'), { from: 100 });

@@ -1,0 +1,6 @@
+{# Collapse shorhand #}
+{% macro collapse(id, className='') %}
+    <div id="{{ id }}" class="collapse {{ className }}">
+        {{ caller() }}
+    </div>
+{% endmacro %}

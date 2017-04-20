@@ -1,4 +1,5 @@
 {% extends "layouts/default.nunj" %}
+{% from "helpers/collapse.nunj" import collapse %}
 
 {% set title = "Gulpie" %}
 
@@ -14,6 +15,16 @@
 
     <div id="timer"></div>
     <div class="plus-one"></div>
+
+    <div><button class="btn btn-primary" data-target="collapse01">Collapse</button></div>
+    {% call collapse(id='collapse01') -%}
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo quaerat laborum inventore quidem aut provident, molestias perspiciatis accusamus harum modi quo! Repellat nostrum eveniet consequatur minus aliquid dignissimos ipsum porro?
+    {%- endcall %}
+
+    <div><button class="btn btn-primary" data-target="collapse02">Collapse</button></div>
+    {% call collapse(id='collapse02', className='show') -%}
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo quaerat laborum inventore quidem aut provident, molestias perspiciatis accusamus harum modi quo! Repellat nostrum eveniet consequatur minus aliquid dignissimos ipsum porro?
+    {%- endcall %}
 
     {% include 'components/p.nunj' %}
 {% endblock %}
