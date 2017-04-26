@@ -8,6 +8,7 @@ module.exports = {
     rules: {
         'arrow-body-style': 0,
         'arrow-parens': 0, // Does not work with Flow generic types.
+        'class-methods-use-this': [1, { 'exceptMethods': [] }],
         'comma-dangle': [1, 'never'],
         'fp/no-mutating-assign': 2,
         'import/extensions': 2, // Ensure consistent use of file extension.
