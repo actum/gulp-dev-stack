@@ -1,48 +1,54 @@
 export default function collapse(container) {
     const COLLAPSE_CLASS = 'collapse';
     const COLLAPSING_CLASS = 'collapsing';
-    const SHOW_CLASS = 'show';
+    const HIDDEN_CLASS = 'hidden';
     const ID = container.id;
     const triggers = document.querySelectorAll(`[data-target='${ID}']`);
-    const isOpen = () => container.classList.contains(SHOW_CLASS);
-    let height = isOpen() ? container.offsetHeight : getHeight();
+    let isHidden = container.classList.contains(HIDDEN_CLASS);
+    let height = isHidden ? container.offsetHeight : getHeight();
 
     if (!triggers.length) {
         return;
     }
-
-    triggers.forEach((trigger) => {
-        trigger.addEventListener('click', (event) => {
-            if (!container.classList.contains(COLLAPSING_CLASS)) {
-                isOpen() ? hide() : show();
-            }
-        });
-    });
+    for (const trigger in triggers) {
+        trigger && (
+            trigger.addEventListener('click', (event) => {
+                if (!container.classList.contains(COLLAPSING_CLASS)) {
+                    isHidden ? show() : hide();
+                } else {
+                    event.preventDefault();
+                }
+            })
+        );
+    }
 
     // TODO: Add polyfill for IE9 support
-    container.addEventListener('transitionend', () => {
-        container.classList.add(COLLAPSE_CLASS);
-        container.classList.remove(COLLAPSING_CLASS);
+    container.addEventListener('transitionend', (event) => {
+        container.className = COLLAPSE_CLASS;
         container.style.height = '';
 
-        isOpen() ? container.classList.remove(SHOW_CLASS) : container.classList.add(SHOW_CLASS);
+        isHidden ? container.classList.add(HIDDEN_CLASS) : container.classList.remove(HIDDEN_CLASS);
     });
 
     function show() {
-        container.classList.add(COLLAPSING_CLASS);
-        container.classList.remove(COLLAPSE_CLASS);
-        setTimeout(() => {
-            container.style.height = `${height}px`;
-        }, 1);
+        container.className = COLLAPSING_CLASS;
+        recalculateBoxMetrics();
+        container.style.height = `${height}px`;
+
+        isHidden = !isHidden;
     }
 
     function hide() {
         container.style.height = `${height}px`;
-        container.classList.add(COLLAPSING_CLASS);
-        container.classList.remove(COLLAPSE_CLASS);
-        setTimeout(() => {
-            container.style.height = '';
-        }, 1);
+        container.className = COLLAPSING_CLASS;
+        recalculateBoxMetrics();
+        container.style.height = '';
+
+        isHidden = !isHidden;
+    }
+
+    function recalculateBoxMetrics() {
+        container.offsetHeight;
     }
 
     function getHeight() {
