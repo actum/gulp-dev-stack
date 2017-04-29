@@ -1,25 +1,24 @@
 export default function collapse(container) {
     const COLLAPSE_CLASS = 'collapse';
     const COLLAPSING_CLASS = 'collapsing';
-    const HIDDEN_CLASS = 'hidden';
+    const HIDDEN_CLASS = 'u-hidden';
     const ID = container.id;
     const triggers = document.querySelectorAll(`[data-target='${ID}']`);
     let isHidden = container.classList.contains(HIDDEN_CLASS);
-    let height = isHidden ? container.offsetHeight : getHeight();
+    let height = isHidden ? getHeight() : container.offsetHeight;
 
     if (!triggers.length) {
         return;
     }
-    for (const trigger in triggers) {
-        trigger && (
-            trigger.addEventListener('click', (event) => {
-                if (!container.classList.contains(COLLAPSING_CLASS)) {
-                    isHidden ? show() : hide();
-                } else {
-                    event.preventDefault();
-                }
-            })
-        );
+
+    for (let i = 0; i < triggers.length; i += 1) {
+        triggers[i].addEventListener('click', (event) => {
+            if (!container.classList.contains(COLLAPSING_CLASS)) {
+                isHidden ? show() : hide();
+            } else {
+                event.preventDefault();
+            }
+        });
     }
 
     // TODO: Add polyfill for IE9 support
@@ -32,7 +31,7 @@ export default function collapse(container) {
 
     function show() {
         container.className = COLLAPSING_CLASS;
-        recalculateBoxMetrics();
+        container.offsetHeight;
         container.style.height = `${height}px`;
 
         isHidden = !isHidden;
@@ -41,14 +40,10 @@ export default function collapse(container) {
     function hide() {
         container.style.height = `${height}px`;
         container.className = COLLAPSING_CLASS;
-        recalculateBoxMetrics();
+        container.offsetHeight;
         container.style.height = '';
 
         isHidden = !isHidden;
-    }
-
-    function recalculateBoxMetrics() {
-        container.offsetHeight;
     }
 
     function getHeight() {

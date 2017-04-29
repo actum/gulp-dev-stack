@@ -22,8 +22,8 @@
     {%- endcall %}
 
     <div><button class="btn btn-primary" data-target="collapse02">Collapse</button></div>
-    {% call collapse(id='collapse02', className='hidden') -%}
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo quaerat laborum inventore quidem aut provident, molestias perspiciatis accusamus harum modi quo! Repellat nostrum eveniet consequatur minus aliquid dignissimos ipsum porro?
+    {% call collapse(id='collapse02', className='u-hidden') -%}
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo quaerat laborum inventore quidem aut provident, molestias perspiciatis accusamus harum modi quo! Repellat nostrum eveniet consequatur minus aliquid dignissimos ipsum porro? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex reiciendis maiores blanditiis sed architecto eveniet, incidunt mollitia, laborum suscipit numquam eum voluptate distinctio ratione nobis tenetur deserunt id itaque rem.
     {%- endcall %}
 
     {% include 'components/p.nunj' %}
