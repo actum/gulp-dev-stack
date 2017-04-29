@@ -16,10 +16,12 @@
     <div id="timer"></div>
     <div class="plus-one"></div>
 
-    <div><button class="btn btn-primary" data-target="collapse01">Collapse</button></div>
-    {% call collapse(id='collapse01') -%}
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo quaerat laborum inventore quidem aut provident, molestias perspiciatis accusamus harum modi quo! Repellat nostrum eveniet consequatur minus aliquid dignissimos ipsum porro?
+    <h2>Dolorum</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error deserunt reiciendis saepe magni autem at debitis fuga, deleniti explicabo reprehenderit quis similique, officia delectus alias ullam fugiat aut enim eius. 
+    {% call collapse(id='collapse01', className='u-hidden') -%}
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo quaerat laborum inventore quidem aut provident, molestias perspiciatis accusamus harum modi quo! Repellat nostrum eveniet consequatur minus aliquid dignissimos ipsum porro? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat, non voluptas soluta. Voluptates facilis ad mollitia qui, nihil quisquam placeat esse. Et maiores ipsum, qui obcaecati nihil consectetur repellat. Veniam!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates recusandae ipsam, nihil nam corporis expedita. Quae voluptas perspiciatis accusantium neque modi cum vero. Dolorum vel consequuntur, culpa, iusto repudiandae aspernatur! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit perspiciatis autem sapiente quos ipsum necessitatibus, consectetur nulla, debitis labore dolore laborum similique non. Explicabo soluta dignissimos, nisi, voluptates accusamus modi!</p>
     {%- endcall %}
+    <button class="btn btn-link p-0" data-target="collapse01">Read more</button></p>
 
     <div><button class="btn btn-primary" data-target="collapse02">Collapse</button></div>
     {% call collapse(id='collapse02', className='u-hidden') -%}
