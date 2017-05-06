@@ -11,7 +11,6 @@ const envify = require('envify');
 const source = require('vinyl-source-stream');
 const buffer = require('vinyl-buffer');
 const sourcemaps = require('gulp-sourcemaps');
-const uglify = require('gulp-uglify');
 const gutil = require('gulp-util');
 const browserSync = require('browser-sync');
 const config = require('../config');
@@ -33,7 +32,6 @@ function bundle() {
             .pipe(gulpif(DEVELOPMENT, sourcemaps.write('./')))
             .pipe(gulp.dest(config.JS_BUILD))
             .pipe(gulpif(DEVELOPMENT, browserSync.stream()))
-            .pipe(gulpif(PRODUCTION, uglify()))
             .pipe(gulpif(PRODUCTION, rename({ suffix: '.min' })))
             .pipe(gulpif(PRODUCTION, gulp.dest(config.JS_BUILD)));
     };
