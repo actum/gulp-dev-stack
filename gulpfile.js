@@ -11,3 +11,4 @@ requireDir('./gulp/tasks');
 gulp.task('default', ['serve']);
 gulp.task('build', ['prepare']);
 gulp.task('css', ['less']);
+gulp.task('test', ['runTests']);

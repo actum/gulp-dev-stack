@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { increment } from './actions';
 
-class PlusOne extends Component {
+export class PlusOne extends Component {
     constructor(props) {
         super(props);
 
