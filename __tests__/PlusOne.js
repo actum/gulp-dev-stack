@@ -22,6 +22,7 @@ describe('<PlusOne /> component', () => {
 
         wrapper.update();
 
+        // ToDo: fix :-)
         expect(wrapper.find('p').children().text()).toBe('+ 2');
     });
 });
