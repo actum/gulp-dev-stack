@@ -2,8 +2,11 @@ const argv = require('yargs').argv;
 const gutil = require('gulp-util');
 const package = require('../package.json');
 
-const DEVELOPMENT = 'development';
-const PRODUCTION = 'production';
+/* Available environments */
+const envs = {
+    development: 'development',
+    production: 'production'
+};
 
 /* Check the minimal supported version of node */
 function checkNodeVersion() {
@@ -22,12 +25,18 @@ function checkNodeVersion() {
 /* Define current environment based on CI arguments */
 function define() {
     const isDevelopment = !!argv.dev;
-    const currentEnvironment = isDevelopment ? DEVELOPMENT : PRODUCTION;
+    const currentEnvironment = isDevelopment ? envs.development : envs.production;
     process.env.NODE_ENV = currentEnvironment;
 
     return currentEnvironment;
 }
 
+/**
+ * Is
+ * @description Shorthand method to determine if current environment equals the expected one.
+ * @param {String} expectedEnv
+ * @return {Boolean}
+ */
 function is(expectedEnv) {
     return (process.env.NODE_ENV === expectedEnv);
 }
