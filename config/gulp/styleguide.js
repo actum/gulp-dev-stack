@@ -1,4 +1,4 @@
-const config = require('../config');
+const config = require('../../config');
 const browserSync = require('browser-sync');
 const gulp = require('gulp');
 const kss = require('kss');

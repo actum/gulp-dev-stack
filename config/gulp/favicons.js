@@ -1,4 +1,4 @@
-const config = require('../config');
+const config = require('../../config');
 const gulp = require('gulp');
 const fs = require('fs');
 const realFavicon = require('gulp-real-favicon');

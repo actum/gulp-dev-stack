@@ -1,6 +1,4 @@
 /* eslint-disable one-var */
-const environment = require('./environment');
-
 const
     /* General */
     PORT = 5001,
@@ -90,7 +88,6 @@ const
 module.exports = {
     PORT,
     TITLE,
-    environment,
 
     NPM,
     DEVELOPMENT_BASE,

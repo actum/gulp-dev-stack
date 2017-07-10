@@ -1,6 +1,5 @@
-const config = require('../config');
-const DEVELOPMENT = config.environment.isDevelopment;
-const PRODUCTION = !DEVELOPMENT;
+const config = require('../../config');
+const environment = require('../environment');
 const gulp = require('gulp');
 const gulpif = require('gulp-if');
 const rename = require('gulp-rename');
@@ -12,6 +11,9 @@ const flexbugsFixes = require('postcss-flexbugs-fixes');
 const postcss = require('gulp-postcss');
 const sass = require('gulp-sass');
 const sourcemaps = require('gulp-sourcemaps');
+
+const DEVELOPMENT = environment.is('development');
+const PRODUCTION = !DEVELOPMENT;
 
 gulp.task('styles', ['stylelint'], () => {
     const postcssPlugins = [

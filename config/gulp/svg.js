@@ -1,5 +1,4 @@
-const config = require('../config');
-const DEVELOPMENT = config.environment.isDevelopment;
+const config = require('../../config');
 const fs = require('fs');
 const gulp = require('gulp');
 const gutil = require('gulp-util');

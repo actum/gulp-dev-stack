@@ -1,11 +1,12 @@
-const config = require('./gulp/config');
-config.environment.check();
-process.env.NODE_ENV = config.environment.type;
-
+const config = require('./config');
+const environment = require('./config/environment');
 const gulp = require('gulp');
 const requireDir = require('require-dir');
 
-requireDir('./gulp/tasks');
+environment.checkNodeVersion();
+environment.define();
+
+requireDir('./config/gulp');
 
 /* API */
 gulp.task('default', ['serve']);
