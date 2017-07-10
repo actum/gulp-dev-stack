@@ -10,12 +10,10 @@
     "node": ">=5"
   },
   "scripts": {
-    "lint": "gulp eslint stylelint",
     "prepush-msg": "echo 'Running lint task...' && exit 0"
   },
   "pre-push": [
-    "prepush-msg",
-    "lint"
+    "prepush-msg"
   ],
   "devDependencies": {
     "autoprefixer": "^6.0.3",
