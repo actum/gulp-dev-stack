@@ -1,146 +1,84 @@
-/* eslint-disable one-var */
-const
-    /* General */
-    PORT = 5001,
-    TITLE = 'Gulp Development Stack',
+/* General */
+export const PORT = 5001;
+export const TITLE = 'Gulp Development Stack';
 
-    /* Paths */
-    NPM = './node_modules',
-    DEVELOPMENT_BASE = './src',
-    BUILD_BASE = './dist',
+/* API server */
+export const API = `${DEVELOPMENT_BASE}/api/api.js`;
+export const API_PORT = 5003;
 
-    /* Gulp */
-    GULP_ALL = ['./gulpfile.js', './gulp/**/*.js'],
+/* Paths */
+export const NPM = './node_modules';
+export const DEVELOPMENT_BASE = './src';
+export const BUILD_BASE = './dist';
 
-    /* CSS */
-    CSS_BASE = `${DEVELOPMENT_BASE}/styles`,
-    CSS_ENTRY = `${CSS_BASE}/main.scss`,
-    CSS_ALL = `${CSS_BASE}/**/*.scss`,
-    CSS_BUILD = `${BUILD_BASE}/css`,
-    CSS_TPL_PATH = '/css',
+/* Gulp */
+export const GULP_ALL = ['./gulpfile.js', './gulp/**/*.js'];
 
-    /* JavaScript */
-    JS_BASE = `${DEVELOPMENT_BASE}/app`,
-    JS_MAIN_FILENAME = 'app.js';
-    JS_ENTRY = `${JS_BASE}/${JS_MAIN_FILENAME}`,
-    JS_ALL = `${JS_BASE}/**/*.js`,
-    JS_VENDOR_ALL = `${JS_BASE}/vendor/**/*.js`,
-    JS_BUILD = `${BUILD_BASE}/js`,
-    JS_TPL_PATH = '/js',
+/* CSS */
+export const CSS_BASE = `${DEVELOPMENT_BASE}/styles`;
+export const CSS_ENTRY = `${CSS_BASE}/main.scss`;
+export const CSS_ALL = `${CSS_BASE}/**/*.scss`;
+export const CSS_BUILD = `${BUILD_BASE}/css`;
+export const CSS_TPL_PATH = '/css';
 
-    /* GFX */
-    GFX_BASE = `${DEVELOPMENT_BASE}/gfx`,
-    GFX_BUILD = `${BUILD_BASE}/gfx`,
-    GFX_TPL_PATH = '/gfx',
+/* JavaScript */
+export const JS_BASE = `${DEVELOPMENT_BASE}/app`;
+export const JS_MAIN_FILENAME = 'app.js';
+export const JS_ENTRY = `${JS_BASE}/${JS_MAIN_FILENAME}`;
+export const JS_ALL = `${JS_BASE}/**/*.js`;
+export const JS_VENDOR_ALL = `${JS_BASE}/vendor/**/*.js`;
+export const JS_BUILD = `${BUILD_BASE}/js`;
+export const JS_TPL_PATH = '/js';
 
-    /* SVG */
-    SVG_BASE = `${GFX_BASE}/svg`,
-    SVG_SINGLE_ALL = `${SVG_BASE}/*.svg`,
-    SVG_SPRITE_ALL = [
-        `${SVG_BASE}/**/*.svg`,
-        `!${SVG_SINGLE_ALL}`
-    ],
-    SVG_BUILD = `${GFX_BUILD}/svg`,
-    SVG_BUILD_SPRITES = `${SVG_BUILD}/sprites`,
-    SVG_TPL_PATH = `${GFX_TPL_PATH}/svg`,
-    SVG_SPRITES_TPL_PATH = `${SVG_TPL_PATH}/sprites`,
+/* GFX */
+export const GFX_BASE = `${DEVELOPMENT_BASE}/gfx`;
+export const GFX_BUILD = `${BUILD_BASE}/gfx`;
+export const GFX_TPL_PATH = '/gfx';
 
-    /* Favicon */
-    FAVICON_COLORS = {
-        fg: '#e83a29',
-        bg: '#ffffff'
-    },
-    FAVICON_BASE = `${GFX_BASE}`,
-    FAVICON_SOURCE = `${FAVICON_BASE}/favicon-source.png`,
-    FAVICON_JSON = 'faviconData.json',
+/* SVG */
+export const SVG_BASE = `${GFX_BASE}/svg`;
+export const SVG_SINGLE_ALL = `${SVG_BASE}/*.svg`;
+export const SVG_SPRITE_ALL = [
+    `${SVG_BASE}/**/*.svg`,
+    `!${SVG_SINGLE_ALL}`
+];
+export const SVG_BUILD = `${GFX_BUILD}/svg`;
+export const SVG_BUILD_SPRITES = `${SVG_BUILD}/sprites`;
+export const SVG_TPL_PATH = `${GFX_TPL_PATH}/svg`;
+export const SVG_SPRITES_TPL_PATH = `${SVG_TPL_PATH}/sprites`;
 
-    IMAGES_ALL = [
-        `${GFX_BASE}/**/*.{jpg,jpeg,png,gif}`,
-        `${SVG_SINGLE_ALL}`,
-        `!${FAVICON_SOURCE}`
-    ],
-
-    /* Templates */
-    TEMPLATE_BASE = `${DEVELOPMENT_BASE}/tpl`,
-    TEMPLATE_PAGES = `${TEMPLATE_BASE}/*.nunj`,
-    TEMPLATE_ALL = `${TEMPLATE_BASE}/**/*.nunj`,
-
-    /* HTML */
-    HTML_ALL = `${DEVELOPMENT_BASE}/*.html`,
-    HTML_BUILD = `${BUILD_BASE}/*.html`,
-
-    /* Styleguide */
-    STYLEGUIDE_BASE = './styleguide',
-    STYLEGUIDE_HOMEPAGE = `../../styleguide.md`,
-    STYLEGUIDE_DEST = `${STYLEGUIDE_BASE}/styleguide`,
-    STYLEGUIDE_TEMPLATE = `${NPM}/styleguide/dist`
-
-    // deploy
-    DEPLOY_HOST = '',
-    DEPLOY_USERNAME = '',
-    DEPLOY_PASSWORD = '',
-    DEPLOY_DEST = '/home/deploy/packages',
-
-    // api
-    API = `${DEVELOPMENT_BASE}/api/api.js`,
-    API_PORT = 5003;
-
-module.exports = {
-    PORT,
-    TITLE,
-
-    NPM,
-    DEVELOPMENT_BASE,
-    BUILD_BASE,
-    GULP_ALL,
-
-    CSS_BASE,
-    CSS_ENTRY,
-    CSS_ALL,
-    CSS_BUILD,
-    CSS_TPL_PATH,
-
-    JS_BASE,
-    JS_MAIN_FILENAME,
-    JS_ENTRY,
-    JS_ALL,
-    JS_VENDOR_ALL,
-    JS_BUILD,
-    JS_TPL_PATH,
-
-    GFX_BASE,
-    GFX_BUILD,
-    GFX_TPL_PATH,
-    IMAGES_ALL,
-    FAVICON_COLORS,
-    FAVICON_BASE,
-    FAVICON_SOURCE,
-    FAVICON_JSON,
-    SVG_BASE,
-    SVG_SINGLE_ALL,
-    SVG_SPRITE_ALL,
-    SVG_BUILD,
-    SVG_BUILD_SPRITES,
-    SVG_TPL_PATH,
-    SVG_SPRITES_TPL_PATH,
-
-    TEMPLATE_BASE,
-    TEMPLATE_PAGES,
-    TEMPLATE_ALL,
-    HTML_ALL,
-    HTML_BUILD,
-
-    STYLEGUIDE_BASE,
-    STYLEGUIDE_HOMEPAGE,
-    STYLEGUIDE_DEST,
-    STYLEGUIDE_TEMPLATE,
-
-    DEPLOY_HOST,
-    DEPLOY_USERNAME,
-    DEPLOY_PASSWORD,
-    DEPLOY_DEST,
-
-    API,
-    API_PORT
+/* Favicon */
+export const FAVICON_COLORS = {
+    fg: '#e83a29',
+    bg: '#ffffff'
 };
-/* eslint-enable one-var */
+export const FAVICON_BASE = `${GFX_BASE}`;
+export const FAVICON_SOURCE = `${FAVICON_BASE}/favicon-source.png`;
+export const FAVICON_JSON = 'faviconData.json';
+
+export const IMAGES_ALL = [
+    `${GFX_BASE}/**/*.{jpg,jpeg,png,gif}`,
+    `${SVG_SINGLE_ALL}`,
+    `!${FAVICON_SOURCE}`
+];
+
+/* Templates */
+export const TEMPLATE_BASE = `${DEVELOPMENT_BASE}/tpl`;
+export const TEMPLATE_PAGES = `${TEMPLATE_BASE}/*.nunj`;
+export const TEMPLATE_ALL = `${TEMPLATE_BASE}/**/*.nunj`;
+
+/* HTML */
+export const HTML_ALL = `${DEVELOPMENT_BASE}/*.html`;
+export const HTML_BUILD = `${BUILD_BASE}/*.html`;
+
+/* Styleguide */
+export const STYLEGUIDE_BASE = './styleguide';
+export const STYLEGUIDE_HOMEPAGE = `../../styleguide.md`;
+export const STYLEGUIDE_DEST = `${STYLEGUIDE_BASE}/styleguide`;
+export const STYLEGUIDE_TEMPLATE = `${NPM}/styleguide/dist`;
+
+/* Deployment */
+export const DEPLOY_HOST = '';
+export const DEPLOY_USERNAME = '';
+export const DEPLOY_PASSWORD = '';
+export const DEPLOY_DEST = '/home/deploy/packages';

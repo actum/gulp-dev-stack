@@ -1,23 +1,24 @@
-const config = require('../../config');
-const environment = require('../environment');
-const gulp = require('gulp');
-const gulpif = require('gulp-if');
-const rename = require('gulp-rename');
-const autoprefixer = require('autoprefixer');
-const browserSync = require('browser-sync');
-const sassGlob = require('gulp-sass-glob');
-const cssnano = require('cssnano');
-const flexbugsFixes = require('postcss-flexbugs-fixes');
-const postcss = require('gulp-postcss');
-const sass = require('gulp-sass');
-const sourcemaps = require('gulp-sourcemaps');
+import gulp from 'gulp';
+import gulpif from 'gulp-if';
+import rename from 'gulp-rename';
+import autoprefixer from 'autoprefixer';
+import browserSync from 'browser-sync';
+import sass from 'gulp-sass';
+import sassGlob from 'gulp-sass-glob';
+import cssnano from 'cssnano';
+import postCSS from 'gulp-postcss';
+import flexbugsFixes from 'postcss-flexbugs-fixes';
+import sourcemaps from 'gulp-sourcemaps';
+import environment from '../environment';
+import { CSS_ENTRY, CSS_BUILD } from '../../config';
 
 const DEVELOPMENT = environment.is('development');
 const PRODUCTION = !DEVELOPMENT;
 
 gulp.task('styles', ['stylelint'], () => {
     const postcssPlugins = [
-        flexbugsFixes, // first must be flexbugs, because flexbugs do not process vendor-prefixed variants
+        // flexbugs must come first, because flexbugs do not process vendor-prefixed variants
+        flexbugsFixes,
         autoprefixer({ browsers: ['last 2 versions'] })
     ];
 
@@ -25,15 +26,15 @@ gulp.task('styles', ['stylelint'], () => {
         cssnano({ safe: true })
     ];
 
-    return gulp.src(config.CSS_ENTRY)
+    return gulp.src(CSS_ENTRY)
         .pipe(sassGlob())
         .pipe(sourcemaps.init())
         .pipe(sass()).on('error', sass.logError)
-        .pipe(postcss(postcssPlugins))
+        .pipe(postCSS(postcssPlugins))
         .pipe(gulpif(DEVELOPMENT, sourcemaps.write()))
-        .pipe(gulp.dest(config.CSS_BUILD))
+        .pipe(gulp.dest(CSS_BUILD))
         .pipe(gulpif(DEVELOPMENT, browserSync.stream()))
-        .pipe(gulpif(PRODUCTION, postcss(postcssDistPlugins)))
+        .pipe(gulpif(PRODUCTION, postCSS(postcssDistPlugins)))
         .pipe(gulpif(PRODUCTION, rename({ suffix: '.min' })))
-        .pipe(gulpif(PRODUCTION, gulp.dest(config.CSS_BUILD)));
+        .pipe(gulpif(PRODUCTION, gulp.dest(CSS_BUILD)));
 });

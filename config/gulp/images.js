@@ -1,13 +1,13 @@
-const config = require('../../config');
-const gulp = require('gulp');
-const imagemin = require('gulp-imagemin');
-const cached = require('gulp-cached');
+import gulp from 'gulp';
+import cached from 'gulp-cached';
+import imagemin from 'gulp-imagemin';
+import { GFX_BASE, GFX_BUILD, IMAGES_ALL } from '../../config';
 
 /* Optimize images */
 /* Handles common images format (jpg, png, gif) and single SVG images */
 gulp.task('images', () => {
-    return gulp.src(config.IMAGES_ALL, { base: config.GFX_BASE })
+    return gulp.src(IMAGES_ALL, { base: GFX_BASE })
         .pipe(cached('images'))
         .pipe(imagemin())
-        .pipe(gulp.dest(config.GFX_BUILD));
+        .pipe(gulp.dest(GFX_BUILD));
 });

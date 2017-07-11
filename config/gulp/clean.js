@@ -1,5 +1,5 @@
-const config = require('../../config');
-const gulp = require('gulp');
-const del = require('del');
+import gulp from 'gulp';
+import del from 'del';
+import { BUILD_BASE } from '../../config';
 
-gulp.task('clean', () => del(config.BUILD_BASE));
+gulp.task('clean', () => del(BUILD_BASE));

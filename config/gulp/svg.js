@@ -1,12 +1,12 @@
-const config = require('../../config');
-const fs = require('fs');
-const gulp = require('gulp');
-const gutil = require('gulp-util');
-const gulpif = require('gulp-if');
-const path = require('path');
-const rename = require('gulp-rename');
-const svgmin = require('gulp-svgmin');
-const svgstore = require('gulp-svgstore');
+import fs from 'fs';
+import path from 'path';
+import gulp from 'gulp';
+import gulpif from 'gulp-if';
+import gutil from 'gulp-util';
+import rename from 'gulp-rename';
+import svgmin from 'gulp-svgmin';
+import svgstore from 'gulp-svgstore';
+import { SVG_BASE, SVG_BUILD_SPRITES } from '../../config';
 
 /* SVG sprites */
 /* Returns an Object in a format { folderName: globbingPath } */
@@ -16,10 +16,10 @@ function getSprites() {
     function getSpriteFolders(SVG_FOLDER) {
         return fs.readdirSync(SVG_FOLDER).filter(file => fs.statSync(path.join(SVG_FOLDER, file)).isDirectory());
     }
-    const spriteFolders = getSpriteFolders(config.SVG_BASE);
+    const spriteFolders = getSpriteFolders(SVG_BASE);
 
     spriteFolders.forEach((spriteName) => {
-        var spriteGlob = path.resolve(`${config.SVG_BASE}/${spriteName}/*.svg`);
+        var spriteGlob = path.resolve(`${SVG_BASE}/${spriteName}/*.svg`);
         spriteGlob = path.relative(process.cwd(), spriteGlob);
         sprites.push({ name: spriteName, glob: spriteGlob });
     });
@@ -52,7 +52,7 @@ gulp.task('svg:sprite', () => {
                 file.basename = sprite.name;
                 return file;
             }))
-            .pipe(gulp.dest(config.SVG_BUILD_SPRITES));
+            .pipe(gulp.dest(SVG_BUILD_SPRITES));
     }
 
     const sprites = getSprites();

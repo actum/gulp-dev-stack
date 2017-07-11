@@ -1,20 +1,26 @@
-const config = require('../../config');
-const gulp = require('gulp');
-const gutil = require('gulp-util');
-const runSequence = require('run-sequence');
-const argv = require('yargs').argv;
-const tar = require('gulp-tar');
-const gzip = require('gulp-gzip');
-const scp = require('gulp-scp2');
-const buildSequence = require('./prepare').buildSequence;
+import gulp from 'gulp';
+import gutil from 'gulp-util';
+import runSequence from 'run-sequence';
+import { argv } from 'yargs';
+import tar from 'gulp-tar';
+import gzip from 'gulp-gzip';
+import scp from 'gulp-scp2';
+import { buildSequence } from './prepare';
+import {
+    DEPLOY_HOST,
+    DEPLOY_USERNAME,
+    DEPLOY_PASSWORD,
+    DEPLOY_DEST,
+    STYLEGUIDE_DEST
+} from '../../config';
 
 const buildNumber = argv.buildNumber || '0';
 const jobName = argv.jobName || 'unknown';
 const buildFile = `${jobName}-${buildNumber}.tar`;
-const buildDest = `${config.DEPLOY_DEST}/${jobName}`;
+const buildDest = `${DEPLOY_DEST}/${jobName}`;
 
 gulp.task('compress', () => {
-    return gulp.src(`${config.STYLEGUIDE_DEST}/**`)
+    return gulp.src(`${STYLEGUIDE_DEST}/**`)
         .pipe(tar(buildFile))
         .pipe(gzip())
         .pipe(gulp.dest('.'));
@@ -22,9 +28,9 @@ gulp.task('compress', () => {
 
 gulp.task('upload', () => {
     const options = {
-        host: config.DEPLOY_HOST,
-        username: config.DEPLOY_USERNAME,
-        password: config.DEPLOY_PASSWORD,
+        host: DEPLOY_HOST,
+        username: DEPLOY_USERNAME,
+        password: DEPLOY_PASSWORD,
         dest: buildDest
     };
 

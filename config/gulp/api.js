@@ -1,8 +1,9 @@
-const config = require('../../config');
-const gulp = require('gulp');
+import gulp from 'gulp';
 const gutil = require('gulp-util');
-const enableDestroy = require('server-destroy');
-const jsonServer = require('json-server');
+import enableDestroy from 'server-destroy';
+import jsonServer from 'json-server';
+import { API_PORT } from '../../config';
+
 var server;
 
 function requireUncached(module){
@@ -17,10 +18,10 @@ function start(cb) {
     const middleware = jsonServer.defaults();
     app.use(middleware);
     app.use(router);
-    server = app.listen(config.API_PORT, () => {
+    server = app.listen(API_PORT, () => {
         gutil.log(
             gutil.colors.green(`JSON Server is running…`),
-            gutil.colors.gray(`http://localhost:${config.API_PORT}`)
+            gutil.colors.gray(`http://localhost:${API_PORT}`)
         );
     });
     enableDestroy(server);

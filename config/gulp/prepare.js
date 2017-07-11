@@ -1,6 +1,6 @@
-const environment = require('../environment');
-const gulp = require('gulp');
-const runSequence = require('run-sequence');
+import gulp from 'gulp';
+import runSequence from 'run-sequence';
+import environment from '../environment';
 
 // TODO run browserSync after all tasks finished
 const devSequence = ['clean', ['images', 'svg', 'styles'], 'tpl', 'styleguide', 'copySgAssets'];

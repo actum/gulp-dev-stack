@@ -1,26 +1,37 @@
-const config = require('../../config');
-const environment = require('../environment');
-const gulp = require('gulp');
-const gutil = require('gulp-util');
-const gwatch = require('gulp-watch');
-const browserSync = require('browser-sync');
-const copyToClipboard = require('copy-paste').copy;
-const runSequence = require('run-sequence');
-const port = config.PORT;
+import gulp from 'gulp';
+import gutil from 'gulp-util';
+import gwatch from 'gulp-watch';
+import browserSync from 'browser-sync';
+import { copy as copyToClipboard } from 'copy-paste';
+import environment from '../environment';
+import runSequence from 'run-sequence';
+import {
+    PORT,
+    NPM,
+    DEVELOPMENT_BASE,
+    STYLEGUIDE_BASE,
+    BUILD_BASE,
+    CSS_ALL,
+    JS_ALL,
+    IMAGES_ALL,
+    SVG_SPRITE_ALL,
+    TEMPLATE_ALL,
+    API
+} from '../../config';
 
 const DEVELOPMENT = environment.is('development');
 
 gulp.task('serve', ['prepare'], () => {
     const baseDir = DEVELOPMENT ? [
-        config.DEVELOPMENT_BASE,
-        config.BUILD_BASE,
-        config.NPM,
-        config.STYLEGUIDE_BASE
+        DEVELOPMENT_BASE,
+        BUILD_BASE,
+        NPM,
+        STYLEGUIDE_BASE
 
-    ] : config.BUILD_BASE;
+    ] : BUILD_BASE;
 
     browserSync({
-        port,
+        port: PORT,
         server: { baseDir },
         open: false
     }, (unknown, bs) => {
@@ -34,11 +45,11 @@ gulp.task('serve', ['prepare'], () => {
     const watch = (glob, tasks) => gwatch(glob, () => runSequence(...tasks));
 
     if (DEVELOPMENT) {
-        watch(config.CSS_ALL, ['styles', 'styleguide', 'copySgAssets']);
-        watch(config.JS_ALL, ['eslint:app']);
-        watch(config.IMAGES_ALL, ['images', 'tpl']);
-        watch(config.SVG_SPRITE_ALL, ['svg', 'tpl']);
-        watch(config.TEMPLATE_ALL, ['tpl']);
-        watch(config.API, ['api-reload']);
+        watch(CSS_ALL, ['styles', 'styleguide', 'copySgAssets']);
+        watch(JS_ALL, ['eslint:app']);
+        watch(IMAGES_ALL, ['images', 'tpl']);
+        watch(SVG_SPRITE_ALL, ['svg', 'tpl']);
+        watch(TEMPLATE_ALL, ['tpl']);
+        watch(API, ['api-reload']);
     }
 });

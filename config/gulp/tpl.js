@@ -1,15 +1,25 @@
-const config = require('../../config');
-const environment = require('../environment');
-const glob = require('glob');
-const gulp = require('gulp');
-const gulpif = require('gulp-if');
-const gutil = require('gulp-util');
-const plumber = require('gulp-plumber');
-const rename = require('gulp-rename');
-const browserSync = require('browser-sync');
-const nunj = require('nunjucks');
-const nunjucks = require('gulp-nunjucks');
-const prettify = require('gulp-prettify');
+import glob from 'glob';
+import gulp from 'gulp';
+import gulpif from 'gulp-if';
+import gutil from 'gulp-util';
+import rename from 'gulp-rename';
+import plumber from 'gulp-plumber';
+import browserSync from 'browser-sync';
+import nunj from 'nunjucks';
+import nunjucks from 'gulp-nunjucks';
+import prettify from 'gulp-prettify';
+import environment from '../environment';
+import {
+    BUILD_BASE,
+    CSS_TPL_PATH,
+    GFX_TPL_PATH,
+    JS_TPL_PATH,
+    SVG_BUILD,
+    SVG_TPL_PATH,
+    SVG_SPRITES_TPL_PATH,
+    TEMPLATE_PAGES,
+    TEMPLATE_BASE
+} from '../../config';
 
 const DEVELOPMENT = environment.is('development');
 const PRODUCTION = !DEVELOPMENT;
@@ -18,7 +28,7 @@ const Environment = nunj.Environment;
 const FileSystemLoader = nunj.FileSystemLoader;
 
 function getPagesList() {
-    return glob.sync(config.TEMPLATE_PAGES)
+    return glob.sync(TEMPLATE_PAGES)
         .map(pathname => pathname.replace(/\.[^.]+$/, '').substring(pathname.lastIndexOf('/') + 1, pathname.length - 1))
         .filter(name => name !== 'index');
 }
@@ -28,20 +38,20 @@ gulp.task('tpl', () => {
         _dev: DEVELOPMENT,
         _pages: getPagesList()
     };
-    const searchPaths = [config.TEMPLATE_BASE, config.SVG_BUILD];
+    const searchPaths = [TEMPLATE_BASE, SVG_BUILD];
     const options = {
         noCache: true
     };
     const env = new Environment(
         new FileSystemLoader(searchPaths, options)
     );
-    env.addGlobal('_cssPath', config.CSS_TPL_PATH);
-    env.addGlobal('_jsPath', config.JS_TPL_PATH);
-    env.addGlobal('_gfxPath', config.GFX_TPL_PATH);
-    env.addGlobal('_svgPath', config.SVG_TPL_PATH);
-    env.addGlobal('_svgSpritesPath', config.SVG_SPRITES_TPL_PATH);
+    env.addGlobal('_cssPath', CSS_TPL_PATH);
+    env.addGlobal('_jsPath', JS_TPL_PATH);
+    env.addGlobal('_gfxPath', GFX_TPL_PATH);
+    env.addGlobal('_svgPath', SVG_TPL_PATH);
+    env.addGlobal('_svgSpritesPath', SVG_SPRITES_TPL_PATH);
 
-    return gulp.src(config.TEMPLATE_PAGES)
+    return gulp.src(TEMPLATE_PAGES)
         // Temporary fix for gulp's error handling within streams, see https://github.com/actum/gulp-dev-stack/issues/7#issuecomment-152490084
         .pipe(plumber({
             errorHandler: e => gutil.log(gutil.colors.red(`${e.name} in ${e.plugin}: ${e.message}`))
@@ -50,6 +60,6 @@ gulp.task('tpl', () => {
         .pipe(nunjucks.compile(data, { env }))
         .pipe(rename(path => path.extname = '.html'))
         .pipe(gulpif(PRODUCTION, prettify()))
-        .pipe(gulp.dest(config.BUILD_BASE))
+        .pipe(gulp.dest(BUILD_BASE))
         .pipe(browserSync.stream({ once: true }));
 });

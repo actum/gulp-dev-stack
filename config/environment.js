@@ -1,21 +1,23 @@
-const argv = require('yargs').argv;
-const gutil = require('gulp-util');
-const package = require('../package.json');
+import { argv } from 'yargs';
+import gutil from 'gulp-util';
+import packageJson from '../package.json';
 
 /* Available environments */
-const envs = {
+export const envs = {
     development: 'development',
     production: 'production'
 };
 
+export const isApi = !!argv.api;
+
 /* Check the minimal supported version of node */
-function checkNodeVersion() {
+export function checkNodeVersion() {
     const nodeMajorVersion = process.version.substr(1, 1);
-    const minMajorVersion = package.engines.node.substr(-1);
+    const minMajorVersion = packageJson.engines.node.substr(-1);
 
     if (nodeMajorVersion < minMajorVersion) {
         gutil.log(
-            gutil.colors.red(`Node version ${package.engines.node} is required.`),
+            gutil.colors.red(`Node version ${packageJson.engines.node} is required.`),
             gutil.colors.cyan(`You are using ${process.version}`)
         );
         process.exit(1);
@@ -23,7 +25,7 @@ function checkNodeVersion() {
 }
 
 /* Define current environment based on CI arguments */
-function define() {
+export function define() {
     const isDevelopment = !!argv.dev;
     const currentEnvironment = isDevelopment ? envs.development : envs.production;
     process.env.NODE_ENV = currentEnvironment;
@@ -37,12 +39,11 @@ function define() {
  * @param {String} expectedEnv
  * @return {Boolean}
  */
-function is(expectedEnv) {
+export function is(expectedEnv) {
     return (process.env.NODE_ENV === expectedEnv);
 }
 
-module.exports = {
-    isApi: !!argv.api,
+export default {
     checkNodeVersion,
     define,
     is
