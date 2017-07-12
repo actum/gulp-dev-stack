@@ -21,7 +21,7 @@ function getPagesList() {
         .filter(name => name !== 'index');
 }
 
-gulp.task('tpl', () => {
+gulp.task('tpl-compile', () => {
     const data = {
         _dev: DEVELOPMENT,
         _pages: getPagesList()
@@ -48,6 +48,10 @@ gulp.task('tpl', () => {
         .pipe(nunjucks.compile(data, { env }))
         .pipe(rename(path => path.extname = '.html'))
         .pipe(gulpif(PRODUCTION, prettify()))
-        .pipe(gulp.dest(config.BUILD_BASE))
-        .pipe(browserSync.stream({ once: true }));
+        .pipe(gulp.dest(config.BUILD_BASE));
+});
+
+gulp.task('tpl', ['tpl-compile'], (done) => {
+    browserSync.reload();
+    done();
 });
