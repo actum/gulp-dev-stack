@@ -10,7 +10,6 @@ const port = config.PORT;
 
 gulp.task('serve', ['prepare'], () => {
     const baseDir = DEVELOPMENT ? [
-        config.DEVELOPMENT_BASE,
         config.BUILD_BASE,
         config.NPM,
         config.STYLEGUIDE_BASE
@@ -26,7 +25,7 @@ gulp.task('serve', ['prepare'], () => {
         copyToClipboard(
             `localhost:${finalPort}`,
             () => gutil.log(gutil.colors.green('Local server address has been copied to your clipboard'))
-        )
+        );
     });
 
     const watch = (glob, tasks) => gwatch(glob, () => runSequence(...tasks));
