@@ -41,6 +41,6 @@ function bundle() {
         .on('update', rebundle)
         .on('log', gutil.log);
     return rebundle();
-};
+}
 
 gulp.task('js', ['eslint'], bundle);

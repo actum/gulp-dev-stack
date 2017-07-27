@@ -3,11 +3,12 @@ const gulp = require('gulp');
 const gutil = require('gulp-util');
 const enableDestroy = require('server-destroy');
 const jsonServer = require('json-server');
-var server;
+let server;
 
-function requireUncached(module){
-    delete require.cache[require.resolve(module)]
-    return require(module)
+function requireUncached(module) {
+    delete require.cache[require.resolve(module)];
+
+    return require(module); // eslint-disable-line
 }
 
 function start(cb) {
@@ -19,7 +20,7 @@ function start(cb) {
     app.use(router);
     server = app.listen(config.API_PORT, () => {
         gutil.log(
-            gutil.colors.green(`JSON Server is running…`),
+            gutil.colors.green('JSON Server is running…'),
             gutil.colors.gray(`http://localhost:${config.API_PORT}`)
         );
     });
@@ -32,5 +33,6 @@ gulp.task('api-reload', (cb) => {
     gutil.log(gutil.colors.gray('api has changed, reloading...'));
     server && server.destroy();
     start();
+
     return cb();
 });
