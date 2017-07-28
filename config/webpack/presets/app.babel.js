@@ -9,10 +9,12 @@ export default {
     entry: {
         app: ['babel-polyfill', JS_ENTRY]
     },
+    /* Exclude external modules from bundling */
+    externals: /^[^.]/,
     output: {
         path: resolve(CWD, JS_BUILD),
         pathinfo: DEVELOPMENT,
         filename: DEVELOPMENT ? '[name].js' : '[name].[chunkhash].js'
     },
     cache: DEVELOPMENT
-}
+};

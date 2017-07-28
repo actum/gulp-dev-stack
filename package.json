@@ -20,6 +20,7 @@
     "babel-core": "^6.18.2",
     "babel-eslint": "^7.1.1",
     "babel-loader": "^7.1.1",
+    "babel-plugin-transform-export-extensions": "^6.22.0",
     "babel-preset-latest": "^6.16.0",
     "babel-preset-react": "^6.5.0",
     "browser-sync": "^2.11.1",
@@ -71,6 +72,7 @@
     "stylelint": "^7.9.0",
     "stylelint-config-standard": "^16.0.0",
     "webpack": "^3.1.0",
+    "webpack-merge": "^4.1.0",
     "write": "^0.3.2",
     "yargs": "^6.3.0"
   },

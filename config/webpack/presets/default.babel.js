@@ -42,13 +42,13 @@ export default {
         rules: [
             {
                 test: /\.jsx?$/,
-                exluce: /node_modules/,
+                exclude: /node_modules/,
                 use: 'happypack/loader?id=js'
             }
         ]
     },
     devtool: 'source-map',
     resolve: {
-        extensions: ['/index.js' '.js']
+        extensions: ['/index.js', '.js']
     }
 };
