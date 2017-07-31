@@ -20,7 +20,7 @@ function getSprites() {
     const spriteFolders = getSpriteFolders(config.SVG_BASE);
 
     spriteFolders.forEach((spriteName) => {
-        var spriteGlob = path.resolve(`${config.SVG_BASE}/${spriteName}/*.svg`);
+        let spriteGlob = path.resolve(`${config.SVG_BASE}/${spriteName}/*.svg`);
         spriteGlob = path.relative(process.cwd(), spriteGlob);
         sprites.push({ name: spriteName, glob: spriteGlob });
     });
