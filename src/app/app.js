@@ -4,7 +4,6 @@
  */
 import 'svgxuse';
 import init from './init';
-// import factory from './factory';
 import { render, renderFactory } from './render';
 import configureStore from './store/configureStore';
 import cookieLaw from './components/cookie-law';

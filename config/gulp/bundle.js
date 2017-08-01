@@ -8,7 +8,7 @@ import { makeConfig } from '../webpack/make-config';
  * @description Perform Webpack build with the provided options.
  * @param {Object} options
  *  @prop {String} target Target configuration name.
- * @param {Function} done Gulp's done callback function.
+ * @param {Function} done Gulp's task callback function.
  */
 function bundle({ target }, done) {
     const targetConfig = makeConfig({ target });
@@ -32,4 +32,5 @@ function bundle({ target }, done) {
     });
 }
 
-gulp.task('bundle/app', [], done => bundle({ target: 'app' }, done));
+gulp.task('bundle/app', ['clean/app'], done => bundle({ target: 'app' }, done));
+gulp.task('bundle/vendor', ['clean/vendor'], done => bundle({ target: 'vendor' }, done));

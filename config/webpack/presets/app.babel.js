@@ -1,6 +1,7 @@
 import { resolve } from 'path';
 import environment from '../../environment';
-import { JS_ENTRY, JS_BUILD } from '../../../config';
+import { JS_ENTRY, JS_CLIENT_BUILD } from '../../../config';
+import webpackVendorConfig from '../presets';
 
 const CWD = process.cwd();
 const DEVELOPMENT = environment.is('development');
@@ -12,9 +13,9 @@ export default {
     /* Exclude external modules from bundling */
     externals: /^[^.]/,
     output: {
-        path: resolve(CWD, JS_BUILD),
+        path: resolve(CWD, JS_CLIENT_BUILD),
         pathinfo: DEVELOPMENT,
-        filename: DEVELOPMENT ? '[name].js' : '[name].[chunkhash].js'
+        filename: '[name].js'
     },
     cache: DEVELOPMENT
 };

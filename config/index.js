@@ -23,11 +23,11 @@ export const CSS_TPL_PATH = '/css';
 
 /* JavaScript */
 export const JS_BASE = `${DEVELOPMENT_BASE}/app`;
-export const JS_MAIN_FILENAME = 'app.js';
-export const JS_ENTRY = `${JS_BASE}/${JS_MAIN_FILENAME}`;
+export const JS_ENTRY = `${JS_BASE}/app.js`;
 export const JS_ALL = `${JS_BASE}/**/*.js`;
-export const JS_VENDOR_ALL = `${JS_BASE}/vendor/**/*.js`;
 export const JS_BUILD = `${BUILD_BASE}/js`;
+export const JS_CLIENT_BUILD = `${JS_BUILD}/client`;
+export const JS_VENDOR_BUILD = `${JS_BUILD}/vendor`;
 export const JS_TPL_PATH = '/js';
 
 /* GFX */
