@@ -39,7 +39,7 @@ module.exports = {
         ]
     },
     resolve: {
-        modules: ["node_modules"],
+        modules: ['node_modules']
     },
     plugins: [
         new webpack.NoEmitOnErrorsPlugin()
