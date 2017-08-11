@@ -27,11 +27,6 @@
     "Explorer >= 11"
   ],
   "devDependencies": {
-    "gulp-svgstore": "^5.0.5",
-    "gulp-tar": "^1.9.0",
-    "gulp-uglify": "^1.4.2",
-    "gulp-util": "^3.0.6",
-    "gulp-watch": "^4.3.11",
     "handlebars": "^4.0.6",
     "json-server": "^0.9.2",
     "kss": "^2.4.0",
@@ -93,6 +88,11 @@
     "gulp-sourcemaps": "^2.6.0",
     "gulp-stylelint": "^4.0.0",
     "gulp-svgmin": "^1.2.4",
+    "gulp-svgstore": "^6.1.0",
+    "gulp-tar": "^2.0.0",
+    "gulp-uglify": "^3.0.0",
+    "gulp-util": "^3.0.8",
+    "gulp-watch": "^4.3.11",
     "merge-stream": "^1.0.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
