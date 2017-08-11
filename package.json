@@ -27,7 +27,6 @@
     "Explorer >= 11"
   ],
   "devDependencies": {
-    "glob": "^5.0.15",
     "gulp": "^3.9.0",
     "gulp-cached": "^1.1.1",
     "gulp-eslint": "^3.0.1",
@@ -93,6 +92,7 @@
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-react": "^7.2.0",
     "fg-loadcss": "^1.2.0",
+    "glob": "^7.1.2",
     "merge-stream": "^1.0.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
