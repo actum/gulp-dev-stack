@@ -3,11 +3,11 @@
   "version": "2.0.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/actum/gulp-dev-stack"
+    "url": "https://github.com/actum/gulp-dev-stack/tree/webpack3"
   },
-  "description": "Gulp Development Stack",
+  "description": "Gulp Development Stack with Webpack 3 for Javascript",
   "engines": {
-    "node": ">=5"
+    "node": ">=8"
   },
   "scripts": {
     "lint": "gulp eslint stylelint",
@@ -17,8 +17,16 @@
     "prepush-msg",
     "lint"
   ],
+  "browserslist": [
+    "last 2 Chrome versions",
+    "last 2 Firefox versions",
+    "last 2 Safari versions",
+    "last 2 iOS versions",
+    "Android >= 4.4",
+    "Edge >= 12",
+    "Explorer >= 11"
+  ],
   "devDependencies": {
-    "autoprefixer": "^6.0.3",
     "babel-core": "^6.18.2",
     "babel-eslint": "^7.1.1",
     "babel-preset-latest": "^6.16.0",
@@ -81,6 +89,7 @@
     "yargs": "^6.3.0"
   },
   "dependencies": {
+    "autoprefixer": "^7.1.2",
     "babel-polyfill": "^6.9.1",
     "bootstrap": "^4.0.0-alpha.6",
     "fg-loadcss": "^1.2.0",
