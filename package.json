@@ -27,7 +27,6 @@
     "Explorer >= 11"
   ],
   "devDependencies": {
-    "envify": "^3.4.0",
     "eslint": "^3.18.0",
     "eslint-config-airbnb": "^14.1.0",
     "eslint-loader": "^1.6.3",
@@ -92,6 +91,7 @@
     "copy-paste": "^1.3.0",
     "cssnano": "^3.10.0",
     "del": "^3.0.0",
+    "envify": "^4.1.0",
     "fg-loadcss": "^1.2.0",
     "merge-stream": "^1.0.0",
     "react": "^15.6.1",
