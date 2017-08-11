@@ -100,7 +100,7 @@
     "redux": "^3.6.0",
     "styleguide": "actum/styleguide",
     "svgxuse": "^1.1.17",
-    "webpack": "^3.5.2",
+    "webpack": "^3.5.3",
     "webpack-stream": "^4.0.0"
   }
 }
