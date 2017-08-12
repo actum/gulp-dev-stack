@@ -29,11 +29,6 @@
   "devDependencies": {
     "handlebars": "^4.0.6",
     "kss": "^2.4.0",
-    "require-dir": "^0.3.0",
-    "run-sequence": "^1.1.4",
-    "stylelint": "^7.9.0",
-    "stylelint-config-standard": "^16.0.0",
-    "uglifyify": "^3.0.1",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.4.0",
@@ -97,8 +92,13 @@
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
+    "require-dir": "^0.3.2",
+    "run-sequence": "^2.1.0",
     "styleguide": "actum/styleguide",
+    "stylelint": "^8.0.0",
+    "stylelint-config-standard": "^17.0.0",
     "svgxuse": "^1.2.4",
+    "uglifyify": "^4.0.3",
     "webpack": "^3.5.3",
     "webpack-stream": "^4.0.0"
   }
