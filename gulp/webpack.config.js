@@ -5,18 +5,10 @@ const DEVELOPMENT = process.env.isDevelopment !== 'false';
 /* Modules */
 const path = require('path');
 const webpack = require('webpack');
-// const WriteFilePlugin = require('write-file-webpack-plugin');
-// const eslintConfig = require('eslint-config-actum').getConfig({
-//     environment: false
-// });
-// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
-//     .BundleAnalyzerPlugin;
 
 module.exports = {
-    watch: true,
     cache: true,
     devtool: '#cheap-module-eval-source-map',
-    // context: srcPath,
     entry: {
         app: config.JS_ENTRY
     },

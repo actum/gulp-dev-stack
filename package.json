@@ -34,7 +34,9 @@
     "autoprefixer": "^7.1.2",
     "babel-core": "^6.25.0",
     "babel-eslint": "^7.2.3",
+    "babel-loader": "^7.1.1",
     "babel-polyfill": "^6.23.0",
+    "babel-preset-env": "^1.6.0",
     "babel-preset-latest": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babelify": "^7.3.0",
@@ -62,6 +64,7 @@
     "gulp-gzip": "^1.4.0",
     "gulp-if": "^2.0.2",
     "gulp-imagemin": "^3.3.0",
+    "gulp-notify": "^3.0.0",
     "gulp-nunjucks": "^3.0.0",
     "gulp-plumber": "^1.1.0",
     "gulp-postcss": "^7.0.0",
@@ -99,6 +102,7 @@
     "watchify": "^3.9.0",
     "webpack": "^3.5.3",
     "webpack-stream": "^4.0.0",
+    "write-file-webpack-plugin": "^4.1.0",
     "yargs": "^8.0.2"
   }
 }
