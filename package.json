@@ -28,12 +28,7 @@
   ],
   "devDependencies": {
     "handlebars": "^4.0.6",
-    "kss": "^2.4.0",
-    "vinyl-buffer": "^1.0.0",
-    "vinyl-source-stream": "^1.1.0",
-    "watchify": "^3.4.0",
-    "write": "^0.3.2",
-    "yargs": "^6.3.0"
+    "kss": "^2.4.0"
   },
   "dependencies": {
     "autoprefixer": "^7.1.2",
@@ -99,7 +94,11 @@
     "stylelint-config-standard": "^17.0.0",
     "svgxuse": "^1.2.4",
     "uglifyify": "^4.0.3",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.9.0",
     "webpack": "^3.5.3",
-    "webpack-stream": "^4.0.0"
+    "webpack-stream": "^4.0.0",
+    "yargs": "^8.0.2"
   }
 }
