@@ -10,4 +10,3 @@ requireDir('./gulp/tasks');
 /* API */
 gulp.task('default', ['serve']);
 gulp.task('build', ['prepare']);
-gulp.task('css', ['less']);
