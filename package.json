@@ -26,14 +26,13 @@
     "Edge >= 12",
     "Explorer >= 11"
   ],
-  "devDependencies": {
-    "kss": "^2.4.0"
-  },
   "dependencies": {
     "autoprefixer": "^7.1.2",
     "babel-core": "^6.25.0",
     "babel-eslint": "^7.2.3",
     "babel-loader": "^7.1.1",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-plugin-transform-react-remove-prop-types": "^0.4.8",
     "babel-polyfill": "^6.23.0",
     "babel-preset-env": "^1.6.0",
     "babel-preset-latest": "^6.24.1",
@@ -81,7 +80,6 @@
     "gulp-uglify": "^3.0.0",
     "gulp-util": "^3.0.8",
     "gulp-watch": "^4.3.11",
-    "handlebars": "^4.0.10",
     "json-server": "^0.12.0",
     "merge-stream": "^1.0.1",
     "postcss-flexbugs-fixes": "^3.2.0",
@@ -102,7 +100,6 @@
     "watchify": "^3.9.0",
     "webpack": "^3.5.3",
     "webpack-stream": "^4.0.0",
-    "write-file-webpack-plugin": "^4.1.0",
     "yargs": "^8.0.2"
   }
 }

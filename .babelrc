@@ -1,6 +1,17 @@
 {
-    "presets": [
-        "react",
-        "latest"
-    ]
+    "env": {
+        "production": {
+            "presets": ["flow", "react", "latest"],
+            "plugins": [
+                "transform-react-remove-prop-types",
+                "transform-object-rest-spread"
+            ]
+        },
+        "development": {
+            "presets": ["flow", "react", "latest"],
+            "plugins": [
+                "transform-object-rest-spread"
+            ]
+        }
+    }
 }

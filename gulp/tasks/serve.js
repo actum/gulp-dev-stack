@@ -32,7 +32,7 @@ gulp.task('serve', ['prepare'], () => {
 
     if (DEVELOPMENT) {
         watch(config.CSS_ALL, ['styles', 'styleguide', 'copySgAssets']);
-        watch(config.JS_ALL, ['eslint:app']);
+        watch(config.JS_ALL, ['js']);
         watch(config.IMAGES_ALL, ['images', 'tpl']);
         watch(config.SVG_SPRITE_ALL, ['svg', 'tpl']);
         watch(config.TEMPLATE_ALL, ['tpl']);

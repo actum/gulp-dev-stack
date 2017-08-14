@@ -29,6 +29,7 @@ const
     JS_VENDOR_ALL = `${JS_BASE}/vendor/**/*.js`,
     JS_BUILD = `${BUILD_BASE}/js`,
     JS_TPL_PATH = '/js',
+    JS_WEBPACK_PUBLIC_PATH = '/js',
 
     /* GFX */
     GFX_BASE = `${DEVELOPMENT_BASE}/gfx`,
@@ -110,6 +111,7 @@ module.exports = {
     JS_VENDOR_ALL,
     JS_BUILD,
     JS_TPL_PATH,
+    JS_WEBPACK_PUBLIC_PATH,
 
     GFX_BASE,
     GFX_BUILD,
