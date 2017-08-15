@@ -55,10 +55,13 @@
     <script>
         var config = {};
     </script>
+
     {% if _dev %}
-        <script src="{{ _jsPath }}/app.js" async></script>
+    <script src="{{ _jsPath }}/vendor.js" async></script>
+    <script src="{{ _jsPath }}/app.js" async></script>
     {% else %}
-        <script src="{{ _jsPath }}/app.min.js" async></script>
+    <script src="{{ _jsPath }}/vendor.min.js" async></script>
+    <script src="{{ _jsPath }}/app.min.js" async></script>
     {% endif %}
 </body>
 </html>
