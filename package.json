@@ -5,7 +5,7 @@
     "type": "git",
     "url": "https://github.com/actum/gulp-dev-stack/tree/webpack3"
   },
-  "description": "Gulp Development Stack with Webpack 3 for Javascript",
+  "description": "Actum Gulp Development Stack",
   "engines": {
     "node": ">=8"
   },
