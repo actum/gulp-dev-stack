@@ -11,7 +11,9 @@
   },
   "scripts": {
     "lint": "gulp eslint stylelint",
-    "prepush-msg": "echo 'Running lint task...' && exit 0"
+    "prepush-msg": "echo 'Running lint task...' && exit 0",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "pre-push": [
     "prepush-msg",
@@ -90,6 +92,8 @@
     "react-redux": "^4.4.6",
     "redux": "^3.6.0",
     "styleguide": "actum/styleguide",
-    "svgxuse": "^1.1.17"
-  }
+    "svgxuse": "^1.1.17",
+    "snyk": "^1.38.2"
+  },
+  "snyk": true
 }
