@@ -1,0 +1,14 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.7.1
+ignore: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  'npm:handlebars:20151207':
+    - styleguide > kss > handlebars:
+        patched: '2017-08-16T03:02:10.583Z'
+  'npm:marked:20170112':
+    - styleguide > kss > marked:
+        patched: '2017-08-16T03:02:10.583Z'
+  'npm:uglify-js:20151024':
+    - styleguide > kss > handlebars > uglify-js:
+        patched: '2017-08-16T03:02:10.583Z'
