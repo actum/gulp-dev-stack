@@ -26,7 +26,7 @@ function bundle() {
     const bundler = DEVELOPMENT ? watchify(browserify(Object.assign({}, watchify.args, opts))) : browserify(opts);
     const rebundle = () => {
         return bundler.bundle()
-            .on('error', e => gutil.log(gutil.colors.red(e.name) + e.message.substr(e.message.indexOf(': ') + 1)))
+            .on('error', e => gutil.log(`${gutil.colors.red(`${e.name}:`)} ${e.message}`))
             .pipe(source(config.JS_MAIN_FILENAME))
             .pipe(buffer())
             .pipe(gulpif(DEVELOPMENT, sourcemaps.init({ loadMaps: true })))
