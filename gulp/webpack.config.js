@@ -16,24 +16,24 @@ const pluginsCollection = {
                 NODE_ENV: JSON.stringify(process.env.NODE_ENV)
             }
         }),
-        new webpack.optimize.ModuleConcatenationPlugin()
+        new webpack.optimize.ModuleConcatenationPlugin(),
+        new BundleAnalyzerPlugin() // information about javascript files
     ],
     development: [
         new webpack.optimize.LimitChunkCountPlugin({
-            maxChunks: 1
+            maxChunks: 3
         }),
         new webpack.optimize.CommonsChunkPlugin({
             name: 'vendor',
             filename: '[name].js',
-            minChunks: 0
+            minChunks: 2
         }),
-        new webpack.NoEmitOnErrorsPlugin(),
-        new BundleAnalyzerPlugin()
+        new webpack.NoEmitOnErrorsPlugin()
     ],
     production: [
         new webpack.optimize.UglifyJsPlugin(),
         new webpack.optimize.LimitChunkCountPlugin({
-            maxChunks: 5
+            maxChunks: 3
         }),
         new webpack.optimize.CommonsChunkPlugin({
             name: 'vendor',
