@@ -11,6 +11,7 @@ const browserSync = require('browser-sync');
 const nunj = require('nunjucks');
 const nunjucks = require('gulp-nunjucks');
 const prettify = require('gulp-prettify');
+const notify = require('gulp-notify');
 
 const Environment = nunj.Environment;
 const FileSystemLoader = nunj.FileSystemLoader;
@@ -48,7 +49,8 @@ gulp.task('tpl-compile', () => {
         .pipe(nunjucks.compile(data, { env }))
         .pipe(rename(path => path.extname = '.html'))
         .pipe(gulpif(PRODUCTION, prettify()))
-        .pipe(gulp.dest(config.BUILD_BASE));
+        .pipe(gulp.dest(config.BUILD_BASE))
+        .pipe(gulpif(DEVELOPMENT, notify({ message: 'Templates are ready!', onLast: true })));
 });
 
 gulp.task('tpl', ['tpl-compile'], (done) => {
