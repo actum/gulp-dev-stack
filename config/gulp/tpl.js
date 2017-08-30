@@ -13,7 +13,7 @@ import {
     BUILD_BASE,
     CSS_TPL_PATH,
     GFX_TPL_PATH,
-    JS_TPL_PATH,
+    CLIENT,
     SVG_BUILD,
     SVG_TPL_PATH,
     SVG_SPRITES_TPL_PATH,
@@ -46,7 +46,7 @@ gulp.task('tpl', () => {
         new FileSystemLoader(searchPaths, options)
     );
     env.addGlobal('_cssPath', CSS_TPL_PATH);
-    env.addGlobal('_jsPath', JS_TPL_PATH);
+    env.addGlobal('_jsPath', CLIENT.TEMPLATE_DIR);
     env.addGlobal('_gfxPath', GFX_TPL_PATH);
     env.addGlobal('_svgPath', SVG_TPL_PATH);
     env.addGlobal('_svgSpritesPath', SVG_SPRITES_TPL_PATH);

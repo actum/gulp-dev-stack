@@ -1,21 +1,40 @@
-import { resolve } from 'path';
+import webpack from 'webpack';
+import { resolvers, processors } from '../parts';
+import { merge, absolutePath } from '../utils';
 import environment from '../../environment';
-import { JS_ENTRY, JS_CLIENT_BUILD } from '../../../config';
-import webpackVendorConfig from '../presets';
+import { CLIENT, VENDOR } from '../../../config';
 
-const CWD = process.cwd();
+// TODO Check proper environment propagation
 const DEVELOPMENT = environment.is('development');
+const PRODUCTION = !DEVELOPMENT;
 
-export default {
-    entry: {
-        app: ['babel-polyfill', JS_ENTRY]
+export default merge([
+    {
+        entry: {
+            app: ['babel-polyfill', CLIENT.ENTRY]
+        },
+        output: {
+            filename: '[name].js',
+            path: absolutePath(CLIENT.BUILD_DIR),
+            pathinfo: DEVELOPMENT
+        },
+        plugins: [
+            new webpack.DllReferencePlugin({
+                context: process.cwd(),
+                manifest: absolutePath(VENDOR.MANIFEST_FILEPATH)
+            })
+        ],
+        devtool: DEVELOPMENT ? 'source-map' : 'cheap-module-inline-source-map',
+        cache: DEVELOPMENT,
+        bail: PRODUCTION,
+        profile: DEVELOPMENT
     },
-    /* Exclude external modules from bundling */
-    externals: /^[^.]/,
-    output: {
-        path: resolve(CWD, JS_CLIENT_BUILD),
-        pathinfo: DEVELOPMENT,
-        filename: '[name].js'
-    },
-    cache: DEVELOPMENT
-};
+
+    /* Include custom resolvers */
+    resolvers(),
+
+    /* Compile JavaScript */
+    processors.js({
+        include: CLIENT.SRC_DIR
+    })
+]);

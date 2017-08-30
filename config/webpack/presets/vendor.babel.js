@@ -1,36 +1,30 @@
 import { resolve } from 'path';
 import webpack from 'webpack';
-import { JS_VENDOR_BUILD } from '../../../config';
+import { absolutePath } from '../utils';
+import { VENDOR } from '../../../config';
+import packageJson from '../../../package.json';
+
+console.log('packageJson', Object.keys(packageJson.dependencies));
 
 export default {
     entry: {
-        vendor: [
-            'react',
-            'react-dom',
-            'redux',
-            'react-redux'
-        ]
+        vendor: Object.keys(packageJson.dependencies)
     },
     output: {
         filename: '[name].js',
-        path: resolve(process.cwd(), JS_VENDOR_BUILD),
+        path: absolutePath(VENDOR.BUILD_DIR),
         library: '[name]'
     },
     plugins: [
         new webpack.DllPlugin({
-            path: `${JS_VENDOR_BUILD}/[name]-manifest.json`,
-            name: '[name]'
+            name: '[name]',
+            path: VENDOR.MANIFEST_FILEPATH
         }),
         new webpack.optimize.UglifyJsPlugin({
-            sourceMap: false,
-            mangle: false,
             comments: false,
-            screw_ie8: true,
-            compress: {
-                drop_console: true,
-                unsafe: true,
-                unsafe_comps: true,
-                warnings: false
+            sourceMap: false,
+            mangle: {
+                except: ['require', 'exports']
             }
         })
     ]

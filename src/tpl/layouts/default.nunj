@@ -56,9 +56,9 @@
         var config = {};
     </script>
     {% if _dev %}
-        <script src="{{ _jsPath }}/app.js" async></script>
+        <script src="{{ _jsPath }}/client/app.js" async></script>
     {% else %}
-        <script src="{{ _jsPath }}/app.min.js" async></script>
+        <script src="{{ _jsPath }}/client/app.min.js" async></script>
     {% endif %}
 </body>
 </html>

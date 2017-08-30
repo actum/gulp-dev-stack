@@ -15,20 +15,36 @@ export const BUILD_BASE = './dist';
 export const GULP_ALL = ['./gulpfile.js', './gulp/**/*.js'];
 
 /* CSS */
+export const CSS = {};
+CSS.BASE_DIR = `${DEVELOPMENT_BASE}/styles`;
+CSS.ENTRY = `${CSS.BASE_DIR }/main.scss`;
+CSS.BUILD_DIR = `${BUILD_BASE}/css`;
+
 export const CSS_BASE = `${DEVELOPMENT_BASE}/styles`;
 export const CSS_ENTRY = `${CSS_BASE}/main.scss`;
 export const CSS_ALL = `${CSS_BASE}/**/*.scss`;
 export const CSS_BUILD = `${BUILD_BASE}/css`;
 export const CSS_TPL_PATH = '/css';
 
-/* JavaScript */
-export const JS_BASE = `${DEVELOPMENT_BASE}/app`;
-export const JS_ENTRY = `${JS_BASE}/app.js`;
-export const JS_ALL = `${JS_BASE}/**/*.js`;
-export const JS_BUILD = `${BUILD_BASE}/js`;
-export const JS_CLIENT_BUILD = `${JS_BUILD}/client`;
-export const JS_VENDOR_BUILD = `${JS_BUILD}/vendor`;
-export const JS_TPL_PATH = '/js';
+/* Client application */
+export const CLIENT = {};
+CLIENT.SRC_DIR = `${DEVELOPMENT_BASE}/app`;
+CLIENT.ENTRY = `${CLIENT.SRC_DIR}/app.js`;
+CLIENT.BUILD_BASE_DIR = `${BUILD_BASE}/js`;
+CLIENT.BUILD_DIR = `${CLIENT.BUILD_BASE_DIR}/client`;
+CLIENT.TEMPLATE_DIR = '/js';
+
+// export const JS_BASE = `${DEVELOPMENT_BASE}/app`;
+// export const JS_ENTRY = `${JS_BASE}/app.js`;
+// export const JS_ALL = `${JS_BASE}/**/*.js`;
+// export const JS_BUILD = `${BUILD_BASE}/js`;
+// export const JS_CLIENT_BUILD = `${JS_BUILD}/client`;
+// export const JS_VENDOR_BUILD = `${JS_BUILD}/vendor`;
+
+/* Vendor bundle */
+export const VENDOR = {};
+VENDOR.BUILD_DIR = `${CLIENT.BUILD_BASE_DIR}/vendor`;
+VENDOR.MANIFEST_FILEPATH = `${VENDOR.BUILD_DIR}/vendor-manifest.json`;
 
 /* GFX */
 export const GFX_BASE = `${DEVELOPMENT_BASE}/gfx`;

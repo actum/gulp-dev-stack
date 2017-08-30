@@ -1,54 +1,20 @@
-import webpack from 'webpack';
-import HappyPack from 'happypack';
-import environment from '../../environment';
+/**
+ * Default webpack configuration.
+ */
+import { merge } from '../utils';
 
-const PRODUCTION = environment.is('production');
+export default merge([
+    {
+        entry: '',
+        output: {
+            path: '',
+            filename: ''
+        }
+    },
 
-export default {
-    entry: '',
-    output: {
-        path: '',
-        filename: ''
-    },
-    plugins: [
-        new webpack.DefinePlugin({
-            'process.env': {
-                NODE_ENV: JSON.stringify(process.env.NODE_ENV)
-            }
-        }),
-        new HappyPack({
-            id: 'js',
-            threads: 6,
-            verbose: false,
-            loaders: [
-                {
-                    loader: 'babel-loader',
-                    options: {
-                        cacheDirectory: true
-                    }
-                },
-                {
-                    loader: 'eslint-loader',
-                    enforce: 'pre',
-                    options: {
-                        failOnError: PRODUCTION,
-                        cache: false
-                    }
-                }
-            ]
-        })
-    ],
-    module: {
-        rules: [
-            {
-                test: /\.jsx?$/,
-                exclude: /node_modules/,
-                use: 'happypack/loader?id=js'
-            }
-        ]
-    },
-    devtool: 'source-map',
-    resolve: {
-        extensions: ['/index.js', '.js']
-    }
-};
+    /**
+     * Include custom resolvers for ESLint webpack-import-resolver.
+     * This will allow ESLint to understand the aliases you provide in webpack.
+     */
+    resolvers()
+]);
