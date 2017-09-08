@@ -1,7 +1,7 @@
 module.exports = {
     parser: 'babel-eslint',
-    extends: ['airbnb', 'plugin:flowtype/recommended'],
-    plugins: ['flowtype', 'fp'],
+    extends: ['airbnb'],
+    plugins: ['fp'],
     env: {
         browser: true
     },
@@ -18,7 +18,7 @@ module.exports = {
         'import/no-extraneous-dependencies': 0,
         'import/no-named-as-default': 0,
         'import/prefer-default-export': 0, // No. Actions can have just one action.
-        indent: [1, 4, { SwitchCase: 1 }],
+        'indent': [1, 4, { SwitchCase: 1 }],
         'jsx-a11y/html-has-lang': 0, // Can't recognize the Helmet.
         'max-len': 0,
         'no-alert': 2,
@@ -42,6 +42,6 @@ module.exports = {
         'react/prop-types': 0, // Can't detect flowtype correctly.
         // 'sort-keys': 2,
         'space-before-function-paren': 0,
-        strict: 0
+        'strict': 0
     },
 };

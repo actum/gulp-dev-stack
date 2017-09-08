@@ -4,7 +4,7 @@ const requireDir = require('require-dir');
 const config = require('./config');
 const environment = require('./config/environment');
 
-/* Define current environment */
+/* Determine current environment */
 environment.checkNodeVersion();
 environment.define();
 

@@ -5,6 +5,7 @@
 import { resolve } from 'path';
 import HappyPack from 'happypack';
 
+/* Shorthands */
 const CWD = process.cwd();
 const PRODUCTION = (process.env.NODE_ENV === 'production');
 
@@ -18,10 +19,11 @@ function handleInclude(relativePath) {
 /**
  * Custom resolvers.
  */
-export const resolvers = () => ({
+export const resolvers = (customResolvers) => ({
   resolve: {
     alias: {},
-    extensions: ['./index.jsx', '.jsx', '.js']
+    extensions: ['./index.jsx', '.jsx', '.js'],
+    ...customResolvers
   }
 });
 
@@ -51,8 +53,7 @@ export const processors = {
             options: {
               /**
                * Make sure you disable eslint cache.
-               * Caching eslint results may lead to million of errors
-               * after the cache expires.
+               * Caching eslint results may lead to million of errors after the cache expires.
                */
               cache: false,
               failOnError: PRODUCTION

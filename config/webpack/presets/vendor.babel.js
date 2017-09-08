@@ -1,6 +1,6 @@
 import { resolve } from 'path';
 import webpack from 'webpack';
-import { absolutePath } from '../utils';
+import { absolutePath } from '../webpack.utils';
 import { VENDOR } from '../../../config';
 import packageJson from '../../../package.json';
 

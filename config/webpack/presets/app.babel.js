@@ -1,6 +1,6 @@
 import webpack from 'webpack';
-import { resolvers, processors } from '../parts';
-import { merge, absolutePath } from '../utils';
+import { resolvers, processors } from '../webpack.parts';
+import { mergeParts, absolutePath } from '../webpack.utils';
 import environment from '../../environment';
 import { CLIENT, VENDOR } from '../../../config';
 
@@ -8,7 +8,7 @@ import { CLIENT, VENDOR } from '../../../config';
 const DEVELOPMENT = environment.is('development');
 const PRODUCTION = !DEVELOPMENT;
 
-export default merge([
+export default mergeParts([
     {
         entry: {
             app: ['babel-polyfill', CLIENT.ENTRY]

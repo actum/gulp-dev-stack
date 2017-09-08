@@ -1,13 +1,13 @@
 import gulp from 'gulp';
-const gutil = require('gulp-util');
+import gutil from 'gulp-util';
 import enableDestroy from 'server-destroy';
 import jsonServer from 'json-server';
 import { API_PORT } from '../../config';
 
-var server;
+let server;
 
-function requireUncached(module){
-    delete require.cache[require.resolve(module)]
+function requireUncached(module) {
+    delete require.cache[require.resolve(module)];
     return require(module)
 }
 
@@ -16,8 +16,10 @@ function start(cb) {
     const app = jsonServer.create();
     const router = jsonServer.router(api());
     const middleware = jsonServer.defaults();
+
     app.use(middleware);
     app.use(router);
+
     server = app.listen(API_PORT, () => {
         gutil.log(
             gutil.colors.green(`JSON Server is running…`),

@@ -1,7 +1,7 @@
 import gulp from 'gulp';
 import gutil from 'gulp-util';
 import webpack from 'webpack';
-import { getConfig } from '../webpack/utils';
+import { getConfig } from '../webpack/webpack.utils';
 
 /**
  * Bundle.
@@ -35,5 +35,6 @@ function bundle({ config: name }, done) {
     });
 }
 
-gulp.task('app/bundle', ['clean/app'], done => bundle({ config: 'app' }, done));
-gulp.task('vendor/bundle', ['clean/vendor'], done => bundle({ config: 'vendor' }, done));
+/* Bundle tasks */
+gulp.task('app:bundle', ['clean:app'], done => bundle({ config: 'app' }, done));
+gulp.task('vendor:bundle', ['clean:vendor'], done => bundle({ config: 'vendor' }, done));

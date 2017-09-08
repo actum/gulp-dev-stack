@@ -26,9 +26,9 @@ export const getConfig = ({ name }) => {
 
 /**
  * Merge parts of webpack configuration into a single configuration.
- * @param {Array<webpackConfig>} parts
+ * @param {Array<webpackConfig>} webpackParts
  */
-export const merge = (...webpackParts) => {
+export const mergeParts = (...webpackParts) => {
     return webpackMerge.smartStrategy({
         plugins: 'prepend',
         module: {

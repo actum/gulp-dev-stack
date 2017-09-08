@@ -1,9 +1,9 @@
 /**
  * Default webpack configuration.
  */
-import { merge } from '../utils';
+import { mergeParts } from '../webpack.utils';
 
-export default merge([
+export default mergeParts([
     {
         entry: '',
         output: {

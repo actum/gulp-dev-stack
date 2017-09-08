@@ -1,9 +1,10 @@
 {
     "presets": [
-        "react",
-        "latest"
+        "latest",
+        "react"
     ],
     "plugins": [
-        "transform-export-extensions"
+        "transform-export-extensions",
+        "transform-object-rest-spread"
     ]
 }
