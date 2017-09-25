@@ -4,8 +4,6 @@ import { absolutePath } from '../webpack.utils';
 import { VENDOR } from '../../../config';
 import packageJson from '../../../package.json';
 
-console.log('packageJson', Object.keys(packageJson.dependencies));
-
 export default {
     entry: {
         vendor: Object.keys(packageJson.dependencies)

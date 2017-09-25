@@ -1,17 +1,17 @@
 import gulp from 'gulp';
 import gutil from 'gulp-util';
 import webpack from 'webpack';
-import { getConfig } from '../webpack/webpack.utils';
+import webpackAppConfig from '../webpack/presets/app.babel';
+import webpackVendorConfig from '../webpack/presets/vendor.babel';
 
 /**
  * Bundle.
  * @description Perform Webpack build with the provided options.
- * @param {Object} options
- *  @prop {String} config Target configuration name.
+ * @param {Object} config webpack configuration Object.
  * @param {Function} done Gulp's task callback function.
  */
-function bundle({ config: name }, done) {
-    webpack(getConfig({ name }), (fatalError, stats) => {
+function bundle(config, done) {
+    webpack(config, (fatalError, stats) => {
         if (fatalError) {
             throw new gutil.PluginError('webpack', fatalError);
         }
@@ -36,5 +36,5 @@ function bundle({ config: name }, done) {
 }
 
 /* Bundle tasks */
-gulp.task('app:bundle', ['clean:app'], done => bundle({ config: 'app' }, done));
-gulp.task('vendor:bundle', ['clean:vendor'], done => bundle({ config: 'vendor' }, done));
+gulp.task('app:bundle', ['clean:app'], done => bundle(webpackAppConfig, done));
+gulp.task('vendor:bundle', ['clean:vendor'], done => bundle(webpackVendorConfig, done));

@@ -5,6 +5,13 @@ module.exports = {
     env: {
         browser: true
     },
+    settings: {
+        'import/resolver': {
+            webpack: {
+                config: 'config/webpack/presets/eslint.babel.js'
+            }
+        }
+    },
     rules: {
         'arrow-body-style': 0,
         'arrow-parens': 0, // Does not work with Flow generic types.

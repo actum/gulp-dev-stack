@@ -12,7 +12,6 @@ import {
     STYLEGUIDE_BASE,
     BUILD_BASE,
     CSS_ALL,
-    JS_ALL,
     IMAGES_ALL,
     SVG_SPRITE_ALL,
     TEMPLATE_ALL,
@@ -46,7 +45,6 @@ gulp.task('serve', ['prepare'], () => {
 
     if (DEVELOPMENT) {
         watch(CSS_ALL, ['styles', 'styleguide', 'copySgAssets']);
-        watch(JS_ALL, ['eslint:app']);
         watch(IMAGES_ALL, ['images', 'tpl']);
         watch(SVG_SPRITE_ALL, ['svg', 'tpl']);
         watch(TEMPLATE_ALL, ['tpl']);

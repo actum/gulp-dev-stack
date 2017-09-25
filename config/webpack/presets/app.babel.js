@@ -4,6 +4,8 @@ import { mergeParts, absolutePath } from '../webpack.utils';
 import environment from '../../environment';
 import { CLIENT, VENDOR } from '../../../config';
 
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
+
 // TODO Check proper environment propagation
 const DEVELOPMENT = environment.is('development');
 const PRODUCTION = !DEVELOPMENT;
@@ -22,19 +24,21 @@ export default mergeParts([
             new webpack.DllReferencePlugin({
                 context: process.cwd(),
                 manifest: absolutePath(VENDOR.MANIFEST_FILEPATH)
-            })
+            }),
+
+            new BundleAnalyzerPlugin() // TODO Remove
         ],
         devtool: DEVELOPMENT ? 'source-map' : 'cheap-module-inline-source-map',
-        cache: DEVELOPMENT,
+        cache: true,
         bail: PRODUCTION,
         profile: DEVELOPMENT
     },
 
-    /* Include custom resolvers */
-    resolvers(),
-
     /* Compile JavaScript */
     processors.js({
-        include: CLIENT.SRC_DIR
-    })
+        include: [CLIENT.SRC_DIR]
+    }),
+
+    /* Include custom resolvers */
+    resolvers()
 ]);

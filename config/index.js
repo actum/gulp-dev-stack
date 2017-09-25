@@ -34,13 +34,6 @@ CLIENT.BUILD_BASE_DIR = `${BUILD_BASE}/js`;
 CLIENT.BUILD_DIR = `${CLIENT.BUILD_BASE_DIR}/client`;
 CLIENT.TEMPLATE_DIR = '/js';
 
-// export const JS_BASE = `${DEVELOPMENT_BASE}/app`;
-// export const JS_ENTRY = `${JS_BASE}/app.js`;
-// export const JS_ALL = `${JS_BASE}/**/*.js`;
-// export const JS_BUILD = `${BUILD_BASE}/js`;
-// export const JS_CLIENT_BUILD = `${JS_BUILD}/client`;
-// export const JS_VENDOR_BUILD = `${JS_BUILD}/vendor`;
-
 /* Vendor bundle */
 export const VENDOR = {};
 VENDOR.BUILD_DIR = `${CLIENT.BUILD_BASE_DIR}/vendor`;

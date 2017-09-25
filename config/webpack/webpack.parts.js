@@ -10,13 +10,6 @@ const CWD = process.cwd();
 const PRODUCTION = (process.env.NODE_ENV === 'production');
 
 /**
- * Handle include.
- */
-function handleInclude(relativePath) {
-  return relativePath && [].concat(relativePath).map(path => resolve(CWD, path));
-}
-
-/**
  * Custom resolvers.
  */
 export const resolvers = (customResolvers) => ({
@@ -67,7 +60,7 @@ export const processors = {
         {
           test: /.jsx?$/i,
           exclude,
-          include: handleInclude(include),
+          include,
           loader: 'happypack/loader?id=js'
         }
       ]
