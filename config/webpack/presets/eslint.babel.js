@@ -2,6 +2,7 @@
  * Default webpack configuration.
  */
 import { mergeParts } from '../webpack.utils';
+import { resolvers } from '../webpack.parts';
 
 export default mergeParts([
     {
@@ -13,7 +14,7 @@ export default mergeParts([
     },
 
     /**
-     * Include custom resolvers for ESLint webpack-import-resolver.
+     * Include common resolvers for ESLint's webpack-import-resolver.
      * This will allow ESLint to understand the aliases you provide in webpack.
      */
     resolvers()
