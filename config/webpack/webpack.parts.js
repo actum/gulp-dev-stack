@@ -22,16 +22,16 @@ export const resolvers = (customResolvers) => ({
 
 /**
  * Custom processors.
+ * @summary Processor is an independant unit of webpack configuration responsible
+ * for processing one dedicated format of files.
  */
 export const processors = {
-  /**
-   * Compile JavaScript.
-   */
-  js: ({ include, exclude = /node_modules/ }) => ({
+  /* JavaScript */
+  js: ({ id = 'js', include, exclude = /node_modules/ }) => ({
     plugins: [
       new HappyPack({
-        id: 'js',
-        threads: 6,
+        id,
+        threads: 4,
         verbose: false,
         loaders: [
           {

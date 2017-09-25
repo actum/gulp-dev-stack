@@ -1,0 +1,16 @@
+{
+  "presets": [
+    ["env", {
+      "loose": true,
+      "modules": false,
+      "targets": {
+        "browsers": "last 2 versions"
+      }
+    }],
+    "react"
+  ],
+  "plugins": [
+    "transform-export-extensions",
+    "transform-object-rest-spread"
+  ]
+}

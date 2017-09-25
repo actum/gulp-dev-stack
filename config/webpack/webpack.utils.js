@@ -3,25 +3,9 @@ import webpackMerge from 'webpack-merge';
 
 const CWD = process.cwd();
 
-/**
- * Shorthand: Absolute path
- */
+/* Shorthand: Absolute path */
 export const absolutePath = (...relativePaths) => {
     return resolve(CWD, ...relativePaths);
-};
-
-/**
- * Get configuration filepath.
- */
-export const getConfig = ({ name }) => {
-    /* Get target configuration dynamically */
-    const targetConfig = require(`./presets/${name}.babel`);
-
-    if (targetConfig) {
-        return targetConfig.default;
-    } else {
-        throw new Error(`Cannot make webpack configuration for target "${name}". No target configuration found.`);
-    }
 };
 
 /**

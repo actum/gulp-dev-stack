@@ -1,8 +1,5 @@
 {
-    "presets": [
-        "latest",
-        "react"
-    ],
+    "presets": ["env"],
     "plugins": [
         "transform-export-extensions",
         "transform-object-rest-spread"
