@@ -1,6 +1,9 @@
+import { argv } from 'yargs';
 import webpack from 'webpack';
 import BabelMinifyPlugin from 'babel-minify-webpack-plugin';
 import OptimizeJsPlugin from 'optimize-js-plugin';
+import CompressionPlugin from 'compression-webpack-plugin';
+
 import { processors, resolvers } from '../webpack.parts';
 import { mergeParts, absolutePath } from '../webpack.utils';
 import environment from '../../environment';
@@ -37,6 +40,13 @@ if (PRODUCTION) {
         new OptimizeJsPlugin(),
 
         /**
+         * (Optional) Gzip compression.
+         * Provide "--gzip" CLI flag to compress the bundle during the production build.
+         * NOTE: Make sure back-end handles Gzip encoding beforehand.
+         */
+        argv.gzip && new CompressionPlugin(),
+
+        /**
          * Prevent from emitting files to disk when build failed.
          * NOTE: You may want to comment this out for debugging purposes.
          * For example, to investigate a stack trace within the built bundle.
@@ -55,7 +65,7 @@ export default mergeParts(
             path: absolutePath(CLIENT.BUILD_DIR),
             pathinfo: DEVELOPMENT
         },
-        plugins,
+        plugins: plugins.filter(Boolean),
         devtool: DEVELOPMENT && 'source-map',
         cache: true,
         bail: PRODUCTION,
