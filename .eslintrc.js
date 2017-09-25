@@ -41,6 +41,7 @@ module.exports = {
         'no-unused-vars': 0,
         'no-use-before-define': ['error', { functions: false }],
         'padded-blocks': 0,
+        'react/forbid-foreign-prop-types': 2, // Ensure propTypes can be stripped on production
         'react/forbid-prop-types': 0, // Este is going to use Flow types.
         'react/jsx-filename-extension': 0, // No, JSX belongs to .js files
         'react/jsx-indent': 0, // Damn. We need Yarn asap.

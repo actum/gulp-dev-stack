@@ -59,7 +59,12 @@ export default mergeParts(
         devtool: DEVELOPMENT && 'source-map',
         cache: true,
         bail: PRODUCTION,
-        profile: DEVELOPMENT
+        profile: DEVELOPMENT,
+        node: {
+            fs: 'empty',
+            net: 'empty',
+            tls: 'empty'
+        }
     },
 
     /* Compile JavaScript */
