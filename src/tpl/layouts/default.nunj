@@ -52,13 +52,12 @@
     </main>
 
     {# Scripts #}
-    <script>
-        var config = {};
-    </script>
-    {% if _dev %}
-        <script src="{{ _jsPath }}/client/app.js" async></script>
-    {% else %}
-        <script src="{{ _jsPath }}/client/app.min.js" async></script>
-    {% endif %}
+    <section id="scripts">
+        <script>
+            var config = {};
+        </script>
+        <script src="{{ _jsPath }}/vendor/vendor.js"></script>
+        <script src="{{ _jsPath }}/client/app.js" defer></script>
+    </section>
 </body>
 </html>
