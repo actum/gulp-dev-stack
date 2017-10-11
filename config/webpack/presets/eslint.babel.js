@@ -15,7 +15,8 @@ export default mergeParts([
 
     /**
      * Include common resolvers for ESLint's webpack-import-resolver.
-     * This will allow ESLint to understand the aliases you provide in webpack.
+     * This allows you to use webpack resolve aliases without eslint
+     * screaming at you.
      */
     resolvers()
 ]);
