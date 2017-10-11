@@ -10,10 +10,6 @@ import cookieLaw from './components/cookie-law';
 import Timer from './components/Timer';
 import PlusOne from './components/plus-one/PlusOne';
 
-import { testOne } from './_test';
-
-console.log(testOne);
-
 const app = (config) => {
     init(cookieLaw, document.getElementById('cookie-law'));
 
