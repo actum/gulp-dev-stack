@@ -3,7 +3,6 @@
  * @description Small reusable parts of webpack configuration.
  */
 import { resolve } from 'path';
-import HappyPack from 'happypack';
 
 /* Shorthands */
 const CWD = process.cwd();
@@ -27,43 +26,34 @@ export const resolvers = (customResolvers) => ({
  */
 export const processors = {
   /* JavaScript */
-  js: ({ id = 'js', include, exclude = /node_modules/ }) => ({
-    plugins: [
-      new HappyPack({
-        id,
-        threads: 4,
-        verbose: false,
-        loaders: [
-          {
-            loader: 'babel-loader',
-            options: {
-              cacheDirectory: true
-            }
-          },
-          {
-            loader: 'eslint-loader',
-            enforce: 'pre',
-            options: {
-              /**
-               * Make sure you disable eslint cache.
-               * Caching eslint results may lead to million of errors after the cache expires.
-               */
-              cache: false,
-              failOnError: PRODUCTION
-            }
-          }
-        ]
-      })
-    ],
+  js: ({ include, exclude = /node_modules/ }) => ({
     module: {
       rules: [
         {
           test: /.jsx?$/i,
           exclude,
           include,
-          loader: 'happypack/loader?id=js'
+          loaders: [
+            {
+              loader: 'babel-loader',
+              options: {
+                cacheDirectory: true
+              }
+            },
+            {
+              loader: 'eslint-loader',
+              options: {
+                /**
+                 * Make sure you disable eslint cache.
+                 * Caching eslint results may lead to million of errors after the cache expires.
+                 */
+                cache: false,
+                failOnError: PRODUCTION
+              }
+            }
+          ]
         }
       ]
     }
-  })
+  }),
 };
