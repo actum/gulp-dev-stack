@@ -15,5 +15,5 @@
     <div id="timer"></div>
     <div class="plus-one"></div>
 
-    {% include 'components/p.nunj' %}
+    {% include 'components/buttons.nunj' %}
 {% endblock %}

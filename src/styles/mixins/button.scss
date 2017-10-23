@@ -1,0 +1,19 @@
+@mixin button-variant($background, $border) {
+    $hover-color: darken($background, 7.5%);
+    color: color-yiq($background);
+    background-color: $background;
+    border-color: $border;
+
+    @include hover-focus {
+        color: color-yiq($hover-color);
+        background-color: $hover-color;
+        box-shadow: $btn-box-shadow-base rgba($background, $btn-hover-box-shadow-opacity);
+    }
+
+    // Disabled comes first so active can properly restyle
+    &.disabled,
+    &:disabled {
+        background-color: $background;
+        border-color: $border;
+    }
+}

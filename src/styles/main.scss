@@ -1,5 +1,6 @@
+@import 'functions/*';
 @import 'variables';
-@import 'bootstrap/bootstrap';
+@import 'mixins/*';
 @import 'base/*';
 
 body {

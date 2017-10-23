@@ -1,4 +1,6 @@
 // Main color variables
+$white:   #fff;
+$dark:    #111;
 $blue:    #007bff;
 $indigo:  #6610f2;
 $purple:  #6f42c1;
@@ -19,6 +21,38 @@ $theme-colors: (
     danger: $red
 );
 
-@import '../../node_modules/bootstrap/scss/functions';
-@import '../../node_modules/bootstrap/scss/variables';
-@import '../../node_modules/bootstrap/scss/mixins';
+/*
+* ANIMATION AND TRANSITION
+*/
+$easing: ease-in-out;
+$duration: .3s;
+
+/*
+* TYPOGRAPHY
+*/
+$text-light: $white;
+$text-dark: $dark;
+$font-family-base: "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-size-base: px(16);
+$font-weight-normal: 300;
+$font-weight-seminbold: 500;
+$font-weight-bold: 900;
+
+/*
+* BUTTONS
+*/
+$btn-padding-y: px(8);
+$btn-padding-x: px(15);
+$btn-font-size: $font-size-base;
+$btn-font-weight: $font-weight-normal;
+$btn-line-height: 1;
+$btn-border-width: 1px;
+$btn-border-radius: px(4);
+$btn-opacity-disabled: .65;
+$btn-box-shadow-base: 0 0 0 4px;
+$btn-hover-box-shadow-opacity: .25;
+$btn-transition-property: box-shadow, background-color;
+$btn-transition-easing: $easing;
+$btn-transition-duration: $duration;
+
+$border-radius: 4px;
