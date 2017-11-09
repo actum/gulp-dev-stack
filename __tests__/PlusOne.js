@@ -43,6 +43,7 @@ import { createStore } from 'redux';
 import { PlusOne } from '../src/app/components/plus-one/PlusOne';
 import { increment } from './../src/app/components/plus-one/actions';
 import counter from './../src/app/components/plus-one/reducer';
+import rootReducer from './../src/app/store/root-reducer';
 
 /**
  * @param {object} props
@@ -59,6 +60,9 @@ const createTestProps = props => ({
  */
 const createWrapper = props => shallow(<PlusOne {...props} />);
 
+/**
+ * example: shallow unit testing example
+ */
 describe('redering', () => {
     let wrapper;
 
@@ -76,25 +80,67 @@ describe('redering', () => {
     });
 });
 
+/**
+ * example: unit testing with connected component in <Provider /> and full render:
+ */
 describe('interaction', () => {
     const mockStore = configureStore();
-    let wrapper;
-    let connectedWrapper;
-    let props;
+    // let wrapper;
     let store;
     let action;
+    let state = { counter: 1 };
 
-    describe('click the button', () => {
+    describe('test increment action', () => {
         beforeEach(() => {
             store = mockStore();
-            wrapper = createWrapper();
-            connectedWrapper = mount(<Provider store={store}><PlusOne /></Provider>);
+            // wrapper = mount(<Provider store={store}><PlusOne /></Provider>);
         });
 
-        it('should dispatch action', () => {
+        it('should dispatch action increment', () => {
             store.dispatch(increment());
             action = store.getActions();
             expect(action[0].type).toBe('INCREMENT');
         });
     });
+
+    describe('test counter reducer', () => {
+        beforeEach(() => {
+            state = counter(state = 1, { type: 'INCREMENT' });
+        });
+
+        it('should increase by 1', () => {
+            expect(state).toEqual(2);
+        });
+    });
 });
+
+// describe('interaction', () => {
+//     const initialState = {};
+//     const mockStore = configureStore();
+//     let wrapper;
+//     let connectedWrapper;
+//     let store;
+//     let action;
+
+//     describe('click the button', () => {
+//         beforeEach(() => {
+//             store = mockStore(initialState);
+//             connectedWrapper = mount(<Provider store={store}><PlusOne /></Provider>);
+
+//             // wrapper = mount(<Provider store={store}><PlusOne /></Provider>);
+//             // store.dispatch(increment());
+//         });
+
+//         it('should dispatch action increment', () => {
+//             store.dispatch(increment());
+//             action = store.getActions();
+//             expect(action[0].type).toBe('INCREMENT');
+//             console.log(connectedWrapper.find('button').text());
+//             // expect(connectedWrapper.find('button').text()).toEqual('+ 2');
+//             // expect(connectedWrapper.find(PlusOne).prop('counter')).toEqual(2);
+
+//             // expect(wrapper.find('button').text()).toEqual('+ 2');
+//             // expect(wrapper.find(PlusOne).prop('counter')).toEqual(2);
+//         });
+//     });
+// });
