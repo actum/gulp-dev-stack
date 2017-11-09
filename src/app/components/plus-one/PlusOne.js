@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 import { increment } from './actions';
 
@@ -21,7 +22,7 @@ export class PlusOne extends Component {
                     className="btn btn-primary"
                     onClick={this.handleClick}
                 >
-                    + {this.props.counter}
+                    {`+ ${this.props.counter}`}
                 </button>
             </p>
         );
