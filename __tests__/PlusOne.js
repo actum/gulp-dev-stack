@@ -35,11 +35,6 @@ import configureStore from 'redux-mock-store';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 
-// import jsdom from 'jsdom';
-// const doc = jsdom.jsdom('<!doctype html><html><body></body></html>');
-// global.document = doc;
-// global.window = doc.defaultView;
-
 import { PlusOne } from '../src/app/components/plus-one/PlusOne';
 import { increment } from './../src/app/components/plus-one/actions';
 import counter from './../src/app/components/plus-one/reducer';
@@ -85,15 +80,13 @@ describe('redering', () => {
  */
 describe('interaction', () => {
     const mockStore = configureStore();
-    // let wrapper;
     let store;
     let action;
     let state = { counter: 1 };
 
-    describe('test increment action', () => {
+    describe('increment action', () => {
         beforeEach(() => {
             store = mockStore();
-            // wrapper = mount(<Provider store={store}><PlusOne /></Provider>);
         });
 
         it('should dispatch action increment', () => {
@@ -103,12 +96,12 @@ describe('interaction', () => {
         });
     });
 
-    describe('test counter reducer', () => {
+    describe('counter reducer => increase by 1', () => {
         beforeEach(() => {
             state = counter(state = 1, { type: 'INCREMENT' });
         });
 
-        it('should increase by 1', () => {
+        it('should return 2', () => {
             expect(state).toEqual(2);
         });
     });
