@@ -27,6 +27,7 @@
 //     });
 // });
 
+import 'jsdom-global/register';
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 import renderer from 'react-test-renderer';
@@ -78,15 +79,15 @@ describe('redering', () => {
 });
 
 /**
- * example: unit testing with connected component in <Provider /> and full render:
+ * example: unit testing action creator and reducer
  */
-describe('interaction', () => {
+describe('unit test', () => {
     const mockStore = configureStore();
     let store;
     let action;
     let state = { counter: 1 };
 
-    describe('trigger increment action', () => {
+    describe('increment action', () => {
         beforeEach(() => {
             store = mockStore();
         });
@@ -98,119 +99,38 @@ describe('interaction', () => {
         });
     });
 
-    describe('counter reducer => increase by 1', () => {
+    describe('counter reducer', () => {
         beforeEach(() => {
             state = counter(state = 1, { type: 'INCREMENT' });
         });
 
-        it('should return 2', () => {
+        it('should increase by 1', () => {
             expect(state).toEqual(2);
         });
     });
 });
 
-// ============================================================================
-// describe('interaction', () => {
-//     const initialState = {};
-//     let wrapper;
-//     let store;
-//     let action;
-
-//     describe('click the button', () => {
-//         beforeEach(() => {
-//             store = createStore(rootReducer, initialState);
-//             wrapper = mount(<Provider store={store}><PlusOne /></Provider>);
-//         });
-
-//         it('should dispatch action increment', (done) => {
-//             store.dispatch(increment());
-//             // expect(connectedWrapper.find('button').text()).toEqual('+ 2');
-//             // expect(connectedWrapper.find(PlusOne).prop('counter')).toEqual(2);
-//             expect(wrapper.find(PlusOne).prop('counter')).toEqual(2);
-//             // expect(wrapper.find('button').text()).toEqual('+ 2');
-//         });
-//     });
-// });
-
-// ============================================================================
-
-// /**
-//  * source:
-//  * https://medium.freecodecamp.org/real-integration-tests-with-react-redux-and-react-router-417125212638
-//  */
-
-//  /* Sets up basic variables to be used by integration tests
-//  * Params:
-//  *   reducers: should be an object with all the reducers your page uses
-//  *   initialRouterState: an optional object to set as the initial state for the router
-//  * Returns:
-//  *   an object with the following attributes:
-//  *     store: the reducer store which contains the main dispatcher and the state
-//  *     dispatchSpy: a jest spy function to be used on assertions of dispatch action calls
-//  */
-
-// function setupIntegrationTest(reducers, initialRouterState = {}) {
-//     // creating a jest mock function to serve as a dispatch spy for asserting dispatch actions if needed
-//     const dispatchSpy = jest.fn(() => ({}));
-//     const reducerSpy = (state, action) => dispatchSpy(action);
-
-//     // applying thunk middleware to the the store
-//     const emptyStore = applyMiddleware(thunk)(createStore);
-
-//     const combinedReducers = combineReducers({
-//         reducerSpy,
-//         ...reducers
-//     });
-
-//     // creating the store
-//     const store = emptyStore(combinedReducers);
-
-//     return { store, dispatchSpy };
-// }
-
-// describe('integration tests', () => {
-//     let store;
-//     let dispatchSpy;
-//     let wrapper;
-
-//     beforeEach(() => {
-//         ({ store, dispatchSpy } = setupIntegrationTest({ counter }));
-//         // wrapper = mount(
-//         //     <Provider store={store}>
-//         //         <PlusOne increment={increment} />
-//         //     </Provider>
-//         // );
-//     });
-
-//     it('should change the text on click', () => {
-//         const wrapper = mount(
-//             <Provider store={store}>
-//                 <PlusOne increment={increment.bind(this)} />
-//             </Provider>
-//         );
-
-//         wrapper.find('button').simulate('click');
-//         store.dispatch({ type: 'INCREMENT' });
-//         wrapper.update();
-
-//         expect(wrapper.find('button').text()).toEqual('+ 2');
-//         // expect(wrapper.find('button').prop('children')).toEqual('+ 2');
-//         // console.log(store.getState().counter);
-//         // expect(store.getState().counter).toEqual('+ 2');
-//     });
-// });
-
-// ============================================================================
 /**
  * example: simple integration test
  */
-describe('integration', () => {
+describe('integration test', () => {
     let wrapper;
     let store;
     let action;
     let props;
 
-    describe('click the button', () => {
+    describe('initial render', () => {
+        beforeEach(() => {
+            wrapper = createWrapper(props);
+            store = createStore(rootReducer);
+        });
+
+        it('should have default props', () => {
+            expect(wrapper.find('button').text()).toEqual('+ 1');
+        });
+    });
+
+    describe('trigger increment action', () => {
         beforeEach(() => {
             store = createStore(rootReducer);
             store.dispatch(increment());
@@ -218,7 +138,7 @@ describe('integration', () => {
             wrapper = createWrapper(props);
         });
 
-        it('should render with counter prop increase by 1', () => {
+        it('should increase number by 1', () => {
             expect(wrapper.find('button').text()).toEqual('+ 2');
         });
     });
