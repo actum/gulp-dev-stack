@@ -37,6 +37,7 @@
     "envify": "^3.4.0",
     "enzyme": "^3.1.0",
     "enzyme-adapter-react-16": "^1.0.3",
+    "enzyme-redux": "^0.1.7",
     "enzyme-to-json": "^3.1.4",
     "eslint": "^3.18.0",
     "eslint-config-airbnb": "^14.1.0",
@@ -82,8 +83,8 @@
     "postcss-flexbugs-fixes": "^2.0.0",
     "postcss-loader": "^1.0.0",
     "pre-push": "^0.1.1",
-    "react-addons-test-utils": "^15.5.1",
     "react": "^16.0.0",
+    "react-addons-test-utils": "^15.5.1",
     "react-dom": "^16.0.0",
     "react-redux": "^5.0.5",
     "react-test-renderer": "^16.0.0",
@@ -106,6 +107,7 @@
     "bootstrap": "^4.0.0-alpha.6",
     "fg-loadcss": "^1.2.0",
     "merge-stream": "^1.0.0",
+    "redux-thunk": "^2.2.0",
     "styleguide": "actum/styleguide",
     "svgxuse": "^1.1.17"
   }
