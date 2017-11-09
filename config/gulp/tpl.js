@@ -33,7 +33,7 @@ function getPagesList() {
         .filter(name => name !== 'index');
 }
 
-gulp.task('tpl', () => {
+gulp.task('tpl-compile', () => {
     const data = {
         _dev: DEVELOPMENT,
         _pages: getPagesList()
@@ -62,4 +62,9 @@ gulp.task('tpl', () => {
         .pipe(gulpif(PRODUCTION, prettify()))
         .pipe(gulp.dest(BUILD_BASE))
         .pipe(browserSync.stream({ once: true }));
+});
+
+gulp.task('tpl', ['tpl-compile'], (done) => {
+    browserSync.reload();
+    done();
 });

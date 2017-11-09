@@ -1,14 +1,14 @@
+import config from '../config';
 import gulp from 'gulp';
 import gutil from 'gulp-util';
 import enableDestroy from 'server-destroy';
 import jsonServer from 'json-server';
-import { API_PORT } from '../../config';
-
 let server;
 
 function requireUncached(module) {
     delete require.cache[require.resolve(module)];
-    return require(module)
+
+    return require(module); // eslint-disable-line
 }
 
 function start(cb) {
@@ -35,5 +35,6 @@ gulp.task('api-reload', (cb) => {
     gutil.log(gutil.colors.gray('api has changed, reloading...'));
     server && server.destroy();
     start();
+
     return cb();
 });
