@@ -36,7 +36,8 @@ import { Provider, connect } from 'react-redux';
 import { applyMiddleware, combineReducers, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import sinon from 'sinon';
-import { shallowWithState } from 'enzyme-redux';
+import { shallowWithState, shallowWithStore } from 'enzyme-redux';
+import { createMockStore } from 'redux-test-utils';
 
 import { PlusOne } from '../src/app/components/plus-one/PlusOne';
 import { increment } from './../src/app/components/plus-one/actions';
@@ -104,7 +105,7 @@ describe('unit test', () => {
             state = counter(state = 1, { type: 'INCREMENT' });
         });
 
-        it('should increase by 1', () => {
+        it('should return number increase by 1', () => {
             expect(state).toEqual(2);
         });
     });
@@ -121,12 +122,12 @@ describe('integration test', () => {
 
     describe('initial render', () => {
         beforeEach(() => {
-            wrapper = createWrapper(props);
             store = createStore(rootReducer);
+            wrapper = mount(<Provider store={store}><PlusOne /></Provider>);
         });
 
         it('should have default props', () => {
-            expect(wrapper.find('button').text()).toEqual('+ 1');
+            expect(wrapper.find(PlusOne).prop('counter')).toEqual(1);
         });
     });
 
@@ -135,11 +136,58 @@ describe('integration test', () => {
             store = createStore(rootReducer);
             store.dispatch(increment());
             props = createTestProps({ ...store.getState() });
-            wrapper = createWrapper(props);
+            wrapper = mount(<Provider store={store}><PlusOne {...props} /></Provider>);
         });
 
-        it('should increase number by 1', () => {
+        it('counter prop should be 2', () => {
+            expect(wrapper.find(PlusOne).prop('counter')).toEqual(2);
+        });
+
+        it('should render + 2', () => {
             expect(wrapper.find('button').text()).toEqual('+ 2');
+        });
+    });
+});
+
+// ===============================================================================
+/**
+ * example: how to test with 'enzyme-redux'
+ * source: https://github.com/knegusen/enzyme-redux
+ */
+
+describe('example shallowWithStore', () => {
+    describe('state', () => {
+        it('works', () => {
+            const expectedState = '+ 2';
+
+            const mapStateToProps = (state) => ({
+                state
+            });
+            const store = createMockStore(expectedState);
+
+
+            const ConnectedComponent = connect(mapStateToProps)(PlusOne);
+            const component = shallowWithStore(<ConnectedComponent />, store);
+            expect(component.props().state).toBe(expectedState);
+        });
+    });
+
+    describe('dispatch', () => {
+        it('works', () => {
+            const action = {
+                type: 'type'
+            };
+            const mapDispatchToProps = (dispatch) => ({
+                dispatchProp() {
+                    dispatch(action);
+                }
+            });
+            const store = createMockStore();
+
+            const ConnectedComponent = connect(undefined, mapDispatchToProps)(PlusOne);
+            const component = shallowWithStore(<ConnectedComponent />, store);
+            component.props().dispatchProp();
+            expect(store.isActionDispatched(action)).toBe(true);
         });
     });
 });
