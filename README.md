@@ -35,7 +35,7 @@ Front-end development stack used at [Actum](https://www.actum.cz) to create beau
 ## Getting started
 ### Preparations
 1. This development stack uses [Node](https://nodejs.org), so make sure you have it installed.
-2. Install [Gulp](http://gulpjs.com) globally:  
+2. Install [Gulp](http://gulpjs.com) globally:
 ```bash
 npm install -g gulp
 ```
@@ -131,3 +131,29 @@ Common errors  |
 **Solution:** Make sure you run `npm install` after cloning the repository. |
 
 When you have encountered a bug, or have a useful suggestion how to improve this development stack, do not hesitate to [Create a new issue](/actum/gulp-dev-stack/issues).
+
+## Testing with Jesta and Enzyme
+### Run basic test
+in the terminal run:
+
+```sh
+npm run test
+```
+### Run test in watch mode
+in the terminal run:
+
+```sh
+npm run test-w
+```
+### Run test in coverage mode
+in the terminal run:
+
+```sh
+npm run test-c
+```
+### Run test in watch mode and coverage mode
+in the terminal run:
+
+```sh
+npm run test-w-c
+```
