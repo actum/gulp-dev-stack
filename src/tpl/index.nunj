@@ -1,6 +1,6 @@
 {% extends "layouts/default.nunj" %}
 
-{% set title = "Gulpie" %}
+{% set title = "Front-end development stack" %}
 
 {% block content %}
     <h1 class="js-suffix">Pages</h1>

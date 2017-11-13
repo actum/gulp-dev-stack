@@ -8,7 +8,7 @@ export const GULP_ALL = ['./gulpfile.js', './gulp/**/*.js'];
 
 /* General */
 export const PORT = 5001;
-export const TITLE = 'Gulp Development Stack';
+export const TITLE = 'Front-end development stack';
 
 /* API server */
 export const API = {};
