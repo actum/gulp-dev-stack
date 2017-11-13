@@ -21,9 +21,9 @@ import {
     TEMPLATE_BASE
 } from '../../config';
 
+/* Environments */
 const DEVELOPMENT = environment.is('development');
 const PRODUCTION = !DEVELOPMENT;
-
 const Environment = nunj.Environment;
 const FileSystemLoader = nunj.FileSystemLoader;
 
@@ -33,7 +33,7 @@ function getPagesList() {
         .filter(name => name !== 'index');
 }
 
-gulp.task('tpl-compile', () => {
+gulp.task('tpl:compile', () => {
     const data = {
         _dev: DEVELOPMENT,
         _pages: getPagesList()
@@ -42,9 +42,11 @@ gulp.task('tpl-compile', () => {
     const options = {
         noCache: true
     };
+
     const env = new Environment(
         new FileSystemLoader(searchPaths, options)
     );
+
     env.addGlobal('_cssPath', CSS_TPL_PATH);
     env.addGlobal('_jsPath', CLIENT.TEMPLATE_DIR);
     env.addGlobal('_gfxPath', GFX_TPL_PATH);
@@ -64,7 +66,7 @@ gulp.task('tpl-compile', () => {
         .pipe(browserSync.stream({ once: true }));
 });
 
-gulp.task('tpl', ['tpl-compile'], (done) => {
+gulp.task('tpl', ['tpl:compile'], (done) => {
     browserSync.reload();
     done();
 });

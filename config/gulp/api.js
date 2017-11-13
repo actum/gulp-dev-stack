@@ -1,4 +1,4 @@
-import config from '../config';
+import config from '../../config';
 import gulp from 'gulp';
 import gutil from 'gulp-util';
 import enableDestroy from 'server-destroy';
@@ -22,7 +22,7 @@ function start(cb) {
 
     server = app.listen(API_PORT, () => {
         gutil.log(
-            gutil.colors.green(`JSON Server is running…`),
+            gutil.colors.green('JSON Server is running...'),
             gutil.colors.gray(`http://localhost:${API_PORT}`)
         );
     });
@@ -31,7 +31,7 @@ function start(cb) {
 
 gulp.task('api', start);
 
-gulp.task('api-reload', (cb) => {
+gulp.task('api:reload', (cb) => {
     gutil.log(gutil.colors.gray('api has changed, reloading...'));
     server && server.destroy();
     start();

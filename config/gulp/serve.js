@@ -20,7 +20,7 @@ import {
 
 const DEVELOPMENT = environment.is('development');
 
-gulp.task('serve', ['prepare'], () => {
+gulp.task('serve', ['build'], () => {
     const baseDir = DEVELOPMENT ? [
         DEVELOPMENT_BASE,
         BUILD_BASE,
@@ -48,6 +48,6 @@ gulp.task('serve', ['prepare'], () => {
         watch(IMAGES_ALL, ['images', 'tpl']);
         watch(SVG_SPRITE_ALL, ['svg', 'tpl']);
         watch(TEMPLATE_ALL, ['tpl']);
-        watch(API, ['api-reload']);
+        watch(API, ['api:reload']);
     }
 });

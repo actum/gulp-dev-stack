@@ -5,7 +5,7 @@ import { argv } from 'yargs';
 import tar from 'gulp-tar';
 import gzip from 'gulp-gzip';
 import scp from 'gulp-scp2';
-import { buildSequence } from './prepare';
+import { buildSequence } from './build';
 import {
     DEPLOY_HOST,
     DEPLOY_USERNAME,
