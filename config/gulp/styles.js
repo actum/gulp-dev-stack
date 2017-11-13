@@ -10,7 +10,7 @@ import postCSS from 'gulp-postcss';
 import flexbugsFixes from 'postcss-flexbugs-fixes';
 import sourcemaps from 'gulp-sourcemaps';
 import environment from '../environment';
-import { CSS_ENTRY, CSS_BUILD } from '../../config';
+import { CSS } from '../../config';
 
 const DEVELOPMENT = environment.is('development');
 const PRODUCTION = !DEVELOPMENT;
@@ -26,15 +26,15 @@ gulp.task('styles', ['stylelint'], () => {
         cssnano({ safe: true })
     ];
 
-    return gulp.src(CSS_ENTRY)
+    return gulp.src(CSS.SRC_ENTRY)
         .pipe(sassGlob())
         .pipe(sourcemaps.init())
         .pipe(sass()).on('error', sass.logError)
         .pipe(postCSS(postcssPlugins))
         .pipe(gulpif(DEVELOPMENT, sourcemaps.write()))
-        .pipe(gulp.dest(CSS_BUILD))
+        .pipe(gulp.dest(CSS.BUILD_DIR))
         .pipe(gulpif(DEVELOPMENT, browserSync.stream()))
         .pipe(gulpif(PRODUCTION, postCSS(postcssDistPlugins)))
         .pipe(gulpif(PRODUCTION, rename({ suffix: '.min' })))
-        .pipe(gulpif(PRODUCTION, gulp.dest(CSS_BUILD)));
+        .pipe(gulpif(PRODUCTION, gulp.dest(CSS.BUILD_DIR)));
 });

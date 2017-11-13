@@ -26,7 +26,7 @@ function bundle(config, done) {
         gutil.log('[webpack]', stats.toString({
             colors: true,
             version: true,
-            hash: false,
+            hash: true,
             chunks: false,
             chunkModules: false
         }));

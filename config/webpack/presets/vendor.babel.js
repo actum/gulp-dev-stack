@@ -5,6 +5,7 @@ import { VENDOR } from '../../../config';
 import environment from '../../environment';
 import packageJson from '../../../package.json';
 
+/* Environment */
 const PRODUCTION = environment.is('production');
 
 const plugins = [
@@ -21,14 +22,16 @@ const plugins = [
 ];
 
 if (PRODUCTION) {
-    /* Minimize the bundle */
-    new webpack.optimize.UglifyJsPlugin({
-        comments: false,
-        sourceMap: false,
-        mangle: {
-            except: ['require', 'exports']
-        }
-    })
+    plugins.push(
+        /* Minimize the bundle */
+        new webpack.optimize.UglifyJsPlugin({
+            comments: false,
+            sourceMap: false,
+            mangle: {
+                except: ['require', 'exports']
+            }
+        })
+    );
 }
 
 export default {

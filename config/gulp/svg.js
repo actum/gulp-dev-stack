@@ -6,7 +6,7 @@ import gutil from 'gulp-util';
 import rename from 'gulp-rename';
 import svgmin from 'gulp-svgmin';
 import svgstore from 'gulp-svgstore';
-import { SVG_BASE, SVG_BUILD_SPRITES } from '../../config';
+import { SVG } from '../../config';
 
 /* SVG sprites */
 /* Returns an Object in a format { folderName: globbingPath } */
@@ -16,10 +16,10 @@ function getSprites() {
     function getSpriteFolders(SVG_FOLDER) {
         return fs.readdirSync(SVG_FOLDER).filter(file => fs.statSync(path.join(SVG_FOLDER, file)).isDirectory());
     }
-    const spriteFolders = getSpriteFolders(SVG_BASE);
+    const spriteFolders = getSpriteFolders(SVG.SRC_DIR);
 
     spriteFolders.forEach((spriteName) => {
-        var spriteGlob = path.resolve(`${SVG_BASE}/${spriteName}/*.svg`);
+        var spriteGlob = path.resolve(`${SVG.SRC_DIR}/${spriteName}/*.svg`);
         spriteGlob = path.relative(process.cwd(), spriteGlob);
         sprites.push({ name: spriteName, glob: spriteGlob });
     });
@@ -52,7 +52,7 @@ gulp.task('svg:sprites', () => {
                 file.basename = sprite.name;
                 return file;
             }))
-            .pipe(gulp.dest(SVG_BUILD_SPRITES));
+            .pipe(gulp.dest(SVG.SPRITES.BUILD_DIR));
     }
 
     const sprites = getSprites();

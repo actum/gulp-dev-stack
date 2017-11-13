@@ -7,20 +7,21 @@ import gzip from 'gulp-gzip';
 import scp from 'gulp-scp2';
 import { buildSequence } from './build';
 import {
+    DEPLOY,
     DEPLOY_HOST,
     DEPLOY_USERNAME,
     DEPLOY_PASSWORD,
     DEPLOY_DEST,
-    STYLEGUIDE_DEST
+    STYLEGUIDE
 } from '../../config';
 
 const buildNumber = argv.buildNumber || '0';
 const jobName = argv.jobName || 'unknown';
 const buildFile = `${jobName}-${buildNumber}.tar`;
-const buildDest = `${DEPLOY_DEST}/${jobName}`;
+const buildDest = `${DEPLOY.BUILD_DIR}/${jobName}`;
 
 gulp.task('compress', () => {
-    return gulp.src(`${STYLEGUIDE_DEST}/**`)
+    return gulp.src(`${STYLEGUIDE.BUILD_DIR}/**`)
         .pipe(tar(buildFile))
         .pipe(gzip())
         .pipe(gulp.dest('.'));
@@ -28,9 +29,9 @@ gulp.task('compress', () => {
 
 gulp.task('upload', () => {
     const options = {
-        host: DEPLOY_HOST,
-        username: DEPLOY_USERNAME,
-        password: DEPLOY_PASSWORD,
+        host: DEPLOY.HOST,
+        username: DEPLOY.USERNAME,
+        password: DEPLOY.PASSWORD,
         dest: buildDest
     };
 

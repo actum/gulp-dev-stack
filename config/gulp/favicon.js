@@ -3,12 +3,12 @@ import gulp from 'gulp';
 import realFavicon from 'gulp-real-favicon';
 import {
     TITLE,
-    BUILD_BASE,
-    HTML_BUILD,
-    FAVICON_SOURCE,
-    FAVICON_JSON,
-    FAVICON_COLORS as colors
+    BUILD_DIR,
+    HTML,
+    FAVICON
 } from '../../config';
+
+const colors = FAVICON.COLORS;
 
 // Generate the icons. This task takes a few seconds to complete.
 // You should run it at least once to create the icons. Then,
@@ -16,8 +16,8 @@ import {
 // package (see the check-for-favicon-update task below).
 gulp.task('generate-favicon', (done) => {
     realFavicon.generateFavicon({
-        masterPicture: FAVICON_SOURCE,
-        dest: BUILD_BASE,
+        masterPicture: FAVICON.SRC_ENTRY,
+        dest: BUILD_DIR,
         iconsPath: '/',
         design: {
             ios: {
@@ -69,7 +69,7 @@ gulp.task('generate-favicon', (done) => {
             scalingAlgorithm: 'Mitchell',
             errorOnImageTooSmall: false
         },
-        markupFile: FAVICON_JSON
+        markupFile: FAVICON.JSON
     }, () => {
         done();
     });
@@ -79,9 +79,9 @@ gulp.task('generate-favicon', (done) => {
 // this task whenever you modify a page. You can keep this task
 // as is or refactor your existing HTML pipeline.
 gulp.task('inject-favicon-markups', () => {
-    gulp.src(HTML_BUILD)
-        .pipe(realFavicon.injectFaviconMarkups(JSON.parse(fs.readFileSync(FAVICON_JSON)).favicon.html_code))
-        .pipe(gulp.dest(BUILD_BASE));
+    gulp.src(HTML.BUILD_DIR)
+        .pipe(realFavicon.injectFaviconMarkups(JSON.parse(fs.readFileSync(FAVICON.JSON)).favicon.html_code))
+        .pipe(gulp.dest(BUILD_DIR));
 });
 
 // Check for updates on RealFaviconGenerator (think: Apple has just
@@ -89,7 +89,7 @@ gulp.task('inject-favicon-markups', () => {
 // Run this task from time to time. Ideally, make it part of your
 // continuous integration system.
 gulp.task('check-for-favicon-update', () => {
-    const currentVersion = JSON.parse(fs.readFileSync(FAVICON_JSON)).version;
+    const currentVersion = JSON.parse(fs.readFileSync(FAVICON.JSON)).version;
     realFavicon.checkForUpdates(currentVersion, (err) => {
         if (err) {
             throw err;

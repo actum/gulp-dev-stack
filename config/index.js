@@ -1,93 +1,105 @@
+/* Paths */
+export const NPM = './node_modules';
+export const DEVELOPMENT_BASE = './src';
+export const BUILD_DIR = './dist';
+
+/* Gulp */
+export const GULP_ALL = ['./gulpfile.js', './gulp/**/*.js'];
+
 /* General */
 export const PORT = 5001;
 export const TITLE = 'Gulp Development Stack';
 
 /* API server */
-export const API = `${DEVELOPMENT_BASE}/api/api.js`;
-export const API_PORT = 5003;
-
-/* Paths */
-export const NPM = './node_modules';
-export const DEVELOPMENT_BASE = './src';
-export const BUILD_BASE = './dist';
-
-/* Gulp */
-export const GULP_ALL = ['./gulpfile.js', './gulp/**/*.js'];
+export const API = {};
+API.PORT = 5003;
+API.SRC_ENTRY = `${DEVELOPMENT_BASE}/api/api.js`;
 
 /* CSS */
 export const CSS = {};
-CSS.BASE_DIR = `${DEVELOPMENT_BASE}/styles`;
-CSS.ENTRY = `${CSS.BASE_DIR }/main.scss`;
-CSS.BUILD_DIR = `${BUILD_BASE}/css`;
-
-export const CSS_BASE = `${DEVELOPMENT_BASE}/styles`;
-export const CSS_ENTRY = `${CSS_BASE}/main.scss`;
-export const CSS_ALL = `${CSS_BASE}/**/*.scss`;
-export const CSS_BUILD = `${BUILD_BASE}/css`;
-export const CSS_TPL_PATH = '/css';
+CSS.SRC_DIR = `${DEVELOPMENT_BASE}/styles`;
+CSS.SRC_ENTRY = `${CSS.SRC_DIR}/main.scss`;
+CSS.SRC_ALL = `${CSS.SRC_DIR}/**/*.scss`;
+CSS.BUILD_DIR = `${BUILD_DIR}/css`;
+CSS.TEMPLATES_DIR = '/css';
 
 /* Client application */
+export const JS = {};
+JS.BUILD_DIR = `${BUILD_DIR}/js`;
+
 export const CLIENT = {};
 CLIENT.SRC_DIR = `${DEVELOPMENT_BASE}/app`;
 CLIENT.ENTRY = `${CLIENT.SRC_DIR}/app.js`;
-CLIENT.BUILD_BASE_DIR = `${BUILD_BASE}/js`;
-CLIENT.BUILD_DIR = `${CLIENT.BUILD_BASE_DIR}/client`;
+CLIENT.BUILD_DIR = `${JS.BUILD_DIR}/client`;
 CLIENT.TEMPLATE_DIR = '/js';
 
 /* Vendor bundle */
 export const VENDOR = {};
-VENDOR.BUILD_DIR = `${CLIENT.BUILD_BASE_DIR}/vendor`;
+VENDOR.BUILD_DIR = `${JS.BUILD_DIR}/vendor`;
 VENDOR.MANIFEST_FILEPATH = `${VENDOR.BUILD_DIR}/vendor-manifest.json`;
 
 /* GFX */
-export const GFX_BASE = `${DEVELOPMENT_BASE}/gfx`;
-export const GFX_BUILD = `${BUILD_BASE}/gfx`;
-export const GFX_TPL_PATH = '/gfx';
-
-/* SVG */
-export const SVG_BASE = `${GFX_BASE}/svg`;
-export const SVG_SINGLE_ALL = `${SVG_BASE}/*.svg`;
-export const SVG_SPRITE_ALL = [
-    `${SVG_BASE}/**/*.svg`,
-    `!${SVG_SINGLE_ALL}`
-];
-export const SVG_BUILD = `${GFX_BUILD}/svg`;
-export const SVG_BUILD_SPRITES = `${SVG_BUILD}/sprites`;
-export const SVG_TPL_PATH = `${GFX_TPL_PATH}/svg`;
-export const SVG_SPRITES_TPL_PATH = `${SVG_TPL_PATH}/sprites`;
+export const GFX = {};
+GFX.SRC_DIR = `${DEVELOPMENT_BASE}/gfx`;
+GFX.BUILD_DIR = `${BUILD_DIR}/gfx`;
+GFX.TEMPLATE_DIR = '/gfx';
 
 /* Favicon */
-export const FAVICON_COLORS = {
+export const FAVICON = {};
+FAVICON.COLORS = {
     fg: '#e83a29',
     bg: '#ffffff'
 };
-export const FAVICON_BASE = `${GFX_BASE}`;
-export const FAVICON_SOURCE = `${FAVICON_BASE}/favicon-source.png`;
-export const FAVICON_JSON = 'faviconData.json';
+FAVICON.SRC_DIR = `${GFX.SRC_DIR}`;
+FAVICON.SRC_ENTRY = `${FAVICON.SRC_DIR}/favicon-source.png`;
+FAVICON.SRC_JSON = 'faviconData.json';
 
-export const IMAGES_ALL = [
-    `${GFX_BASE}/**/*.{jpg,jpeg,png,gif}`,
-    `${SVG_SINGLE_ALL}`,
-    `!${FAVICON_SOURCE}`
+/* SVG */
+export const SVG = {};
+SVG.SRC_DIR = `${GFX.SRC_DIR}/svg`;
+SVG.BUILD_DIR = `${GFX.BUILD_DIR}/svg`;
+
+SVG.SINGLE = {};
+SVG.SINGLE.SRC_ALL = `${SVG.SRC_DIR}/*.svg`;
+SVG.SINGLE.BUILD_DIR = `${GFX.BUILD_DIR}/svg`;
+SVG.SINGLE.TEMPLATE_DIR = `${GFX.TEMPLATE_DIR}/svg`;
+
+SVG.SPRITES = {};
+SVG.SPRITES.SRC_ALL = [
+    `${SVG.SRC_DIR}/**/*.svg`,
+    `!${SVG.SINGLE.SRC_ALL}`
+];
+SVG.SPRITES.BUILD_DIR = `${SVG.BUILD_DIR}/sprites`;
+SVG.SPRITES.TEMPLATE_DIR = `${SVG.SINGLE.TEMPLATE_DIR}/sprites`;
+
+/* GFX */
+GFX.SRC_ALL = [
+    `${GFX.SRC_DIR}/**/*.{jpg,jpeg,png,gif}`,
+    `${SVG.SINGLE.SRC_ALL}`,
+    `!${FAVICON.SRC_ENTRY}`
 ];
 
 /* Templates */
-export const TEMPLATE_BASE = `${DEVELOPMENT_BASE}/tpl`;
-export const TEMPLATE_PAGES = `${TEMPLATE_BASE}/*.nunj`;
-export const TEMPLATE_ALL = `${TEMPLATE_BASE}/**/*.nunj`;
+export const TEMPLATES = {};
+TEMPLATES.SRC_DIR = `${DEVELOPMENT_BASE}/tpl`;
+TEMPLATES.SRC_PAGES = `${TEMPLATES.SRC_DIR}/*.nunj`;
+TEMPLATES.SRC_ALL = `${TEMPLATES.SRC_DIR}/**/*.nunj`;
 
 /* HTML */
-export const HTML_ALL = `${DEVELOPMENT_BASE}/*.html`;
-export const HTML_BUILD = `${BUILD_BASE}/*.html`;
+export const HTML = {};
+HTML.SRC_ALL = `${DEVELOPMENT_BASE}/*.html`;
+HTML.BUILD_DIR = `${BUILD_DIR}/*.html`;
 
 /* Styleguide */
-export const STYLEGUIDE_BASE = './styleguide';
-export const STYLEGUIDE_HOMEPAGE = `../../styleguide.md`;
-export const STYLEGUIDE_DEST = `${STYLEGUIDE_BASE}/styleguide`;
-export const STYLEGUIDE_TEMPLATE = `${NPM}/styleguide/dist`;
+export const STYLEGUIDE = {};
+STYLEGUIDE.SRC_DIR = './styleguide';
+STYLEGUIDE.HOMEPAGE = '../../styleguide.md'; // why is it going back two dirs??
+STYLEGUIDE.BUILD_DIR = `${STYLEGUIDE.SRC_DIR}/styleguide`;
+STYLEGUIDE.TEMPLATE_DIR = `${NPM}/styleguide/dist`;
 
 /* Deployment */
-export const DEPLOY_HOST = '';
-export const DEPLOY_USERNAME = '';
-export const DEPLOY_PASSWORD = '';
-export const DEPLOY_DEST = '/home/deploy/packages';
+export const DEPLOY = {};
+DEPLOY.HOST = '';
+DEPLOY.USERNAME = '';
+DEPLOY.PASSWORD = '';
+DEPLOY.BUILD_DIR = '';

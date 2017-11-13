@@ -9,12 +9,12 @@ import {
     PORT,
     NPM,
     DEVELOPMENT_BASE,
-    STYLEGUIDE_BASE,
-    BUILD_BASE,
-    CSS_ALL,
-    IMAGES_ALL,
-    SVG_SPRITE_ALL,
-    TEMPLATE_ALL,
+    STYLEGUIDE,
+    BUILD_DIR,
+    CSS,
+    GFX,
+    SVG,
+    TEMPLATES,
     API
 } from '../../config';
 
@@ -23,11 +23,11 @@ const DEVELOPMENT = environment.is('development');
 gulp.task('serve', ['build'], () => {
     const baseDir = DEVELOPMENT ? [
         DEVELOPMENT_BASE,
-        BUILD_BASE,
+        BUILD_DIR,
         NPM,
-        STYLEGUIDE_BASE
+        STYLEGUIDE.SRC_DIR
 
-    ] : BUILD_BASE;
+    ] : BUILD_DIR;
 
     browserSync({
         port: PORT,
@@ -44,10 +44,10 @@ gulp.task('serve', ['build'], () => {
     const watch = (glob, tasks) => gwatch(glob, () => runSequence(...tasks));
 
     if (DEVELOPMENT) {
-        watch(CSS_ALL, ['styles', 'styleguide', 'copySgAssets']);
-        watch(IMAGES_ALL, ['images', 'tpl']);
-        watch(SVG_SPRITE_ALL, ['svg', 'tpl']);
-        watch(TEMPLATE_ALL, ['tpl']);
-        watch(API, ['api:reload']);
+        watch(CSS.SRC_ALL, ['styles', 'styleguide', 'copySgAssets']);
+        watch(GFX.SRC_ALL, ['images', 'tpl']);
+        watch(SVG.SPRITES.SRC_ALL, ['svg', 'tpl']);
+        watch(TEMPLATES.SRC_ALL, ['tpl']);
+        watch(API.SRC_ENTRY, ['api:reload']);
     }
 });
