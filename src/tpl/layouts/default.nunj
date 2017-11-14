@@ -12,33 +12,24 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ _cssPath }}/main{% if not _dev %}.min{% endif %}.css">
+
     {% if firstVisit %}
-        <style>
-            {% if _dev %}
-                {% include '../../../dist/css/critical.css' %}
-            {% else %}
-                {% include '../../../dist/css/critical.min.css' %}
-            {% endif %}
-        </style>
-        <link rel="preload" href="{{ _cssPath }}/main{% if not _dev %}.min{% endif %}.css" as="style" onload="this.rel='stylesheet'">
-        <noscript><link rel="stylesheet" href="{{ _cssPath }}/main{% if not _dev %}.min{% endif %}.css"></noscript>
-        <script src="https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js" async defer></script>
-        <link rel="prefetch" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
         <script>
-            // TODO: load minified scripts
-            {% include '../../../node_modules/fg-loadcss/src/loadCSS.js' %}
-            {% include '../../../node_modules/fg-loadcss/src/cssrelpreload.js' %}
+            {# cookie expired after 24 hours #}
+            document.cookie ='cache=1; expires='+(new Date(new Date().getTime() + 86400000)).toGMTString()+'; path=/';
+
+            {#-- Google webfont --#}
             WebFontConfig = {
                 google: {
-                    families: ['Roboto:400,700:latin']
+                    families: ['Roboto:400,700i']
                 }
             };
-            {# cookie expired after 24 hours #}
-            document.cookie ='cache=1; expires='+(new Date(new Date().getTime() + 86400000)).toGMTString()+'; path=/'
         </script>
+        <script src="https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js" async defer></script>
     {% else %}
-        <link rel="stylesheet" href="{{ _cssPath }}/main{% if not _dev %}.min{% endif %}.css">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700:latin">
+        {#-- Google webfont --#}
+        <link href="https://fonts.googleapis.com/css?family=Roboto:400,700i" rel="stylesheet">
     {% endif %}
 </head>
 <body>
