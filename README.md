@@ -6,7 +6,9 @@ Front-end development stack used at [Actum](https://www.actum.cz) to create beau
 * [Project structure](#project-structure)
 * [Naming conventions](#naming-conventions)
 * [Workflow](#workflow)
+* [Debugging with Visual Studio Code Debugger for Chrome](#debugging-with-visual-studio-code-debugger-for-chrome)
 * [Troubleshooting](#troubleshooting)
+
 
 ## Features
 
@@ -123,6 +125,12 @@ To prepare production-ready files, run `gulp` and grab built assets from `dist` 
 - solve eventual conflicts
 - push the `devstack-update` branch
 - create PR from `devstack-update` to your `master`
+
+## Debugging with Visual Studio Code Debugger for Chrome
+Support for extension [Debugger for Chrome](https://github.com/Microsoft/vscode-chrome-debug) is enabled! Big thanks to [roblourens](https://github.com/roblourens)
+1. Install extension Debugger for Chrome
+2. Run project in [development mode](#development)
+3. Run Debugger for Chrome by F5 key (in Windows)
 
 ## Troubleshooting
 Common errors  |
