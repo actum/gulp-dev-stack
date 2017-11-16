@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "name": "Launch Chrome against localhost",
+            "type": "chrome",
+            "request": "launch",
+            "url": "http://localhost:5001",
+            "webRoot": "${workspaceRoot}",
+            "sourceMapPathOverrides": {
+                "*": "${workspaceRoot}/*"
+            }
+        }
+    ]
+}
