@@ -132,6 +132,8 @@ Support for extension [Debugger for Chrome](https://github.com/Microsoft/vscode-
 2. Run project in [development mode](#development)
 3. Run Debugger for Chrome by F5 key (in Windows)
 
+![visual studio code chrome debugger](https://user-images.githubusercontent.com/2188078/32879334-e32e8128-caa9-11e7-888f-9b5a920bcd06.PNG)
+
 ## Troubleshooting
 Common errors  |
 ------------ |
