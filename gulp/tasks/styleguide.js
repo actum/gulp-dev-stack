@@ -1,25 +1,17 @@
-const config = require('../config');
 const browserSync = require('browser-sync');
 const gulp = require('gulp');
-const kss = require('kss');
+const gulpif = require('gulp-if');
+const styleguide = require('devbridge-styleguide');
 
-const styleguideOptions = {
-    source: config.CSS_BASE,
-    destination: config.STYLEGUIDE_DEST,
-    template: config.STYLEGUIDE_TEMPLATE,
-    homepage: config.STYLEGUIDE_HOMEPAGE,
-    custom: ['wrap'],
-    // The css and js paths are URLs, like '/misc/jquery.js'.
-    // The following paths are relative to the generated style guide.
-    css: [
-        'css/main.css',
-        'https://fonts.googleapis.com/css?family=Roboto:400,700:latin'
-    ],
-    js: [
-        'js/app.js'
-    ]
-};
+const config = require('../config');
+const DEVELOPMENT = require('../environment').isDevelopment;
 
-gulp.task('styleguide', (cb) => {
-    kss(styleguideOptions, cb);
+gulp.task('styleguide', () => {
+    styleguide.startServer();
+});
+
+gulp.task('styleguideCopy', () => {
+    gulp.src(`${config.STYLEGUIDE_BASE}/**/*`)
+        .pipe(gulp.dest(config.STYLEGUIDE_DEST))
+        .pipe(gulpif(DEVELOPMENT, browserSync.stream()));
 });

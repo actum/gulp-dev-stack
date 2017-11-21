@@ -1,0 +1,22 @@
+{
+  "projectName": "Actum Styleguide",
+  "projectUrl": "github.com/actum/gulp-dev-stack",
+  "projectLogo": "../gfx/svg/logo.svg",
+  "jsResources": ["../js/app.js"],
+  "viewportWidths": [
+    320,
+    576,
+    768,
+    992,
+    1200
+  ],
+  "serverPort": 8889,
+  "snippetTemplate": "styleguide/template.html",
+  "cssVariables": ["src/styles/variables.scss"],
+  "maxSassIterations": 2000,
+  "database": "styleguide/db",
+  "categories": "styleguide/db/categories.txt",
+  "uniques": "styleguide/db/uniques.txt",
+  "sassData": "styleguide/db/sassdata.txt",
+  "extension": ".txt"
+}

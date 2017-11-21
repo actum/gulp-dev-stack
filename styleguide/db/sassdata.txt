@@ -1,0 +1,60 @@
+[
+  {
+    "name": "theme",
+    "colors": {
+      "#007bff": [
+        "$blue"
+      ],
+      "#6f42c1": [
+        "$purple"
+      ],
+      "#dc3545": [
+        "$red"
+      ],
+      "#ffc107": [
+        "$yellow"
+      ],
+      "#20c997": [
+        "$teal"
+      ],
+      "#91a6b4": [
+        "$foo"
+      ],
+      "#6610f2": [
+        "$indigo"
+      ],
+      "#fd7e14": [
+        "$orange"
+      ],
+      "#17a2b8": [
+        "$cyan"
+      ],
+      "#e83e8c": [
+        "$pink"
+      ],
+      "#28a745": [
+        "$green"
+      ]
+    },
+    "typography": [
+      {
+        "variable": "$font-roboto",
+        "value": "'Roboto', Helvetica, sans-serif",
+        "weights": [
+          {
+            "weight": 400,
+            "italic": false
+          },
+          {
+            "weight": 700,
+            "italic": false
+          },
+          {
+            "weight": 900,
+            "italic": false
+          }
+        ]
+      }
+    ]
+  }
+]

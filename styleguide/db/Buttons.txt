@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "name": "Button Primary",
+    "code": "<button class=\"btn btn-primary\" type=\"button\">Button</button>\n<button class=\"btn btn-primary\" type=\"button\" disabled>Button</button>\n<button class=\"btn btn-primary\" type=\"submit\">Button</button>",
+    "description": "Our awesome primary button!",
+    "inlineCss": "#snippet { \n  \n}",
+    "includeJs": "true",
+    "isEdited": true,
+    "isDeleted": false
+  }
+]

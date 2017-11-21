@@ -1,4 +1,5 @@
 // Main color variables
+//-- colors:start --//
 $blue:    #007bff;
 $indigo:  #6610f2;
 $purple:  #6f42c1;
@@ -9,6 +10,8 @@ $yellow:  #ffc107;
 $green:   #28a745;
 $teal:    #20c997;
 $cyan:    #17a2b8;
+$foo:     #91a6b4;
+//-- colors:end --//
 
 $theme-colors: (
     primary: $teal,
@@ -18,6 +21,10 @@ $theme-colors: (
     warning: $yellow,
     danger: $red
 );
+
+//-- typo:start --//
+$font-roboto: 'Roboto', Helvetica, sans-serif; // 400, 700, 900
+//-- typo:end --//
 
 @import '../../node_modules/bootstrap/scss/functions';
 @import '../../node_modules/bootstrap/scss/variables';
