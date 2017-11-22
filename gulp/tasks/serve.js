@@ -11,8 +11,7 @@ const port = config.PORT;
 gulp.task('serve', ['prepare'], () => {
     const baseDir = DEVELOPMENT ? [
         config.BUILD_BASE,
-        config.NPM,
-        config.STYLEGUIDE_BASE
+        config.NPM
 
     ] : config.BUILD_BASE;
 
