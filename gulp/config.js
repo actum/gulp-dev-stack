@@ -73,6 +73,7 @@ const
 
     /* Styleguide */
     STYLEGUIDE_BASE = './styleguide',
+    STYLEGUIDE_DB = './styleguide/db/*.txt',
     STYLEGUIDE_DEST = `${BUILD_BASE}/styleguide`,
 
     // deploy
@@ -132,6 +133,7 @@ module.exports = {
     HTML_BUILD,
 
     STYLEGUIDE_BASE,
+    STYLEGUIDE_DB,
     STYLEGUIDE_DEST,
 
     DEPLOY_HOST,
