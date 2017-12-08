@@ -12,7 +12,7 @@ export const absolutePath = (...relativePaths) => {
  * Merge parts of webpack configuration into a single configuration.
  * @param {Array<webpackConfig>} webpackParts
  */
-export const mergeParts = (...webpackParts) => {
+export const mergeParts = (webpackParts) => {
     return webpackMerge.smartStrategy({
         plugins: 'prepend',
         module: {

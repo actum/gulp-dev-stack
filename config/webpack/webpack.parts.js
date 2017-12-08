@@ -1,6 +1,6 @@
 /**
  * Webpack parts.
- * @description Small reusable parts of webpack configuration.
+ * Independent reusable parts of webpack configuration.
  */
 import { resolve } from 'path';
 

@@ -24,6 +24,9 @@ const plugins = [
 
 if (PRODUCTION) {
     plugins.push(
+        /* Optimize code for better performance */
+        new OptimizeJsPlugin(),
+
         /**
          * Minification, tree shaking.
          * NOTE: Tree shaking (or dead code elimination) is acheived by setting { "modules": false }
@@ -31,13 +34,12 @@ if (PRODUCTION) {
          * and determination of a dead code will become impossible.
          */
         new BabelMinifyPlugin({
+            removeConsole: true,
+            removeDebugger: true,
             mangle: {
                 topLevel: true
             }
         }),
-
-        /* Optimize code for better performance */
-        new OptimizeJsPlugin(),
 
         /**
          * (Optional) Gzip compression.
@@ -47,7 +49,7 @@ if (PRODUCTION) {
         argv.gzip && new CompressionPlugin(),
 
         /**
-         * Prevent from emitting files to disk when build failed.
+         * Prevent from emitting files to disk when build fails.
          * NOTE: You may want to comment this out for debugging purposes.
          * For example, to investigate a stack trace within the built bundle.
          */
@@ -55,14 +57,16 @@ if (PRODUCTION) {
     );
 }
 
-export default mergeParts(
+export default mergeParts([
     {
         entry: {
+            /* If you wish to rename the bundle make sure to rename it in "serve.js" Gulp task as well */
             app: ['babel-polyfill', CLIENT.ENTRY]
         },
         output: {
             filename: '[name].js',
             path: absolutePath(CLIENT.BUILD_DIR),
+            publicPath: '/js/client/',
             pathinfo: DEVELOPMENT
         },
         plugins: plugins.filter(Boolean),
@@ -84,4 +88,4 @@ export default mergeParts(
 
     /* Common resolvers */
     resolvers()
-);
+]);

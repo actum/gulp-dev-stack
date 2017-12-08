@@ -8,7 +8,7 @@ module.exports = {
     settings: {
         'import/resolver': {
             webpack: {
-                config: 'config/webpack/presets/eslint.babel.js'
+                config: 'config/webpack/presets/eslint.babel.js' // Understand webpack resolvers
             }
         }
     },
@@ -27,6 +27,7 @@ module.exports = {
         'import/prefer-default-export': 0, // No. Actions can have just one action.
         'indent': [1, 4, { SwitchCase: 1 }],
         'jsx-a11y/html-has-lang': 0, // Can't recognize the Helmet.
+        'jsx-a11y/href-no-hash': 0,
         'max-len': 0,
         'no-alert': 2,
         'no-class-assign': 0, // Class assign is used for higher order components.

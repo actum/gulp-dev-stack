@@ -10,17 +10,23 @@ import environment from '../environment';
 const API = environment.isApi;
 const DEVELOPMENT = environment.is('development');
 
-export const buildSequence = [
-  [
-    'svg',
-    'images',
-    'styles',
-  ],
-  'tpl',
-  'styleguide',
-];
+export function getBuildSequence(env = process.env.NODE_ENV) {
+  const buildSequence = [
+    [
+      'svg',
+      'images',
+      'styles',
+    ],
+    'tpl',
+    'styleguide',
+  ];
 
-if (API) buildSequence.push('api');
+  if (API) buildSequence.push('api');
+
+  return buildSequence;
+};
+
+export const buildSequence = getBuildSequence();
 
 /**
  * Build task.
