@@ -21,7 +21,7 @@ export function render(Component, container, props, store) {
 }
 
 export function renderFactory(Component, containers, ...args) {
-    [...containers].forEach((container) => {
+    Array.from(containers).forEach((container) => {
         render(Component, container, ...args);
     });
 }
