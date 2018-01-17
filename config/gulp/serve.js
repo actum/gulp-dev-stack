@@ -41,21 +41,23 @@ gulp.task('serve', ['prepare'], () => {
         STYLEGUIDE.SRC_DIR
     ] : BUILD_DIR;
 
-    // webpackAppConfig.entry.app.unshift(
-    //     'react-hot-loader/patch',
-    //     'webpack-hot-middleware/client'
-    // );
+    webpackAppConfig.entry.app.unshift(
+        'react-hot-loader/patch',
+        'webpack-hot-middleware/client'
+    );
 
     const compiler = webpack(webpackAppConfig);
 
     browserSync({
         port: PORT,
-        server: { baseDir },
+        server: {
+            baseDir
+        },
         middleware: DEVELOPMENT && [
             webpackDevMiddleware(compiler, {
-                headers: {
-                    'Access-Control-Allow-Origin': '*'
-                },
+                // headers: {
+                //     'Access-Control-Allow-Origin': '*'
+                // },
                 publicPath: webpackAppConfig.output.publicPath,
                 historyApiFallback: true,
                 hotOnly: true, // force page reload in case hot update failed

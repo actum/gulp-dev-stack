@@ -36,11 +36,11 @@ export function define() {
 /**
  * Is
  * @description Shorthand method to determine if current environment equals the expected one.
- * @param {String} expectedEnv
+ * @param {String} envName
  * @return {Boolean}
  */
-export function is(expectedEnv) {
-    return (process.env.NODE_ENV === expectedEnv);
+export function is(envName) {
+    return (process.env.NODE_ENV === envName);
 }
 
 export default {

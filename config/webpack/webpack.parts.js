@@ -26,7 +26,7 @@ export const resolvers = (customResolvers) => ({
  */
 export const processors = {
   /* JavaScript */
-  js: ({ include, exclude = /node_modules/ }) => ({
+  js: ({ include, exclude = /node_modules/, hot }) => ({
     module: {
       rules: [
         {
@@ -34,6 +34,9 @@ export const processors = {
           exclude,
           include,
           loaders: [
+            hot && {
+              loader: 'react-hot-loader/webpack'
+            },
             {
               loader: 'babel-loader',
               options: {
@@ -51,7 +54,7 @@ export const processors = {
                 failOnError: PRODUCTION
               }
             }
-          ]
+          ].filter(Boolean)
         }
       ]
     }

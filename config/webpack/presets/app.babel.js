@@ -3,6 +3,7 @@ import webpack from 'webpack';
 import BabelMinifyPlugin from 'babel-minify-webpack-plugin';
 import OptimizeJsPlugin from 'optimize-js-plugin';
 import CompressionPlugin from 'compression-webpack-plugin';
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 
 import { processors, resolvers } from '../webpack.parts';
 import { mergeParts, absolutePath } from '../webpack.utils';
@@ -19,8 +20,18 @@ const plugins = [
     new webpack.DllReferencePlugin({
         context: process.cwd(),
         manifest: absolutePath(VENDOR.MANIFEST_FILEPATH)
-    })
+    }),
+    new webpack.NamedChunksPlugin()
+    // new BundleAnalyzerPlugin({
+    //     analyzerMode: 'static',
+    // })
 ];
+
+if (DEVELOPMENT) {
+    console.log('webpack.HotModuleReplacementPlugin', webpack.HotModuleReplacementPlugin);
+
+    plugins.push(new webpack.HotModuleReplacementPlugin());
+}
 
 if (PRODUCTION) {
     plugins.push(
@@ -66,7 +77,7 @@ export default mergeParts([
         output: {
             filename: '[name].js',
             path: absolutePath(CLIENT.BUILD_DIR),
-            publicPath: '/js/client/',
+            publicPath: '/js',
             pathinfo: DEVELOPMENT
         },
         plugins: plugins.filter(Boolean),
@@ -83,7 +94,8 @@ export default mergeParts([
 
     /* Compile JavaScript */
     processors.js({
-        include: [absolutePath(CLIENT.SRC_DIR)]
+        include: [absolutePath(CLIENT.SRC_DIR)],
+        hot: DEVELOPMENT
     }),
 
     /* Common resolvers */

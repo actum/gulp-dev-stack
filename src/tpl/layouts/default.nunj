@@ -55,7 +55,7 @@
     <section id="scripts">
         <script>var config = {};</script>
         <script src="{{ _jsPath }}/vendor/vendor.js"></script>
-        <script src="{{ _jsPath }}/client/app.js" defer></script>
+        <script src="{{ _jsPath }}/app.js" defer></script>
     </section>
 </body>
 </html>
