@@ -12,16 +12,16 @@ Front-end development stack used at [Actum](https://www.actum.cz) to create beau
 
 ## Features
 
- 🛠 | Preprocessing | Linting | Postprocessing
-----|-------------- | ------- | --------------
-**CSS** | [SASS](https://github.com/dlmanning/gulp-sass) | [Stylelint](http://stylelint.io/) | [PostCSS](https://github.com/postcss/postcss) ([autoprefixer](https://github.com/postcss/autoprefixer),  [cssnano](https://github.com/ben-eb/cssnano)) <br>[Sourcemaps](https://github.com/floridoo/gulp-sourcemaps)
-**JavaScript** | [Babel](http://babeljs.io/) | [ESLint](http://eslint.org) | [Browserify](http://browserify.org) <br>[Watchify](https://github.com/substack/watchify) <br>[Uglify](https://github.com/terinjokes/gulp-uglify) <br>[Sourcemaps](https://github.com/floridoo/gulp-sourcemaps)
-**SVG** | | | [SVGStore](https://github.com/w0rm/gulp-svgstore) <br>[svgmin](https://github.com/ben-eb/gulp-svgmin)
-**Images** | | | [imagemin](https://github.com/sindresorhus/gulp-imagemin)
-**Favicons** | | | [gulp-real-favicon](https://github.com/RealFaviconGenerator/gulp-real-favicon)
-**HTML** | [Nunjucks](https://github.com/sindresorhus/gulp-nunjucks) | | [Prettify](https://github.com/jonschlinkert/gulp-prettify)
-**Dev server** | | | [browser-sync](https://browsersync.io)
-**API mocking** | | | [json-server](https://github.com/typicode/json-server)
+| 🛠              | Preprocessing                            | Linting                           | Postprocessing                           |
+| --------------- | ---------------------------------------- | --------------------------------- | ---------------------------------------- |
+| **CSS**         | [SASS](https://github.com/dlmanning/gulp-sass) | [Stylelint](http://stylelint.io/) | [PostCSS](https://github.com/postcss/postcss) ([autoprefixer](https://github.com/postcss/autoprefixer),  [cssnano](https://github.com/ben-eb/cssnano)) <br>[Sourcemaps](https://github.com/floridoo/gulp-sourcemaps) |
+| **JavaScript**  | [Babel](http://babeljs.io/)              | [ESLint](http://eslint.org)       | [Browserify](http://browserify.org) <br>[Watchify](https://github.com/substack/watchify) <br>[Uglify](https://github.com/terinjokes/gulp-uglify) <br>[Sourcemaps](https://github.com/floridoo/gulp-sourcemaps) |
+| **SVG**         |                                          |                                   | [SVGStore](https://github.com/w0rm/gulp-svgstore) <br>[svgmin](https://github.com/ben-eb/gulp-svgmin) |
+| **Images**      |                                          |                                   | [imagemin](https://github.com/sindresorhus/gulp-imagemin) |
+| **Favicons**    |                                          |                                   | [gulp-real-favicon](https://github.com/RealFaviconGenerator/gulp-real-favicon) |
+| **HTML**        | [Nunjucks](https://github.com/sindresorhus/gulp-nunjucks) |                                   | [Prettify](https://github.com/jonschlinkert/gulp-prettify) |
+| **Dev server**  |                                          |                                   | [browser-sync](https://browsersync.io)   |
+| **API mocking** |                                          |                                   | [json-server](https://github.com/typicode/json-server) |
 
 - **Icons:**
     - [SVGStore](https://github.com/w0rm/gulp-svgstore) combines SVG files into one with `<symbol>` elements
@@ -37,7 +37,7 @@ Front-end development stack used at [Actum](https://www.actum.cz) to create beau
 ## Getting started
 ### Preparations
 1. This development stack uses [Node](https://nodejs.org), so make sure you have it installed.
-2. Install [Gulp](http://gulpjs.com) globally:  
+2. Install [Gulp](http://gulpjs.com) globally:
 ```bash
 npm install -g gulp
 ```
@@ -95,7 +95,96 @@ Following a certain file and folder structure keeps development, maintenance and
         * **helpers/**
         * **layouts/**
         * **PAGE.nunj**
-        Template page written in [Nunjucks](https://github.com/sindresorhus/gulp-nunjucks) and compiled to `dist/PAGE.html`.
+          Template page written in [Nunjucks](https://github.com/sindresorhus/gulp-nunjucks) and compiled to `dist/PAGE.html`.
+
+* ### / (root files)
+
+  A brief summary of dev stack root files purpose.
+
+  - #### .babelrc
+
+    [Babel](https://babeljs.io/) configuration. Primarily used to specify presets for plugins for JavaScript compiling.
+
+    [Further info](http://code.fitness/post/2015/11/babel-setting-up-.babelrc-for-babel-6.html)
+
+  - #### .editorconfig
+
+    A definition of coding styles for different code editors and IDEs. You can specify what configuration (indent size, charset, trim whitespaces, ...) should be used for what files.
+
+    [Further info](http://editorconfig.org/)
+
+  - #### .eslintrc.js
+
+    [Eslint](https://eslint.org/) configuration. Primarily used to specify and configure rules of JavaScript linting.
+
+    [Further info](https://eslint.org/docs/user-guide/configuring)
+
+  - #### .gitattributes
+
+    Path-specific settings used by [Git](https://git-scm.com/). Settings that Git applies to certain subdirectories or subsets of files - for example EOL (End Of Line) setting.
+
+    [Further info](https://git-scm.com/docs/gitattributes)
+
+  - #### .gitignore
+
+    Contains patterns that are matched against file names in your [Git](https://git-scm.com/) repository to determine whether or not they should be ignored (commited).
+
+    [Further info](https://git-scm.com/docs/gitignore)
+
+  - #### .stylelintrc
+
+    [Stylelint](https://stylelint.io/) configuration. Primarily used to specify and configure rules of CSS (SCSS) linting.
+
+    [Further info](https://stylelint.io/user-guide/configuration/)
+
+  - #### circle.yml
+
+    [CircleCI](https://circleci.com/) configuration. How to set up and test your project.
+
+    [Further info](http://circleci.com/docs/1.0/configuration/)
+
+  - #### CONTRIBUTING.md
+
+    Project workflow guideline. How to create branches, write commits or assign pull requests.
+
+    [Further info](https://github.com/blog/1184-contributing-guidelines)
+
+  - #### gulpfile.js
+
+    [Gulp](https://gulpjs.com/) configuration and definition of automation tasks.
+
+    [Further info](https://www.sitepoint.com/introduction-gulp-js/)
+
+  - #### LICENSE
+
+    Open source license of [Git](https://git-scm.com/) repository. It enables others to freely use, change and distribute the project in the repository.
+
+    [Further info](https://help.github.com/articles/adding-a-license-to-a-repository/)
+
+  - #### package-lock.json
+
+    [NPM](https://www.npmjs.com/) manifest. Automatically generated with change of `node_modules` or `package.json` if working with NPM. Holds information about which versions of each dependency were installed in order to get consistent installs across machines.
+
+    [Further info](https://docs.npmjs.com/files/package-lock.json)
+
+  - #### package.json
+
+    [NPM](https://www.npmjs.com/) packages specifics. It lists the packages (with their versions) your project depends on.
+
+    [Further info](https://docs.npmjs.com/files/package.json)
+
+  - #### README.md
+
+    It's me!
+
+
+  - #### yarn.lock
+
+    [Yarn](https://yarnpkg.com/) manifest. Automatically generated with change of `node_modules` or `package.json` if working with Yarn. Holds information about which versions of each dependency were installed in order to get consistent installs across machines.
+
+    [Further info](https://yarnpkg.com/lang/en/docs/yarn-lock/)
+
+  ​
 
 ## Workflow
 ### Development
@@ -135,9 +224,9 @@ Support for extension [Debugger for Chrome](https://github.com/Microsoft/vscode-
 ![visual studio code chrome debugger](https://user-images.githubusercontent.com/2188078/32879334-e32e8128-caa9-11e7-888f-9b5a920bcd06.PNG)
 
 ## Troubleshooting
-Common errors  |
------------- |
-**Error:**  "*Local gulp not found in ...*" when running `gulp`. |
-**Solution:** Make sure you run `npm install` after cloning the repository. |
+| Common errors                            |      |
+| ---------------------------------------- | ---- |
+| **Error:**  "*Local gulp not found in ...*" when running `gulp`. |      |
+| **Solution:** Make sure you run `npm install` after cloning the repository. |      |
 
 When you have encountered a bug, or have a useful suggestion how to improve this development stack, do not hesitate to [Create a new issue](/actum/gulp-dev-stack/issues).
