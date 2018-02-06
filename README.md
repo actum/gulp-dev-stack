@@ -163,7 +163,7 @@ Following a certain file and folder structure keeps development, maintenance and
 
   - #### package-lock.json
 
-    [NPM](https://www.npmjs.com/) manifest. Automatically generated with change of `node_modules` or `package.json`. Holds information about which versions of each dependency were installed in order to get consistent installs across machines.
+    [NPM](https://www.npmjs.com/) manifest. Automatically generated with change of `node_modules` or `package.json` if working with NPM. Holds information about which versions of each dependency were installed in order to get consistent installs across machines.
 
     [Further info](https://docs.npmjs.com/files/package-lock.json)
 
@@ -180,7 +180,7 @@ Following a certain file and folder structure keeps development, maintenance and
 
   - #### yarn.lock
 
-    [Yarn](https://yarnpkg.com/) manifest. Automatically generated with change of `node_modules` or `package.json`. Holds information about which versions of each dependency were installed in order to get consistent installs across machines.
+    [Yarn](https://yarnpkg.com/) manifest. Automatically generated with change of `node_modules` or `package.json` if working with Yarn. Holds information about which versions of each dependency were installed in order to get consistent installs across machines.
 
     [Further info](https://yarnpkg.com/lang/en/docs/yarn-lock/)
 
