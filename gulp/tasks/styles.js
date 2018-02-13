@@ -1,6 +1,3 @@
-const config = require('../config');
-const DEVELOPMENT = config.environment.isDevelopment;
-const PRODUCTION = !DEVELOPMENT;
 const gulp = require('gulp');
 const gulpif = require('gulp-if');
 const rename = require('gulp-rename');
@@ -13,10 +10,17 @@ const postcss = require('gulp-postcss');
 const sass = require('gulp-sass');
 const sourcemaps = require('gulp-sourcemaps');
 
+const config = require('../config');
+
+const DEVELOPMENT = config.environment.isDevelopment;
+const PRODUCTION = !DEVELOPMENT;
+
 gulp.task('styles', ['stylelint'], () => {
     const postcssPlugins = [
-        flexbugsFixes, // first must be flexbugs, because flexbugs do not process vendor-prefixed variants
-        autoprefixer()
+        // first must be flexbugs, because flexbugs do not process vendor-prefixed variants
+        flexbugsFixes,
+        // `grid: true` enables prefixes for CSS Grid for IE 11 and Edge 15 and older
+        autoprefixer({ grid: true })
     ];
 
     const postcssDistPlugins = [
