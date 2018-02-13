@@ -1,7 +1,10 @@
-const config = require('../config');
-const gulp = require('gulp');
 const fs = require('fs');
+
+const gulp = require('gulp');
 const realFavicon = require('gulp-real-favicon');
+
+const config = require('../config');
+
 const colors = config.FAVICON_COLORS;
 
 // Generate the icons. This task takes a few seconds to complete.

@@ -1,7 +1,8 @@
-const config = require('../config');
 const gulp = require('gulp');
 const imagemin = require('gulp-imagemin');
 const cached = require('gulp-cached');
+
+const config = require('../config');
 
 /* Optimize images */
 /* Handles common images format (jpg, png, gif) and single SVG images */

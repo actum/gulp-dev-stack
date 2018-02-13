@@ -1,11 +1,13 @@
-const config = require('../config');
-const DEVELOPMENT = config.environment.isDevelopment;
 const gulp = require('gulp');
 const gutil = require('gulp-util');
 const gwatch = require('gulp-watch');
 const browserSync = require('browser-sync');
 const copyToClipboard = require('copy-paste').copy;
 const runSequence = require('run-sequence');
+
+const config = require('../config');
+
+const DEVELOPMENT = config.environment.isDevelopment;
 const port = config.PORT;
 
 gulp.task('serve', ['prepare'], () => {

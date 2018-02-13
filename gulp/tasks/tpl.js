@@ -1,6 +1,3 @@
-const config = require('../config');
-const DEVELOPMENT = config.environment.isDevelopment;
-const PRODUCTION = !DEVELOPMENT;
 const glob = require('glob');
 const gulp = require('gulp');
 const gulpif = require('gulp-if');
@@ -12,6 +9,10 @@ const nunj = require('nunjucks');
 const nunjucks = require('gulp-nunjucks');
 const prettify = require('gulp-prettify');
 
+const config = require('../config');
+
+const DEVELOPMENT = config.environment.isDevelopment;
+const PRODUCTION = !DEVELOPMENT;
 const Environment = nunj.Environment;
 const FileSystemLoader = nunj.FileSystemLoader;
 
@@ -46,7 +47,7 @@ gulp.task('tpl-compile', () => {
         }))
         // https://mozilla.github.io/nunjucks/api.html#filesystemloader
         .pipe(nunjucks.compile(data, { env }))
-        .pipe(rename(path => path.extname = '.html'))
+        .pipe(rename(path => (path.extname = '.html')))
         .pipe(gulpif(PRODUCTION, prettify()))
         .pipe(gulp.dest(config.BUILD_BASE));
 });

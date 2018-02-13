@@ -14,8 +14,8 @@ const gutil = require('gulp-util');
 const browserSync = require('browser-sync');
 
 const config = require('../config');
-const DEVELOPMENT = require('../environment').isDevelopment;
 
+const DEVELOPMENT = config.environment.isDevelopment;
 const PRODUCTION = !DEVELOPMENT;
 
 function bundle() {

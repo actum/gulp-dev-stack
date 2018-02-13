@@ -1,7 +1,7 @@
-const config = require('../config');
-const browserSync = require('browser-sync');
 const gulp = require('gulp');
 const kss = require('kss');
+
+const config = require('../config');
 
 const styleguideOptions = {
     source: config.CSS_BASE,
