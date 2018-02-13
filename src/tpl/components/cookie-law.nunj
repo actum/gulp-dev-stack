@@ -1,4 +1,5 @@
-<p class="alert alert-info pos-f-t u-hidden" id="cookie-law" role="alert">
-    We use cookies to spy on you!
-    <button class="btn btn-secondary float-xs-right js-button" type="button">That’s great!</button>
-</p>
+<div class="alert alert-info cookie js-cookie is-hidden" data-cookie-name="cookieName" data-cookie-value="cookieValue" role="alert">
+    Our website uses cookies. By continuing we assume your permission to deploy cookies, as detailed in our <a class='cookie__link' href="#">Privacy privacy and cookies policy</a>
+
+    <button class="btn btn--primary js-cookie-btn">I agree</button>
+</div>

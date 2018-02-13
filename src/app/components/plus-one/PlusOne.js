@@ -1,15 +1,22 @@
-import React, { Component, PropTypes } from 'react';
+// External modules
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { func, number } from 'prop-types';
+
+// Sibling modules from the same directory
 import { increment } from './actions';
 
 class PlusOne extends Component {
-    constructor(props) {
-        super(props);
-
-        this.handleClick = this.handleClick.bind(this);
+    static propTypes = {
+        counter: number,
+        increment: func.isRequired
     }
 
-    handleClick() {
+    static defaultProps = {
+        counter: 1
+    }
+
+    handleClick = () => {
         this.props.increment();
     }
 
@@ -27,14 +34,6 @@ class PlusOne extends Component {
         );
     }
 }
-
-PlusOne.defaultProps = {
-    counter: 1
-};
-
-PlusOne.propTypes = {
-    counter: PropTypes.number
-};
 
 export default connect(
     state => ({

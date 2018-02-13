@@ -1,12 +1,18 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import { number } from 'prop-types';
 
 export default class Timer extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            secondsElapsed: props.from
-        };
+    static propTypes = {
+        from: number
     }
+
+    static defaultProps = {
+        from: 0
+    }
+
+    state = {
+        secondsElapsed: this.props.from
+    };
 
     componentDidMount() {
         this.interval = setInterval(() => this.tick(), 1000);
@@ -16,7 +22,7 @@ export default class Timer extends Component {
         clearInterval(this.interval);
     }
 
-    tick() {
+    tick = () => {
         this.setState({
             secondsElapsed: this.state.secondsElapsed + 1
         });
@@ -28,7 +34,3 @@ export default class Timer extends Component {
         );
     }
 }
-
-Timer.propTypes = {
-    from: PropTypes.number.isRequired
-};
