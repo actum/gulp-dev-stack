@@ -74,7 +74,7 @@
     "gulp-tar": "^2.0.0",
     "gulp-uglify": "^3.0.0",
     "gulp-util": "^3.0.8",
-    "gulp-watch": "^4.3.11",
+    "gulp-watch": "^5.0.0",
     "json-server": "^0.12.0",
     "merge-stream": "^1.0.1",
     "postcss-flexbugs-fixes": "^3.2.0",
