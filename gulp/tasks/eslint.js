@@ -1,10 +1,11 @@
-const config = require('../config');
-const environment = config.environment;
-const PRODUCTION = !environment.isDevelopment;
 const gulp = require('gulp');
 const gulpif = require('gulp-if');
 const eslint = require('gulp-eslint');
 const cached = require('gulp-cached');
+
+const config = require('../config');
+
+const PRODUCTION = config.environment.isProduction;
 
 const lint = (globs) => {
     return gulp.src(globs)

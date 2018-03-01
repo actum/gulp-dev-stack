@@ -1,5 +1,3 @@
-const DEVELOPMENT = require('../environment').isDevelopment;
-const PRODUCTION = !DEVELOPMENT;
 const gulp = require('gulp');
 const gulpif = require('gulp-if');
 const rename = require('gulp-rename');
@@ -14,7 +12,11 @@ const sourcemaps = require('gulp-sourcemaps');
 const uglify = require('gulp-uglify');
 const gutil = require('gulp-util');
 const browserSync = require('browser-sync');
+
 const config = require('../config');
+
+const DEVELOPMENT = config.environment.isDevelopment;
+const PRODUCTION = !DEVELOPMENT;
 
 function bundle() {
     const transforms = [babelify, envify];

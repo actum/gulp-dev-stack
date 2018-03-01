@@ -1,13 +1,13 @@
-const config = require('../config');
-const DEVELOPMENT = config.environment.isDevelopment;
 const fs = require('fs');
+const path = require('path');
+
 const gulp = require('gulp');
 const gutil = require('gulp-util');
-const gulpif = require('gulp-if');
-const path = require('path');
 const rename = require('gulp-rename');
 const svgmin = require('gulp-svgmin');
 const svgstore = require('gulp-svgstore');
+
+const config = require('../config');
 
 /* SVG sprites */
 /* Returns an Object in a format { folderName: globbingPath } */

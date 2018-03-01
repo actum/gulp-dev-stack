@@ -1,8 +1,10 @@
-const config = require('../config');
 const gulp = require('gulp');
 const gutil = require('gulp-util');
 const enableDestroy = require('server-destroy');
 const jsonServer = require('json-server');
+
+const config = require('../config');
+
 let server;
 
 function requireUncached(module) {
@@ -11,7 +13,7 @@ function requireUncached(module) {
     return require(module); // eslint-disable-line
 }
 
-function start(cb) {
+function start() {
     const api = requireUncached('../../src/api/api');
     const app = jsonServer.create();
     const router = jsonServer.router(api());
@@ -31,7 +33,11 @@ gulp.task('api', start);
 
 gulp.task('api-reload', (cb) => {
     gutil.log(gutil.colors.gray('api has changed, reloading...'));
-    server && server.destroy();
+
+    if (server) {
+        server.destroy();
+    }
+
     start();
 
     return cb();
