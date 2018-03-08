@@ -76,6 +76,8 @@ const
     STYLEGUIDE_HOMEPAGE = '../../styleguide.md',
     STYLEGUIDE_DEST = `${STYLEGUIDE_BASE}/styleguide`,
     STYLEGUIDE_TEMPLATE = `${NPM}/styleguide/dist`,
+    STYLEGUIDE_CSS = [`${CSS_TPL_PATH}/main.css`, 'https://fonts.googleapis.com/css?family=Roboto:400,700:latin'],
+    STYLEGUIDE_JS = [`${JS_TPL_PATH}/app.js`],
 
     // deploy
     DEPLOY_HOST = '',
@@ -137,6 +139,8 @@ module.exports = {
     STYLEGUIDE_HOMEPAGE,
     STYLEGUIDE_DEST,
     STYLEGUIDE_TEMPLATE,
+    STYLEGUIDE_CSS,
+    STYLEGUIDE_JS,
 
     DEPLOY_HOST,
     DEPLOY_USERNAME,
