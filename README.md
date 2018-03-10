@@ -193,6 +193,9 @@ To start your development process, run `gulp --dev` in the terminal. This will p
 #### API mock server
 If you want to start also an API server, run `gulp --dev --api`. This server will run on different port which is defined in `gulp/config.js` as `API_PORT`.
 
+#### Mokker
+If you want to start [Mokker](https://github.com/fidelman/mokker), run `gulp server`. This server will run on different port which is defined in `gulp/config.js` as `MOCK_PORT`.
+
 ### Remove built targets
 If you want to revert back to a fresh state without built files, run
 
