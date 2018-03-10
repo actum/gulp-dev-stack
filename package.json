@@ -11,11 +11,7 @@
   },
   "scripts": {
     "lint": "gulp eslint stylelint",
-    "prepush-msg": "echo 'Running lint task...' && exit 0",
-    "dev": "gulp --dev",
-    "server": "gulp server",
-    "start": "gulp start",
-    "build": "gulp build"
+    "prepush-msg": "echo 'Running lint task...' && exit 0"
   },
   "pre-push": [
     "prepush-msg",
