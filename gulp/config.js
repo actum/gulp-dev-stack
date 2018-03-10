@@ -85,7 +85,12 @@ const
 
     // api
     API = `${DEVELOPMENT_BASE}/api/api.js`,
-    API_PORT = 5003;
+    API_PORT = 5003,
+
+    // mock-server
+    MOCK_BASE = `${DEVELOPMENT_BASE}/server`,
+    MOCK_START = `${MOCK_BASE}/index.js`,
+    MOCK_PORT = 5005;
 
 module.exports = {
     PORT,
@@ -144,6 +149,10 @@ module.exports = {
     DEPLOY_DEST,
 
     API,
-    API_PORT
+    API_PORT,
+
+    MOCK_BASE,
+    MOCK_START,
+    MOCK_PORT
 };
 /* eslint-enable one-var */
