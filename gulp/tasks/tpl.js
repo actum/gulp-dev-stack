@@ -25,7 +25,8 @@ function getPagesList() {
 gulp.task('tpl-compile', () => {
     const data = {
         _dev: DEVELOPMENT,
-        _pages: getPagesList()
+        _pages: getPagesList(),
+        _devIp: `http://${browserSync.get(config.TITLE).instance.utils.devIp[0]}`
     };
     const searchPaths = [config.TEMPLATE_BASE, config.SVG_BUILD];
     const options = {
