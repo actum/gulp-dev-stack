@@ -19,5 +19,9 @@ jobs:
             - ~/.cache/yarn
 
       - run:
+          name: Install Gulp globally
+          command: yarn global add gulp
+
+      - run:
           name: Build
           command: gulp build
