@@ -9,12 +9,12 @@ export function render(Component, container, props, store) {
                 <Provider store={store}>
                     <Component {...props} />
                 </Provider>,
-                container
+                container,
             );
         } else {
             ReactDOM.render(
                 <Component {...props} />,
-                container
+                container,
             );
         }
     }
