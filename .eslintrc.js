@@ -6,11 +6,6 @@ module.exports = {
         browser: true
     },
     rules: {
-        // Disallow trailing commas in multiline object literals
-        // We never want a trailing comma in objects, arrays or functions
-        // https://eslint.org/docs/rules/comma-dangle#never
-        'comma-dangle': ['error', 'never'],
-
         // This option sets a specific tab width for your code
         // We use 4 spaces as indetation
         // Also indent `case` in `switch` statement

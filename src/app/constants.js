@@ -7,5 +7,5 @@ export const states = {
     hidden: 'is-hidden',
     loading: 'is-loading',
     opened: 'is-opened',
-    selected: 'is-selected'
+    selected: 'is-selected',
 };

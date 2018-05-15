@@ -9,11 +9,11 @@ import { increment } from './actions';
 class PlusOne extends Component {
     static propTypes = {
         counter: number,
-        increment: func.isRequired
+        increment: func.isRequired,
     }
 
     static defaultProps = {
-        counter: 1
+        counter: 1,
     }
 
     handleClick = () => {
@@ -37,7 +37,7 @@ class PlusOne extends Component {
 
 export default connect(
     state => ({
-        counter: state.counter
+        counter: state.counter,
     }),
-    { increment }
+    { increment },
 )(PlusOne);

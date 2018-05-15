@@ -3,15 +3,15 @@ import { number } from 'prop-types';
 
 export default class Timer extends Component {
     static propTypes = {
-        from: number
+        from: number,
     }
 
     static defaultProps = {
-        from: 0
+        from: 0,
     }
 
     state = {
-        secondsElapsed: this.props.from
+        secondsElapsed: this.props.from,
     };
 
     componentDidMount() {
@@ -24,7 +24,7 @@ export default class Timer extends Component {
 
     tick = () => {
         this.setState({
-            secondsElapsed: this.state.secondsElapsed + 1
+            secondsElapsed: this.state.secondsElapsed + 1,
         });
     }
 
