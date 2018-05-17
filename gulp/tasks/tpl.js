@@ -26,6 +26,7 @@ gulp.task('tpl-compile', () => {
     const data = {
         _dev: DEVELOPMENT,
         _pages: getPagesList(),
+        _devIp: `http://${browserSync.get(config.TITLE).instance.utils.devIp[0]}`,
         _mockPort: config.MOCK_PORT
     };
     const searchPaths = [config.TEMPLATE_BASE, config.SVG_BUILD];

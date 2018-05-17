@@ -18,7 +18,8 @@ gulp.task('serve', ['prepare'], () => {
 
     ] : config.BUILD_BASE;
 
-    browserSync({
+    browserSync.create(config.TITLE);
+    browserSync.init({
         port,
         server: { baseDir },
         open: false
