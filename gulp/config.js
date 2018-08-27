@@ -12,7 +12,10 @@ const
     BUILD_BASE = './dist',
 
     /* Gulp */
-    GULP_ALL = ['./gulpfile.js', './gulp/**/*.js'],
+    GULPFILE = './gulpfile.js',
+    GULP_BASE = './gulp',
+    GULP_TASKS = `${GULP_BASE}/**/*.js`,
+    GULP_ALL = [GULPFILE, GULP_TASKS],
 
     /* CSS */
     CSS_BASE = `${DEVELOPMENT_BASE}/styles`,
@@ -92,6 +95,7 @@ const
     // mock-server
     MOCK_BASE = `${DEVELOPMENT_BASE}/server`,
     MOCK_START = `${MOCK_BASE}/index.js`,
+    MOCK_ALL = `${MOCK_BASE}/**/*.js`,
     MOCK_PORT = 5005;
 
 module.exports = {
@@ -102,6 +106,10 @@ module.exports = {
     NPM,
     DEVELOPMENT_BASE,
     BUILD_BASE,
+
+    GULPFILE,
+    GULP_TASKS,
+    GULP_BASE,
     GULP_ALL,
 
     CSS_BASE,
@@ -157,6 +165,7 @@ module.exports = {
 
     MOCK_BASE,
     MOCK_START,
+    MOCK_ALL,
     MOCK_PORT
 };
 /* eslint-enable one-var */

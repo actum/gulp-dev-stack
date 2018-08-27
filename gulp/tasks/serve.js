@@ -35,6 +35,9 @@ gulp.task('serve', ['prepare'], () => {
     if (DEVELOPMENT) {
         watch(config.CSS_ALL, ['styles', 'styleguide', 'copySgAssets']);
         watch(config.JS_ALL, ['eslint:app']);
+        watch(config.GULPFILE, ['eslint:gulpfile']);
+        watch(config.GULP_TASKS, ['eslint:gulpTasks']);
+        watch(config.MOCK_ALL, ['eslint:mock']);
         watch(config.IMAGES_ALL, ['images', 'tpl']);
         watch(config.SVG_SPRITE_ALL, ['svg', 'tpl']);
         watch(config.TEMPLATE_ALL, ['tpl']);
