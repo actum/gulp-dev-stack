@@ -19,30 +19,32 @@ const DEVELOPMENT = config.environment.isDevelopment;
 const PRODUCTION = !DEVELOPMENT;
 
 function bundle() {
-    const transforms = [babelify, envify];
-    const opts = {
-        entries: config.JS_ENTRY,
-        debug: DEVELOPMENT,
-        transform: DEVELOPMENT ? transforms : [...transforms, uglifyify]
-    };
-    const bundler = DEVELOPMENT ? watchify(browserify(Object.assign({}, watchify.args, opts))) : browserify(opts);
-    const rebundle = () => {
-        return bundler.bundle()
-            .on('error', e => gutil.log(`${gutil.colors.red(`${e.name}:`)} ${e.message}`))
-            .pipe(source(config.JS_MAIN_FILENAME))
-            .pipe(buffer())
-            .pipe(gulpif(DEVELOPMENT, sourcemaps.init({ loadMaps: true })))
-            .pipe(gulpif(DEVELOPMENT, sourcemaps.write('./')))
-            .pipe(gulp.dest(config.JS_BUILD))
-            .pipe(gulpif(DEVELOPMENT, browserSync.stream()))
-            .pipe(gulpif(PRODUCTION, uglify()))
-            .pipe(gulpif(PRODUCTION, rename({ suffix: '.min' })))
-            .pipe(gulpif(PRODUCTION, gulp.dest(config.JS_BUILD)));
-    };
+  const transforms = [babelify, envify];
+  const opts = {
+    entries: config.JS_ENTRY,
+    debug: DEVELOPMENT,
+    transform: DEVELOPMENT ? transforms : [...transforms, uglifyify],
+  };
+  const bundler = DEVELOPMENT
+    ? watchify(browserify(Object.assign({}, watchify.args, opts)))
+    : browserify(opts);
+  const rebundle = () =>
     bundler
-        .on('update', rebundle)
-        .on('log', gutil.log);
-    return rebundle();
+      .bundle()
+      .on('error', (e) =>
+        gutil.log(`${gutil.colors.red(`${e.name}:`)} ${e.message}`),
+      )
+      .pipe(source(config.JS_MAIN_FILENAME))
+      .pipe(buffer())
+      .pipe(gulpif(DEVELOPMENT, sourcemaps.init({ loadMaps: true })))
+      .pipe(gulpif(DEVELOPMENT, sourcemaps.write('./')))
+      .pipe(gulp.dest(config.JS_BUILD))
+      .pipe(gulpif(DEVELOPMENT, browserSync.stream()))
+      .pipe(gulpif(PRODUCTION, uglify()))
+      .pipe(gulpif(PRODUCTION, rename({ suffix: '.min' })))
+      .pipe(gulpif(PRODUCTION, gulp.dest(config.JS_BUILD)));
+  bundler.on('update', rebundle).on('log', gutil.log);
+  return rebundle();
 }
 
 gulp.task('js', ['eslint'], bundle);

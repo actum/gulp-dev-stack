@@ -10,17 +10,17 @@
  * @return {Function|undefined} - Return new instance of the component if it exists, otherwise return undefined
  */
 export function init(Component, container, ...args) {
-    try {
-        if (container) {
-            if (firstInit(Component, container)) {
-                return new Component(container, ...args);
-            }
-        }
-    } catch (e) {
-        console.error(e);
+  try {
+    if (container) {
+      if (firstInit(Component, container)) {
+        return new Component(container, ...args);
+      }
     }
+  } catch (e) {
+    console.error(e);
+  }
 
-    return undefined;
+  return undefined;
 }
 
 /**
@@ -31,19 +31,19 @@ export function init(Component, container, ...args) {
  * @return {Function|undefined} - Return new instances of the component if it exists, otherwise return undefined
  */
 export function initMultiple(Component, containers, ...args) {
-    try {
-        return [...containers].map((container) => {
-            if (firstInit(Component, container)) {
-                return new Component(container, ...args);
-            }
+  try {
+    return [...containers].map((container) => {
+      if (firstInit(Component, container)) {
+        return new Component(container, ...args);
+      }
 
-            return undefined;
-        });
-    } catch (e) {
-        console.error(e);
-    }
+      return undefined;
+    });
+  } catch (e) {
+    console.error(e);
+  }
 
-    return undefined;
+  return undefined;
 }
 
 /**
@@ -53,14 +53,14 @@ export function initMultiple(Component, containers, ...args) {
  * @return {Boolean} - If the script should continue or not
  */
 function firstInit(Component, container) {
-    const componentName = Component.name.toLowerCase();
-    const initClass = `js-${componentName}-ready`;
+  const componentName = Component.name.toLowerCase();
+  const initClass = `js-${componentName}-ready`;
 
-    if (container.classList.contains(initClass)) {
-        return false;
-    }
+  if (container.classList.contains(initClass)) {
+    return false;
+  }
 
-    container.classList.add(initClass);
+  container.classList.add(initClass);
 
-    return true;
+  return true;
 }
