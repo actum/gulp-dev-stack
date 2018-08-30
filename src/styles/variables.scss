@@ -11,12 +11,12 @@ $teal:    #20c997;
 $cyan:    #17a2b8;
 
 $theme-colors: (
-    primary: $teal,
-    secondary: $pink,
-    success: $green,
-    info: $cyan,
-    warning: $yellow,
-    danger: $red
+  primary: $teal,
+  secondary: $pink,
+  success: $green,
+  info: $cyan,
+  warning: $yellow,
+  danger: $red
 );
 
 @import '../../node_modules/bootstrap/scss/functions';
