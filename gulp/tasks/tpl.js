@@ -8,6 +8,7 @@ const browserSync = require('browser-sync');
 const nunj = require('nunjucks');
 const nunjucks = require('gulp-nunjucks');
 const prettify = require('gulp-prettify');
+const htmlValidator = require('gulp-w3cjs');
 
 const config = require('../config');
 
@@ -27,7 +28,7 @@ function getPagesList() {
     .filter((name) => name !== 'index');
 }
 
-gulp.task('tpl-compile', () => {
+gulp.task('tpl:compile', () => {
   const data = {
     _dev: DEVELOPMENT,
     _pages: getPagesList(),
@@ -64,7 +65,15 @@ gulp.task('tpl-compile', () => {
   );
 });
 
-gulp.task('tpl', ['tpl-compile'], (done) => {
+gulp.task('tpl:validate', ['tpl:compile'], () =>
+  gulp
+    .src(config.HTML_BUILD)
+    .pipe(gulpif(PRODUCTION, htmlValidator()))
+    .pipe(gulpif(PRODUCTION, htmlValidator.reporter())),
+);
+
+// HTML validation is slow, run it only in PRODUCTION mode
+gulp.task('tpl', [PRODUCTION ? 'tpl:validate' : 'tpl:compile'], (done) => {
   browserSync.reload();
   done();
 });

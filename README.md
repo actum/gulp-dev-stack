@@ -31,6 +31,7 @@ Front-end development stack used at [Actum](https://www.actum.cz) to create beau
 - **Production mode**
     - JS and CSS are uglified and minified
     - Local production server for testing
+    - HTML templates validation
 - **Deployment**
     - `todo`
 
