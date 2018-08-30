@@ -16,24 +16,30 @@ const PRODUCTION = config.environment.isProduction;
 const DEVELOPMENT = config.environment.isDevelopment;
 const propertiesOrder = stylelintrc.rules['order/properties-order'];
 
-gulp.task('stylelint', () => gulp
-  .src(config.CSS_ALL)
-  .pipe(cached('stylelint'))
-  .pipe(gulpif(DEVELOPMENT,
-    postcss(
-      [
-        postcssSorting({ 'properties-order': propertiesOrder })
-      ],
-      { syntax: postscss }
+gulp.task('stylelint', () =>
+  gulp
+    .src(config.CSS_ALL)
+    .pipe(cached('stylelint'))
+    .pipe(
+      gulpif(
+        DEVELOPMENT,
+        postcss([postcssSorting({ 'properties-order': propertiesOrder })], {
+          syntax: postscss,
+        }),
+      ),
     )
-  ))
-  .pipe(gulpif(DEVELOPMENT, gulp.dest(config.CSS_BASE)))
-  .pipe(stylelint({
-    failAfterError: PRODUCTION,
-    reporters: [{
-      formatter: 'string',
-      console: true,
-    }],
-    fix: DEVELOPMENT,
-  }))
-  .pipe(gulpif(DEVELOPMENT, gulp.dest(config.CSS_BASE))));
+    .pipe(gulpif(DEVELOPMENT, gulp.dest(config.CSS_BASE)))
+    .pipe(
+      stylelint({
+        failAfterError: PRODUCTION,
+        reporters: [
+          {
+            formatter: 'string',
+            console: true,
+          },
+        ],
+        fix: DEVELOPMENT,
+      }),
+    )
+    .pipe(gulpif(DEVELOPMENT, gulp.dest(config.CSS_BASE))),
+);

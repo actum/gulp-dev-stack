@@ -18,18 +18,18 @@ import PlusOne from './components/plus-one/PlusOne';
  * @param {HTMLElement} container - The container within which components will be initialized
  */
 const app = (container, config) => {
-    // Init components (single occurance)
+  // Init components (single occurance)
 
-    init(cookieLaw, container.querySelector('.js-cookie'));
-    init(suffix, container.querySelector('.js-suffix'));
+  init(cookieLaw, container.querySelector('.js-cookie'));
+  init(suffix, container.querySelector('.js-suffix'));
 
-    // Init components (multiple occurance)
+  // Init components (multiple occurance)
 
-    // initMultiple(module, container.getElementsByClassName('js-accordion'));
+  // initMultiple(module, container.getElementsByClassName('js-accordion'));
 
-    const store = configureStore(config);
-    render(Timer, document.getElementById('timer'), { from: 100 });
-    renderFactory(PlusOne, document.querySelectorAll('.plus-one'), {}, store);
+  const store = configureStore(config);
+  render(Timer, document.getElementById('timer'), { from: 100 });
+  renderFactory(PlusOne, document.querySelectorAll('.plus-one'), {}, store);
 };
 
 // Init the components
@@ -37,4 +37,3 @@ app(document, window.config);
 
 // Define a global JS function that can be called from window object (BE can init FE components)
 window.reinitJs = app;
-

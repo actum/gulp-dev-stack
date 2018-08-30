@@ -3,11 +3,11 @@
 @import 'base/*';
 
 body {
-    font-family: 'Roboto', $font-family-base;
+  font-family: 'Roboto', $font-family-base;
 
-    &.wf-active {
-        font-family: $font-family-base;
-    }
+  &.wf-active {
+    font-family: $font-family-base;
+  }
 }
 
 @import 'components/*';

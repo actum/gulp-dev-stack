@@ -4,7 +4,7 @@
     "stylelint-order"
   ],
   "rules": {
-    "indentation": 4,
+    "indentation": 2,
     "number-leading-zero": "never",
     "no-descending-specificity": null,
     "rule-empty-line-before": null,
