@@ -11,7 +11,9 @@
   },
   "scripts": {
     "lint": "gulp eslint stylelint",
-    "prepush-msg": "echo 'Running lint task...' && exit 0"
+    "prepush-msg": "echo 'Running lint task...' && exit 0",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "pre-push": [
     "prepush-msg",
@@ -98,6 +100,8 @@
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.9.0",
-    "yargs": "^8.0.2"
-  }
+    "yargs": "^8.0.2",
+    "snyk": "^1.88.1"
+  },
+  "snyk": true
 }
