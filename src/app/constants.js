@@ -8,4 +8,5 @@ export const states = {
   loading: 'is-loading',
   opened: 'is-opened',
   selected: 'is-selected',
+  test: 'test',
 };
