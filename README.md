@@ -9,7 +9,6 @@ Front-end development stack used at [Actum](https://www.actum.cz) to create beau
 * [Debugging with Visual Studio Code Debugger for Chrome](#debugging-with-visual-studio-code-debugger-for-chrome)
 * [Troubleshooting](#troubleshooting)
 
-
 ## Features
 
 | 🛠              | Preprocessing                            | Linting                           | Postprocessing                           |
